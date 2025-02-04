@@ -1,5 +1,5 @@
 import styles from "./BigImageCard.module.css";
-import image from "../assets/img/art.jpg";
+import image from "../../assets/img/art.jpg";
 export const BigImageCard: React.FC = () => {
   return (
     <>
@@ -20,7 +20,7 @@ export const BigImageCard: React.FC = () => {
                 Yes I accept
             </button>
             <a href="#">
-                No Thanks
+                No, Thanks
             </a>
         </div>
       </div>

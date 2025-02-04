@@ -1,38 +1,55 @@
-.bigCard{
-    height: 34.68vw;
-    width: 38vw;
-    padding-top: 50px;
-    display: flex;
-    flex-direction: column;
+.fontIvyMode,
+.bigCardContent
+{
+    font-family: 'IvyMode';
 }
-.bigCard img{
-height: 64.86%;
-width: 100%;
-border-radius: 0.6vw;
-margin-bottom: 8px;
+.fontBrownLight,
+.bigCardDate,
+.bigCardDesc,
+.bigCardFooter button,
+.bigCardFooter a{
+
+    font-family: 'BrownLight';
 }
-.bigCardContent{
-    font-size: 16px;
-    padding-bottom: 5px;
-    font-weight: 900;
+
+.bigCard {
+--card-height:34.68vw;
+  height: 34.68vw;
+  width: 38vw;
+  padding-top: 10%;
+  display: flex;
+  flex-direction: column;
+  letter-spacing: 0.8px;
 }
-.bigCardDate{
-    font-size: 10px;
-    padding-bottom: 16px;
+.bigCard img {
+  height: 64.86%;
+  width: 100%;
+  border-radius: 0.6vw;
+  margin-bottom: 8px;
 }
-.bigCardDesc{
-    font-size: 16px;
-    padding-bottom: 16px;
+.bigCardContent {
+  font-size: 0.8rem;
+  padding-bottom: calc(0.015 * var(--card-height));
+  font-weight: 700;
 }
-.bigCardFooter button{
-    width: 143px;
-    height: 34.15px;
-    background-color: black;
-    color: white;
-    border-radius: 6px;
-    margin-right: 21.3475px;
+.bigCardDate {
+  font-size: 0.7rem;
+  padding-bottom: calc(0.04 * var(--card-height));
+}
+.bigCardDesc {
+  font-size: 0.8rem;
+  padding-bottom: calc(0.04 * var(--card-height));
+  
+}
+.bigCardFooter button {
+  width: 23%;
+  height: 34.15px;
+  background-color: black;
+  color: white;
+  border-radius: 6px;
+  margin-right: 7%;
 }
 .bigCardFooter a {
-    color: black;
-    font-size: 14px;
+  color: black;
+  font-size: 0.8rem;
 }

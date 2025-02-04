@@ -31,7 +31,10 @@ export const HorizontalCard: React.FC<HorizontalCardProps> = ({value}) => {
           className={styles.cardDescription}
         >
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit
-          suscipit qui, expedita mollitia reiciendis
+          suscipit qui, expedita mollitia reiciendis...
+          <span style={{color:'red',textDecoration:'underline'}}>
+            read more
+          </span>
         </div>
 
         <div className={styles.cardDetails}>
