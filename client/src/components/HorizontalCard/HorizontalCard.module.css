@@ -1,0 +1,73 @@
+.card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 17.7vw;
+  width: 38vw;
+  overflow: hidden;
+  border: 1px solid black;
+  border-radius: 0.6vw;
+}
+
+.cardPoster {
+  width: 38.5%;
+  height: 100%;
+  padding-right: 2.87%;
+}
+
+.cardPoster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cardHeading {
+  font-size: 1.5rem;
+  padding-bottom: 8px;
+}
+.cardStars {
+  color: red;
+  font-size: 1rem;
+  padding-bottom: 5px;
+}
+.cardValues{
+    font-size: 0.8rem;
+    padding: 0 5px 8px 5px;
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-around; */
+}
+
+.cardContent{
+    display: flex;
+    flex-direction: column;
+}
+.stars{
+    display: flex;
+    flex-direction: row;
+}
+
+.cardDetails{
+    padding-bottom: 10px;
+}
+
+.cardSuggestions{
+    display: flex;
+    flex-direction: row;
+    font-size: 0.8rem;
+    padding: 0 5px 8px 5px;
+
+}
+.cardSuggestions img{
+    height: 11.327px;
+    padding: "0px 5px 5px 0px";
+}
+.cardScheduled{
+    font-size: 0.8rem;
+}
+.suggest{
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

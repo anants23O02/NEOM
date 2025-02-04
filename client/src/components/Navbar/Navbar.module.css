@@ -1,49 +1,71 @@
+@font-face {
+    font-family: "Brown";
+    src: 
+         url("/src/assets/fonts/BrownMedium-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+  }
+  
 .NavbarItems{
     display: flex;
     flex-direction: row;
-    gap: 50%;
+    /* gap: 50%; */
+    justify-content: space-between;
     align-items: center;
 }
 
 .NavbarLogo{
     display: flex;
     justify-content: flex-start;
-    height: 3vw;
-    padding: 12px;
-    /* flex-shrink: 0; */
+    height: 4vw;
 }
-.NavbarText {
-    
-    flex-grow: 1;
+.NavbarOptions {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
     list-style: none;
     text-decoration: none;
-    /* padding: 0; */
     font-family:'Brown',sans-serif;
-    font-size: 93.6%;
-    font-weight: normal;
+    /* font-weight: 600; */
+    font-size: 0.6rem;
     line-height: 1.458rem;
+    gap: 1.5rem;
     padding:10px 0px;
-    /* margin-bottom: 1px; */
+    margin: 0 !important;
 }
 
-.NavbarText li a{
+.NavbarOptions li a{
     text-decoration: none;
     color: black;
 }
-.NavbarText li.activeD{
+.NavbarOptions li.activeD{
     color: #FF385C;
     /* margin-bottom: 0 !important; */
     border-bottom:1px solid #FF385C;
-    padding: 9px 0px;
+    padding-bottom: 7px ;
 }
 
-.NavbarText li.activeD a {
+.NavbarOptions li.activeD a {
     text-decoration: none;
     color: #FF385C;
 }
-.NavbarText li{
-    padding: 10px 0;
+.NavbarOptions li{
+    padding: 8px 0;
+}
+.NavItems{
+    display: flex;
+    flex-direction: row;
+}
+.NavbarProfile{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    text-decoration: none;
+    font-family:'Brown',sans-serif;
+    font-size: 0.8rem;
+    line-height: 1.458rem;
+    padding-inline-start: 3rem !important;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin: 0 !important;
 }

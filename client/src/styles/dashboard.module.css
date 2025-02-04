@@ -1,0 +1,30 @@
+/* @font-face {
+    font-family: "Ivymode";
+    src: 
+         url("/src/assets/fonts/Ivymode-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+  }
+
+   */
+.fontIvy,.scheduledHeading {
+    font-family:'IvyMode',sans-serif;
+}
+
+.fontBrownLight,.scheduleContent{
+    font-family: 'BrownLight';
+}
+
+.scheduledSection{
+    padding:1.5rem 0rem;
+}
+.scheduledHeading{
+    font-size: 1.7rem;
+    padding-bottom: 1rem;
+}
+.scheduleContent{
+    font-size: 0.8rem;
+    font-weight: 200;
+    padding-bottom: 2.3rem;
+    letter-spacing: 0.4px;
+}

@@ -1,0 +1,38 @@
+.bigCard{
+    height: 34.68vw;
+    width: 38vw;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+}
+.bigCard img{
+height: 64.86%;
+width: 100%;
+border-radius: 0.6vw;
+margin-bottom: 8px;
+}
+.bigCardContent{
+    font-size: 16px;
+    padding-bottom: 5px;
+    font-weight: 900;
+}
+.bigCardDate{
+    font-size: 10px;
+    padding-bottom: 16px;
+}
+.bigCardDesc{
+    font-size: 16px;
+    padding-bottom: 16px;
+}
+.bigCardFooter button{
+    width: 143px;
+    height: 34.15px;
+    background-color: black;
+    color: white;
+    border-radius: 6px;
+    margin-right: 21.3475px;
+}
+.bigCardFooter a {
+    color: black;
+    font-size: 14px;
+}
