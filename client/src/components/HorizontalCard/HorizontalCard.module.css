@@ -1,8 +1,22 @@
+.fontIvy,
+.cardHeading {
+  font-family: "Ivymode";
+}
+.fontBrownLight,
+.cardValues,
+.cardDescription,
+.cardDetail,
+.cardSuggestions,
+.cardScheduled {
+  font-family: "BrownLight";
+}
+
 .card {
+  --card-height: 17.7vw;
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 17.7vw;
+  height: var(--card-height);
   width: 38vw;
   overflow: hidden;
   border: 1px solid black;
@@ -10,7 +24,8 @@
 }
 
 .cardPoster {
-  width: 38.5%;
+  --poster-width:38.5%;
+  /* width: var(--poster-width); */
   height: 100%;
   padding-right: 2.87%;
 }
@@ -22,52 +37,82 @@
 }
 
 .cardHeading {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   padding-bottom: 8px;
 }
+
 .cardStars {
+  display: flex;
+  flex-direction: row;
   color: red;
-  font-size: 1rem;
-  padding-bottom: 5px;
-}
-.cardValues{
-    font-size: 0.8rem;
-    padding: 0 5px 8px 5px;
-    display: flex;
-    flex-direction: row;
-    /* justify-content: space-around; */
+  font-size: 0.8rem;
+  /* padding-bottom: 5px; */
+  justify-content: center;
 }
 
-.cardContent{
-    display: flex;
-    flex-direction: column;
-}
-.stars{
-    display: flex;
-    flex-direction: row;
-}
-
-.cardDetails{
-    padding-bottom: 10px;
+.cardValues {
+  font-size: 0.6rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 5%;
+  /* justify-content: center; */
 }
 
-.cardSuggestions{
-    display: flex;
-    flex-direction: row;
-    font-size: 0.8rem;
-    padding: 0 5px 8px 5px;
+.cardDescription{
+  width: 100%;
+  padding-top: 3%;
+  padding-bottom: 7%;
+  font-size: 0.8rem;
+}
 
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  width: calc( 100 - var(--poster-width) );
+  padding-right: 2.87%;
+  /* padding: calc(0.25 * var(--card-height)) 0; */
 }
-.cardSuggestions img{
-    height: 11.327px;
-    padding: "0px 5px 5px 0px";
+
+.stars {
+  display: flex;
+  flex-direction: row;
 }
-.cardScheduled{
-    font-size: 0.8rem;
+
+.cardDetails {
+  padding-bottom: 10px;
 }
-.suggest{
-    width: 300px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.cardDetail{
+  font-size: 0.6rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-bottom: 1.5%;
+  letter-spacing: 0.8px;
+}
+
+.cardSuggestions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 0.6rem;
+  width: 70%;
+  /* padding: 0 5px 8px 5px; */
+}
+.cardSuggestions span{
+  flex-wrap: nowrap;
+}
+.cardSuggestions img {
+  height: 11.327px;
+  padding-right:3%;
+}
+.cardScheduled {
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+.suggest {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
