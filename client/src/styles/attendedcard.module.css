@@ -1,0 +1,43 @@
+.attendedcardContent {
+  display: flex;
+  flex-direction: column;
+  height: 26vw;
+  width: 15.8vw;
+}
+.title {
+  padding: calc(0.02 * 26vw) 0;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  font-size: 0.8rem;
+  font-family: "Ivymode";
+}
+.attendance {
+  letter-spacing: 0.3px;
+  font-size: 0.7rem;
+  font-family: "Brown";
+}
+.date {
+  color: #656565;
+
+  letter-spacing: 0.3px;
+  font-size: 0.6rem;
+  font-family: "BrownLight";
+}
+.rating {
+  padding: calc(0.02 * 26vw) 0;
+  letter-spacing: 0.3px;
+  gap: 2%;
+  display: flex;
+  flex-direction: row;
+  font-size: 0.7rem;
+  font-family: "BrownLight";
+}
+.rating span {
+  color: #656565;
+  font-weight: 300;
+  font-size: 0.6rem;
+}
+.stars {
+  display: flex;
+  flex-direction: row;
+}

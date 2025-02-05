@@ -1,19 +1,18 @@
 import styles from "./BigImageCard.module.css";
 import image from "../../assets/img/art.jpg";
-export const BigImageCard: React.FC = () => {
+import {askReview} from '../../assets/Dummydata/LocationCardInterface'
+export const BigImageCard: React.FC<askReview> = ({value}) => {
+  console.log('value :>> ', value);
   return (
     <>
       <div className={styles.bigCard}>
-        <img src={image} alt="" />
+        <img src={value.image} alt="" />
         <div className={styles.bigCardContent}>
-          Indulges in the Finest Epicurean Cusines
+          {value.title}
         </div>
-        <div className={styles.bigCardDate}>on Nov 17, 2022</div>
+        <div className={styles.bigCardDate}>{value.date} </div>
         <div className={styles.bigCardDesc}>
-          Hi Charlie, we came to from our chef John that you didn't enjoyed the
-          Epicurean cuisines yesterday. As a compensation we would like to offer
-          you a free Italian cuisines as a goodwill gesture. Would you like to
-          accept our request?
+          {value.description}
         </div>
         <div className={styles.bigCardFooter}>
             <button>

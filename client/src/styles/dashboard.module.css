@@ -1,12 +1,4 @@
-/* @font-face {
-    font-family: "Ivymode";
-    src: 
-         url("/src/assets/fonts/Ivymode-Regular.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
-  }
 
-   */
 .fontIvy,.scheduledHeading {
     font-family:'IvyMode',sans-serif;
 }
@@ -17,6 +9,7 @@
 
 .scheduledSection{
     padding:1.5rem 0rem;
+    /* overflow: auto; */
 }
 .scheduledHeading{
     font-size: 1.7rem;
@@ -27,4 +20,23 @@
     font-weight: 200;
     padding-bottom: 2.3rem;
     letter-spacing: 0.4px;
+}
+.scheduledCards{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: max-content;
+    gap: 15px;
+    overflow: auto !important;
+    /* transform: translate(-25vw); */
+}
+.ratingcards{
+    padding: 1.5rem 0;
+}
+.ratingcard{
+    display: flex;
+    flex-direction: row;
+    gap:15px;
+    width: max-content;
+    overflow: auto;
 }
