@@ -2,22 +2,24 @@ import { Navbar } from "../components/Navbar/Navbar";
 import styles from "../styles/dashboard.module.css";
 import { HorizontalCard } from "../components/HorizontalCard/HorizontalCard";
 import { LocationCards } from "../assets/Dummydata/LocationCards";
+import { RecommendCards } from "../assets/Dummydata/RecommendCards";
 import { askReview } from "../assets/Dummydata/askreview";
 import { BigImageCard } from "../components/BigImageCard/BigImageCard";
 import { RecommendCard } from "../components/RecommendCards/RecommendCard";
 import { AttendedCard } from "../components/AttendedCard/AttendedCard";
+import { Footer } from "../components/Footer/Footer";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { TranslatingArrows } from "../utils/TranslatiingArrows";
+import MapComponent from "../components/MapComponent/MapComponent";
 
 export const Dashboard: React.FC = () => {
-  console.log("askReview :>> ", askReview);
+  console.log(RecommendCards[0].pos);
   const [translate, settranslate] = useState(0);
   const [translateBig, settranslateBig] = useState(0);
   function rightTranslateBig() {
-    if (translateBig > -2 * 34) {
-      // console.log("translate :>> ", translate);
-      const newtranslate = translateBig - 34;
+    if (translateBig > -36) {
+      const newtranslate = translateBig - 36;
       settranslateBig(newtranslate);
     } else {
       return;
@@ -26,8 +28,7 @@ export const Dashboard: React.FC = () => {
 
   function leftTranslateBig() {
     if (translateBig < 0) {
-      // console.log("translate :>> ", translate);
-      const newtranslate = translateBig + 34;
+      const newtranslate = translateBig + 36;
       settranslateBig(newtranslate);
       // setActive("left");
     } else {
@@ -38,7 +39,6 @@ export const Dashboard: React.FC = () => {
   const upcomingEvents = [0, 1, 2];
   function rightTranslate() {
     if (translate > -2 * 34) {
-      // console.log("translate :>> ", translate);
       const newtranslate = translate - 34;
       settranslate(newtranslate);
     } else {
@@ -48,7 +48,6 @@ export const Dashboard: React.FC = () => {
 
   function leftTranslate() {
     if (translate < 0) {
-      // console.log("translate :>> ", translate);
       const newtranslate = translate + 34;
       settranslate(newtranslate);
       // setActive("left");
@@ -59,7 +58,10 @@ export const Dashboard: React.FC = () => {
   // console.log("LocationCards :>> ", LocationCards);
   return (
     <>
+    
+
       <Navbar />
+
       <section className="container">
         <div className={styles.scheduledSection}>
           <div className={styles.scheduledHeading}>Good morning Charlie!</div>
@@ -81,7 +83,7 @@ export const Dashboard: React.FC = () => {
               animate={{ x: ` ${translate}vw` }}
               transition={{ duration: 0.5 }}
             >
-              {LocationCards.map((card, i) => {
+              {LocationCards.slice(1).map((card, i) => {
                 return <HorizontalCard value={card} key={i} />;
               })}
             </motion.div>
@@ -92,8 +94,9 @@ export const Dashboard: React.FC = () => {
           />
         </div>
       </section>
+
       <section className="container">
-        <div className={styles.ratingcards}>
+        <div className={styles.scheduledSection}>
           <div className={styles.scheduledHeading}>
             Charlie, hope we understand you better
           </div>
@@ -120,21 +123,49 @@ export const Dashboard: React.FC = () => {
           />
         </div>
       </section>
+
       <section className="container">
-        <div className={styles.RecommendCard}>
+        <div className={styles.scheduledSection}>
           <div className={styles.scheduledHeading}>
-              Today's Recommendations for you, Charlie!
+            Today Recommendation for you, Charlie!
           </div>
-          <div className={styles.RecommendCards}>
-              {[...Array(5)].map((cards) => {
-                return(
-                  <RecommendCard value={cards} />
+          <div className={styles.recommendCards}>
+            {
+              RecommendCards.map((card,i) => {
+                return (
+                  <RecommendCard value ={LocationCards[card.card]} data = {card} key={i} type={'top5'} />
                 )
-              })}
+              })
+            }
+            
           </div>
         </div>
       </section>
-      <AttendedCard />
+      <section className="container">
+        <div className={styles.scheduledSection}>
+          <div className={styles.scheduledHeading}>
+            Today Recommendation for you, Charlie!
+          </div>
+          <div className={styles.recommendCards}>
+            {
+              LocationCards.map((card,i) => {
+                return (<AttendedCard value ={card} key={i} />)
+              })
+            }       
+          </div>
+        </div>
+      </section>
+
+      <section className="container">
+        <div className={styles.scheduledSection}>
+          <div className={styles.scheduledHeadingCenter}>
+            Find events on map
+ </div>
+            <MapComponent/>
+ </div>
+</section>
+
+            <Footer/>
     </>
   );
 };

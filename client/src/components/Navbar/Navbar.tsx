@@ -3,13 +3,12 @@ import styles from "./Navbar.module.css";
 import logo from "../../assets/img/logo2.png";
 import { FaBell } from "react-icons/fa";
 import { RiGlobalLine } from "react-icons/ri";
+// import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+
 
 export const Navbar: React.FC = () => {
-  const [activeIndex, setActiveIndex] = useState<number | null>(0);
-
-  const handleClick = (index: number): void => {
-    setActiveIndex(index);
-  };
+  
 
   return (
     <nav className="container navbar">
@@ -19,20 +18,17 @@ export const Navbar: React.FC = () => {
 
         <ul className={styles.NavbarOptions}>
           <li
-            className={activeIndex === 0 ? styles.activeD : ""}
-            onClick={() => handleClick(0)}
+            className={location.pathname === "/" ? styles.activeD : ""}
             >
-            <a href="#">Dashboard</a>
+            <a href="#">   <Link to="/">Dashboard</Link> </a>
           </li>
           <li
-            className={activeIndex === 1 ? styles.activeD : ""}
-            onClick={() => handleClick(1)}
+            className={location.pathname === "/favorites" ? styles.activeD : ""}
             >
-            <a href="#">My Favorites</a>
+            <a href="#"><Link to="/favorites">My Favorites</Link></a>
           </li>
           <li
-            className={activeIndex === 2 ? styles.activeD : ""}
-            onClick={() => handleClick(2)}
+            className={location.pathname === "/upcoming"  ? styles.activeD : ""}
             >
             <a href="#">Upcoming Events</a>
           </li>
