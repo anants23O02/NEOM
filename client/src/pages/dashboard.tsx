@@ -2,16 +2,16 @@ import { Navbar } from "../components/Navbar/Navbar";
 import styles from "../styles/dashboard.module.css";
 import { HorizontalCard } from "../components/HorizontalCard/HorizontalCard";
 import { LocationCards } from "../assets/Dummydata/LocationCards";
-import {askReview} from '../assets/Dummydata/askreview';
+import { askReview } from "../assets/Dummydata/askreview";
 import { BigImageCard } from "../components/BigImageCard/BigImageCard";
 import { RecommendCard } from "../components/RecommendCards/RecommendCard";
 import { AttendedCard } from "../components/AttendedCard/AttendedCard";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import {TranslatingArrows} from '../utils/TranslatiingArrows';
+import { TranslatingArrows } from "../utils/TranslatiingArrows";
 
 export const Dashboard: React.FC = () => {
-  console.log('askReview :>> ', askReview);
+  console.log("askReview :>> ", askReview);
   const [translate, settranslate] = useState(0);
   const [translateBig, settranslateBig] = useState(0);
   function rightTranslateBig() {
@@ -19,9 +19,9 @@ export const Dashboard: React.FC = () => {
       // console.log("translate :>> ", translate);
       const newtranslate = translateBig - 34;
       settranslateBig(newtranslate);
-  } else {
+    } else {
       return;
-  }
+    }
   }
 
   function leftTranslateBig() {
@@ -29,7 +29,7 @@ export const Dashboard: React.FC = () => {
       // console.log("translate :>> ", translate);
       const newtranslate = translateBig + 34;
       settranslateBig(newtranslate);
-      setActive('left');
+      // setActive("left");
     } else {
       return;
     }
@@ -41,9 +41,9 @@ export const Dashboard: React.FC = () => {
       // console.log("translate :>> ", translate);
       const newtranslate = translate - 34;
       settranslate(newtranslate);
-  } else {
+    } else {
       return;
-  }
+    }
   }
 
   function leftTranslate() {
@@ -51,7 +51,7 @@ export const Dashboard: React.FC = () => {
       // console.log("translate :>> ", translate);
       const newtranslate = translate + 34;
       settranslate(newtranslate);
-      setActive('left');
+      // setActive("left");
     } else {
       return;
     }
@@ -81,21 +81,24 @@ export const Dashboard: React.FC = () => {
               animate={{ x: ` ${translate}vw` }}
               transition={{ duration: 0.5 }}
             >
-              {LocationCards.map((card,i) => {
+              {LocationCards.map((card, i) => {
                 return <HorizontalCard value={card} key={i} />;
               })}
             </motion.div>
           </div>
-          <TranslatingArrows leftTranslate={leftTranslate} rightTranslate={rightTranslate} />
+          <TranslatingArrows
+            leftTranslate={leftTranslate}
+            rightTranslate={rightTranslate}
+          />
         </div>
       </section>
       <section className="container">
         <div className={styles.ratingcards}>
           <div className={styles.scheduledHeading}>
-              Charlie, hope we understand you better
+            Charlie, hope we understand you better
           </div>
           <div className={styles.ratingcard}>
-          <motion.div
+            <motion.div
               style={{
                 display: "flex",
                 flexDirection: "row",
@@ -106,19 +109,31 @@ export const Dashboard: React.FC = () => {
               animate={{ x: ` ${translateBig}vw` }}
               transition={{ duration: 0.5 }}
             >
-          {askReview.map((value) => {
-            return(
-              <BigImageCard value={value} />
-            )
-          })}
+              {askReview.map((value) => {
+                return <BigImageCard value={value} />;
+              })}
             </motion.div>
-
           </div>
-          <TranslatingArrows leftTranslate={leftTranslateBig} rightTranslate={rightTranslateBig} />
-
+          <TranslatingArrows
+            leftTranslate={leftTranslateBig}
+            rightTranslate={rightTranslateBig}
+          />
         </div>
       </section>
-      <RecommendCard />
+      <section className="container">
+        <div className={styles.RecommendCard}>
+          <div className={styles.scheduledHeading}>
+              Today's Recommendations for you, Charlie!
+          </div>
+          <div className={styles.RecommendCards}>
+              {[...Array(5)].map((cards) => {
+                return(
+                  <RecommendCard value={cards} />
+                )
+              })}
+          </div>
+        </div>
+      </section>
       <AttendedCard />
     </>
   );

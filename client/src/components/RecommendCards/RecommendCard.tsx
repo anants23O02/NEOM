@@ -1,7 +1,7 @@
 import { DynamicCardImage } from "../DynamicCardImage/DynamicCardImage";
 import styles from "../../styles/recommendCard.module.css";
 import logo from '../../assets/img/joy.svg';
-export const RecommendCard: React.FC = () => {
+export const RecommendCard: React.FC = ({value}) => {
   return (
     <>
       <div className={styles.recommendCard}>
@@ -18,6 +18,6 @@ export const RecommendCard: React.FC = () => {
           <div className={styles.time}>10:30 AM - 7:30 PM</div>
         </div>
       </div>
-    </>
+      </>
   );
 };

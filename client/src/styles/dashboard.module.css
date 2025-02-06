@@ -40,3 +40,9 @@
     width: max-content;
     overflow: auto;
 }
+.RecommendCards{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    width: max-content;
+}
