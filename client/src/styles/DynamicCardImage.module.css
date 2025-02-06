@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap');
+
+
+
+.imageContainer {
+    position: relative;
+    width: 15.8vw;
+    height: 21vw;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.cardImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.imageOverlay {
+    position: absolute;
+    /* display: flex; */
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.number {
+    margin-bottom: -15px;
+    align-items: end;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800; /* ExtraBold */
+    font-size: 6rem;
+    color: rgba(255, 255, 255, 0.181); /* Original text color */
+    position: absolute;
+    /* font-stretch: extra-expanded; */
+    bottom: 0;
+    right: 5px;
+    -webkit-text-stroke: 1px white; /* White stroke */
+    
+}
+.heart {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.593);
+    padding: 1rem;
+    top: 0;
+    right: 0;
+    font-size: 1.5rem;
+
+    fill: rgba(0, 0, 0, 0.701);
+  }
+  
+  

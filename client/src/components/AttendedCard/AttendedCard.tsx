@@ -1,13 +1,17 @@
 import {DynamicCardImage} from '../DynamicCardImage/DynamicCardImage';
 import { MdStar } from "react-icons/md";
 import styles from '../../styles/attendedcard.module.css';
-export const AttendedCard: React.FC = () => {
+import TruncatedText from '../../utils/TruncatedText';
+export const AttendedCard: React.FC = ({value}) => {
+    console.log('value.image :>> ', value.image);
     return (
         <>
-        <DynamicCardImage />
+        <div className={styles.attendedCard}>
+
+        <DynamicCardImage image={value.images[0]} />
         <div className={styles.attendedcardContent}>
         <div className={styles.title}>
-            Round of Golf
+            {TruncatedText(value.title,3)}
         </div>
         <div className={styles.attendance}>
             3 Guests attended this event            
@@ -19,11 +23,12 @@ export const AttendedCard: React.FC = () => {
             <span> You Rated this event </span>
             <div className={styles.stars}>
             {[...Array(5)].map((_, i) => (
-            <MdStar key={i} className={styles.cardStars} />
-          ))}
+                <MdStar key={i} className={styles.cardStars} />
+            ))}
             </div>
         </div>
         </div>
+            </div>
         </>
     )
 

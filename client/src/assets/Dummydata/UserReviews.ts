@@ -7,6 +7,7 @@ import {userReviews} from './LocationCardsInterface.ts'
 
 export const userReviews: userReviews[] = [
   {
+    
     image: user1,
     name: "Anastasia",
     date: "Oct 2025",

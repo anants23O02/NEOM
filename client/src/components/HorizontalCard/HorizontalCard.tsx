@@ -1,11 +1,13 @@
 import poster from "../../assets/img/golf.jpg";
 import satisfied from "../../assets/img/appreciation.svg";
-import styles from "./HorizontalCard.module.css";
+import styles from "../../styles/HorizontalCard.module.css";
 import { MdCalendarToday } from "react-icons/md";
 import { MdStar } from "react-icons/md";
 import { MdLocationOn } from "react-icons/md";
 import { CiGrid41 } from "react-icons/ci";
 import type { LocationCards } from "../../assets/Dummydata/LocationCardsInterface";
+import group from '../../assets/img/Group.svg';
+import TruncatedText from '../../utils/TruncatedText';
 
 interface HorizontalCardProps {
   value: LocationCards;
@@ -14,18 +16,22 @@ interface HorizontalCardProps {
 export const HorizontalCard: React.FC<HorizontalCardProps> = ({ value }) => {
   // console.log("event :>> ", value);
 
-  function TruncatedText(text: string, maxWords: number) {
-    return text.split(" ").slice(0, maxWords).join(" ") + "...";
-  }
+  // function TruncatedText(text: string, maxWords: number) {
+  //   return text.split(" ").slice(0, maxWords).join(" ") + "...";
+  // }
   
   
   return (
     <div className={styles.card}>
       <div className={styles.cardPoster}>
         <img src={value.images[0]} alt="" />
+        <div className={styles.imageData}>
+            <img src={group} alt="" />
+        </div>
       </div>
       <div className={styles.cardContent}>
-        <div className={styles.cardHeading}>{value.title}</div>
+        <div className={styles.cardHeading}>
+          {TruncatedText(value.title,4)}</div>
         <div className={styles.stars}>
           {[...Array(value.stars)].map((_, i) => (
             <MdStar key={i} className={styles.cardStars} />
@@ -36,7 +42,7 @@ export const HorizontalCard: React.FC<HorizontalCardProps> = ({ value }) => {
         </div>
 
         <div className={styles.cardDescription}>
-          {TruncatedText(value.description[0],25)}
+          {TruncatedText(value.description[0],20)}
           <span style={{ color: "red", textDecoration: "underline" }}>
             read more
           </span>

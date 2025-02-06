@@ -1,8 +1,13 @@
+.attendedCard{
+  display: flex;
+  flex-direction: column;
+  width: 15.8vw;
+  height: 26vw;
+}
+
 .attendedcardContent {
   display: flex;
   flex-direction: column;
-  height: 26vw;
-  width: 15.8vw;
 }
 .title {
   padding: calc(0.02 * 26vw) 0;

@@ -7,6 +7,9 @@ export const BigImageCard: React.FC<askReview> = ({value}) => {
     <>
       <div className={styles.bigCard}>
         <img src={value.image} alt="" />
+        <div className={styles.imageExp}>
+            <img src={value.experience} alt="" />
+        </div>
         <div className={styles.bigCardContent}>
           {value.title}
         </div>
