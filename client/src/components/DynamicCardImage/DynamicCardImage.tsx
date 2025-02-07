@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "../../styles/DynamicCardImage.module.css";
+
 import { FiHeart } from "react-icons/fi";
 interface DynamicCardImageProps {
   image: string;
@@ -27,6 +28,14 @@ export const DynamicCardImage: React.FC<DynamicCardImageProps> = ({ image, type,
           <button className={styles.removeButton}>
             Remove
           </button>
+          
+          </div>
+      )}
+      {type === "onlyHeart" && (
+        <div className={styles.imageOverlay}>
+          
+          <FiHeart  className={styles.heart}/>
+          
           
           </div>
       )}

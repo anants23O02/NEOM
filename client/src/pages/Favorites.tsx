@@ -4,6 +4,8 @@ import { HorizontalCard } from "../components/HorizontalCard/HorizontalCard";
 import { LocationCards } from "../assets/Dummydata/LocationCards";
 import { askReview } from "../assets/Dummydata/askreview";
 import { RecommendCards } from "../assets/Dummydata/RecommendCards";
+import {data} from '../assets/Dummydata/BigrecommendationImages'
+
 import { BigImageCard } from "../components/BigImageCard/BigImageCard";
 import { RecommendCard } from "../components/RecommendCards/RecommendCard";
 import { AttendedCard } from "../components/AttendedCard/AttendedCard";
@@ -72,8 +74,8 @@ export const Favorites: React.FC = () => {
               animate={{ x: ` ${translateBig}vw` }}
               transition={{ duration: 0.5 }}
             >
-              {askReview.map((value) => {
-                return <BigRecommendationCard />;
+              {data.map((value) => {
+                return <BigRecommendationCard data={value} />;
               })}
             </motion.div>
           </div>

@@ -39,4 +39,6 @@ html, body {
  }
  
  
- 
+ .leaflet-popup-content{
+    margin: 10px !important;
+ }

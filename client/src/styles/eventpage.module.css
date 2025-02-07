@@ -1,0 +1,66 @@
+.headingCntent{
+    display: flex;
+    flex-direction: row;
+    gap: 0.7rem;
+    font-family: 'Brown';
+    font-size: 0.8rem;
+    color: rgb(93, 93, 93);
+}
+.headingstars{
+    display: flex;
+    flex-direction: row;
+}
+.cardStars{
+    color: red;
+}
+.headingReviews{
+    padding-bottom:1px ;
+    border-bottom: 1px solid rgb(93, 93, 93) ;
+}
+.completion{
+    padding: 0.2rem;
+    margin-right: 1rem;
+    font-family: 'BrownLight';
+    font-weight: 600;
+    font-size: 0.6rem;
+    text-align: right;
+}
+.imageSection{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.fourImages{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    justify-content: space-around;
+    align-items: center;
+}
+.twoImages{
+    width: 43vw;
+    height: 20vw;
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-around; */
+    justify-content: start;
+    gap: 0.4rem; 
+}
+
+.twoImages img {
+     /* Increased margin to create more spacing */
+    width: calc(50% - 0.8rem); /* Adjust width to prevent overflow */
+    height: 99%;
+}
+
+.bigImage{
+    width: 39vw;
+    height: 40vw;
+}
+.bigImage img {
+  /* Increased margin for better spacing */
+    width: calc(100% - 0.8rem); /* Adjust width to prevent overflow */
+    height: 100%;
+}

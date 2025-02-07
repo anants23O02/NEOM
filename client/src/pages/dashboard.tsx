@@ -161,7 +161,10 @@ export const Dashboard: React.FC = () => {
           <div className={styles.scheduledHeadingCenter}>
             Find events on map
  </div>
+ <div style={{marginTop:'2rem'}}>
+
             <MapComponent/>
+ </div>
  </div>
 </section>
 
