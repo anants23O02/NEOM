@@ -18,7 +18,7 @@ export const BigImageCard: React.FC<askReview> = ({value}) => {
           {value.description}
         </div>
         <div className={styles.bigCardFooter}>
-            <button>
+            <button onClick={()=>{}}>
                 Yes I accept
             </button>
             <a href="#">

@@ -19,48 +19,52 @@
 }
 .completion{
     padding: 0.2rem;
-    margin-right: 1rem;
+    /* margin-right: 1rem; */
     font-family: 'BrownLight';
     font-weight: 600;
     font-size: 0.6rem;
     text-align: right;
 }
-.imageSection{
+.imageSection {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
     align-items: center;
+    gap: 1rem; /* Increase gap to add more space between the fourImages and bigImage containers */
 }
-.fourImages{
-    width: 50%;
+
+
+.fourImages {
+        width: calc(49% - 0.5rem);
+
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
+    gap: 0.3rem; /* Added gap for vertical spacing between the two .twoImages rows */
     justify-content: space-around;
     align-items: center;
 }
-.twoImages{
+
+.twoImages {
     width: 43vw;
     height: 20vw;
     display: flex;
     flex-direction: row;
-    /* justify-content: space-around; */
     justify-content: start;
-    gap: 0.4rem; 
+    gap: 0.3rem;  /* Added gap for horizontal spacing between images in the row */
 }
 
 .twoImages img {
-     /* Increased margin to create more spacing */
-    width: calc(50% - 0.8rem); /* Adjust width to prevent overflow */
-    height: 99%;
-}
-
-.bigImage{
-    width: 39vw;
-    height: 40vw;
-}
-.bigImage img {
-  /* Increased margin for better spacing */
-    width: calc(100% - 0.8rem); /* Adjust width to prevent overflow */
+    width: calc(50%); /* Adjust width to prevent overflow */
     height: 100%;
 }
+
+.bigImage {
+   width: calc(50% - 0.5rem);
+    height: 40vw;
+    margin-left: 1rem !important;
+}
+
+.bigImage img {
+    width: 100%; /* Adjust width to prevent overflow */
+    height: 100%;
+}
+
