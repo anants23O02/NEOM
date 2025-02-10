@@ -1,4 +1,4 @@
-import styles from "./BigImageCard.module.css";
+import styles from "../../styles/BigImageCard.module.css";
 import image from "../../assets/img/art.jpg";
 import {askReview} from '../../assets/Dummydata/LocationCardInterface'
 export const BigImageCard: React.FC<askReview> = ({value}) => {

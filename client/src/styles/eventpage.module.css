@@ -68,3 +68,49 @@
     height: 100%;
 }
 
+.userReviews{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+  width: max-content;
+  overflow: auto;;
+}
+
+.contentDescriptionDetails{
+    display: flex;
+    flex-direction: column;
+}
+.DescriptionDetail{
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    margin-bottom: 1rem;
+}
+.DescriptionDetailIcon{
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: rgb(93, 93, 93);
+    margin-right: 0.8rem;
+    width: 1rem;
+
+}
+.DescriptionDetailIcon img{
+    width: 1rem;
+    height: 1rem;
+}
+h3,p{
+    margin: 0;
+}
+
+.DescriptionDetailText{
+    font-family: 'BrownLight';
+    font-size: 0.8rem;
+}
+
+.DescriptionDetailText h3{
+    font-weight:574;
+    color: rgb(25, 25, 25);
+    font-family: 'Brown';
+    margin-bottom: 0.4rem;
+}
+
