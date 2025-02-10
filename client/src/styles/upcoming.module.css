@@ -1,84 +1,84 @@
 .selection {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .selectionRow {
-    display: flex;
-    flex-direction: row;
-    gap: 3%;
-    margin-bottom: 2.5rem;
-  }
-  
-  .Ques {
-    display: flex;
-    flex-direction: column;
-    width: 30%;
-  }
-  
-  .QuesValue {
-    font-family: 'BrownLight';
-    font-size: 0.8rem;
-    padding-bottom: 0.8rem;
-    letter-spacing: 0.6px;
-    color: rgba(103, 102, 102, 0.798);
-    font-weight: 600;
-  }
-  
-  .inputValues {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    width: auto;
-    margin-right: 0.6rem;
-  }
+  display: flex;
+  flex-direction: column;
+}
 
-  .DatePick,.LocationPick{
-    margin-left: 5px;
-  }
-  
-  .Input,
-  .travelbox1,
-  .travelbox2,
-  .travelbox3 {
-    display: flex;
-    flex-direction: row;
-    width: auto;
-    white-space: nowrap;
-    font-size: 0.6rem;
-    font-family: 'BrownLight';
-    letter-spacing: 0.6px;
-    color: rgba(101, 101, 101, 0.774);
-    padding: 0.5rem 0.8rem;
-    border: 1.8px solid rgba(103, 102, 102, 0.798);
-  }
-  
-  .Input {
-    margin-right: 0.6rem;
-    border-radius: 1rem;
-  }
-  
-  .travelbox1 {
-    border-radius: 1rem 0 0 1rem;
-  }
+.selectionRow {
+  display: flex;
+  flex-direction: row;
+  gap: 3%;
+  margin-bottom: 2.5rem;
+}
 
-  
-  .travelbox3 {
-    border-radius: 0 1rem 1rem 0;
-  }
-  
-  .Input:hover,
-  .travelbox1:hover,
-  .travelbox2:hover,
-  .travelbox3:hover,.loadButton {
-    cursor: pointer;
-    background-color: rgb(33, 33, 33);
-    color: white !important;
-  }
-  
+.Ques {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
 
-  .loadButton{
-    margin-top: 3rem;
-    border-radius: 0.4rem;
-    padding: 0.4rem 1.3rem;
-  }
+.QuesValue {
+  font-family: "BrownLight";
+  font-size: 0.8rem;
+  padding-bottom: 0.8rem;
+  letter-spacing: 0.6px;
+  color: rgba(103, 102, 102, 0.798);
+  font-weight: 600;
+}
+
+.inputValues {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: auto;
+  margin-right: 0.6rem;
+}
+
+.DatePick,
+.LocationPick {
+  margin-left: 5px;
+}
+
+.Input,
+.travelbox1,
+.travelbox2,
+.travelbox3 {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  white-space: nowrap;
+  font-size: 0.6rem;
+  font-family: "BrownLight";
+  letter-spacing: 0.6px;
+  color: rgba(101, 101, 101, 0.774);
+  padding: 0.5rem 0.8rem;
+  border: 1.8px solid rgba(103, 102, 102, 0.798);
+}
+
+.Input {
+  margin-right: 0.6rem;
+  border-radius: 1rem;
+}
+
+.travelbox1 {
+  border-radius: 1rem 0 0 1rem;
+}
+
+.travelbox3 {
+  border-radius: 0 1rem 1rem 0;
+}
+
+.Input:hover,
+.travelbox1:hover,
+.travelbox2:hover,
+.travelbox3:hover,
+.loadButton {
+  cursor: pointer;
+  background-color: rgb(33, 33, 33);
+  color: white !important;
+}
+
+.loadButton {
+  margin-top: 3rem;
+  border-radius: 0.4rem;
+  padding: 0.4rem 1.3rem;
+}

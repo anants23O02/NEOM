@@ -1,39 +1,36 @@
-.modalImage{
- width: 30%;   
+.modalImage {
+  width: 30%;
 }
-.modalImage img{
-    width: 100%;
-    height: 100%;
-}
-
-.modalContent{
-    display: flex;
-    flex-direction: column;
-    /* justify-content: space-between; */
-    padding: 0.3rem 0.5rem;
-    justify-content: center;
+.modalImage img {
+  width: 100%;
+  height: 100%;
 }
 
-.modalContent p{
-    /* padding-bottom: 3px; */
-    font-size: 1.2rem;
-    margin: 0;
-    font-weight: 600;
-    font-family: 'Brown';
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  padding: 0.3rem 0.5rem;
+  justify-content: center;
 }
-.date{
-    /* padding-bottom: 5px; */
-    font-family: 'BrownLight';
-    font-size: 0.8rem;
+
+.modalContent p {
+  font-size: 1.2rem;
+  margin: 0;
+  font-weight: 600;
+  font-family: "Brown";
 }
-.time{
-    font-family: 'Brown';
-    font-weight: 600;
-    font-size: 0.8rem;
-    letter-spacing: 0.6px;
-    padding-bottom: 8px;
+.date {
+  font-family: "BrownLight";
+  font-size: 0.8rem;
 }
-.review{
-font-family: 'Brown';
-font-size: 0.7rem;
+.time {
+  font-family: "Brown";
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.6px;
+  padding-bottom: 8px;
+}
+.review {
+  font-family: "Brown";
+  font-size: 0.7rem;
 }

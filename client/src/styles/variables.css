@@ -2,75 +2,75 @@
 
 /* Fonts */
 :root {
-    --font-family-brown: 'Brown', sans-serif;
-    --font-family-brownlight: 'BrownLight', sans-serif;
-    --font-family-ivymode: 'Ivymode', sans-serif;
-    --font-weight-semibold: 600;
+  --font-family-brown: "Brown", sans-serif;
+  --font-family-brownlight: "BrownLight", sans-serif;
+  --font-family-ivymode: "Ivymode", sans-serif;
+  --font-weight-semibold: 600;
 }
 
 /* Colors */
 :root {
-    --primary-color: #FF385C;
-    --primary-hover-color: #FF6F9E;
-    --highlight-color: #FF385C;
-    --background-color: #f0f0f0;  /* Background color for the page */
-    --text-color: rgba(34, 34, 34, 0.979);
-    --secondary-text-color: rgba(95, 95, 95, 0.79);
-    --border-color: rgba(103, 102, 102, 0.798);
-    --star-color: red;
-    --button-bg-color: #FF385C;
-    --button-bg-hover-color: #FF2A42;
-    --button-bg-active-color: #E02433;
-    --button-text-color: white;
-    --footer-bg-color: #222222;
-    --footer-text-color: rgba(255, 255, 255, 0.702);
-    --card-bg-color: white;
-    --primary-text-color: rgba(34, 34, 34, 0.979); /* Overridden if necessary */
+  --primary-color: #ff385c;
+  --primary-hover-color: #ff6f9e;
+  --highlight-color: #ff385c;
+  --background-color: #f0f0f0; /* Background color for the page */
+  --text-color: rgba(34, 34, 34, 0.979);
+  --secondary-text-color: rgba(95, 95, 95, 0.79);
+  --border-color: rgba(103, 102, 102, 0.798);
+  --star-color: red;
+  --button-bg-color: #ff385c;
+  --button-bg-hover-color: #ff2a42;
+  --button-bg-active-color: #e02433;
+  --button-text-color: white;
+  --footer-bg-color: #222222;
+  --footer-text-color: rgba(255, 255, 255, 0.702);
+  --card-bg-color: white;
+  --primary-text-color: rgba(34, 34, 34, 0.979); /* Overridden if necessary */
 }
 
 /* Spacing */
 :root {
-    --spacing-small: 0.5rem;
-    --spacing-medium: 1rem;
-    --spacing-large: 2rem;
-    --spacing-tiny: 0.2rem;
-    --spacing-medium-3: 3%;
-    --spacing-large-7: 7%;
+  --spacing-small: 0.5rem;
+  --spacing-medium: 1rem;
+  --spacing-large: 2rem;
+  --spacing-tiny: 0.2rem;
+  --spacing-medium-3: 3%;
+  --spacing-large-7: 7%;
 }
 
 /* Font Sizes */
 :root {
-    --font-size-small: 0.6rem;
-    --font-size-medium: 0.75rem;
-    --font-size-large: 1rem;
-    --font-size-xlarge: 1.2rem;
-    --font-size-extra-small: 0.65rem;
-    --font-size-xsmall: 0.7rem;
-    --font-weight-normal: normal;
+  --font-size-small: 0.6rem;
+  --font-size-medium: 0.75rem;
+  --font-size-large: 1rem;
+  --font-size-xlarge: 1.2rem;
+  --font-size-extra-small: 0.65rem;
+  --font-size-xsmall: 0.7rem;
+  --font-weight-normal: normal;
 }
 
 /* Border Radius */
 :root {
-    --border-radius-small: 0.6rem;
-    --border-radius-medium: 0.6vw;
-    --border-radius-large: 0.6vw;
+  --border-radius-small: 0.6rem;
+  --border-radius-medium: 0.6vw;
+  --border-radius-large: 0.6vw;
 }
 
 /* Card Dimensions */
 :root {
-    --card-height: 17.7vw;
-    --card-width: 38vw;
-    --poster-width: 38.5%;
-    --modal-image-width: 30%;
+  --card-height: 17.7vw;
+  --card-width: 38vw;
+  --poster-width: 38.5%;
+  --modal-image-width: 30%;
 }
 
 /* Icon Sizes */
 :root {
-    --icon-size-small: 11.327px;
+  --icon-size-small: 11.327px;
 }
 
 /* Miscellaneous */
 :root {
-    --letter-spacing-small: 0.6px;
-    --suggestion-img-height: 11.327px;
+  --letter-spacing-small: 0.6px;
+  --suggestion-img-height: 11.327px;
 }

@@ -1,19 +1,18 @@
-.footer{
-    background-color: #222222;
-    margin-top: 3rem;
+.footer {
+  background-color: #222222;
+  margin-top: 3rem;
 }
-.footerContent{
-    padding: 0.6rem;
-    display: flex;
-    flex-direction: row;
-    font-family: 'BrownLight';
-    color: rgba(255, 255, 255, 0.702);
-    font-size: 0.6rem;
-    justify-content: space-between;
+.footerContent {
+  padding: 0.6rem;
+  display: flex;
+  flex-direction: row;
+  font-family: "BrownLight";
+  color: rgba(255, 255, 255, 0.702);
+  font-size: 0.6rem;
+  justify-content: space-between;
 }
-.footerContentLeft{
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-
+.footerContentLeft {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }

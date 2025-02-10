@@ -1,44 +1,35 @@
 @font-face {
-     font-family: "Ivymode";
-     src: url("/src/assets/fonts/Ivymode-Regular.ttf") format("truetype");
-     font-weight: normal;
-     font-style: normal;
- }
- 
- @font-face {
-     font-family: "Brown";
-     src: url("/src/assets/fonts/BrownMedium-Regular.ttf") format("truetype");
-     font-weight: normal;
-     font-style: normal;
- }
- 
- @font-face {
-     font-family: "BrownLight";
-     src: url("/src/assets/fonts/BrownLight-Regular.ttf") format("truetype");
- }
- 
-/* Hide scrollbar for Chrome, Safari, and Edge */
-/* Allow scrolling but hide scrollbar */
-html, body {
-     overflow-y: scroll; /* Enables vertical scrolling */
-     height: 100vh; 
-     margin: 0;
-     padding: 0;
- }
- 
- /* Hide scrollbar for WebKit browsers (Chrome, Safari) */
- body::-webkit-scrollbar {
-    width: none;
-     display: none;
- }
- 
- /* Hide scrollbar for Firefox */
- body {
-     -ms-overflow-style: none;  /* IE and Edge */
-     scrollbar-width: none;  /* Firefox */
- }
- 
- 
- .leaflet-popup-content{
-    margin: 10px !important;
- }
+  font-family: "Ivymode";
+  src: url("/src/assets/fonts/Ivymode-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Brown";
+  src: url("/src/assets/fonts/BrownMedium-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "BrownLight";
+  src: url("/src/assets/fonts/BrownLight-Regular.ttf") format("truetype");
+}
+html,
+body {
+  overflow-y: scroll; 
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+body::-webkit-scrollbar {
+  width: none;
+  display: none;
+}
+body {
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
+}
+.leaflet-popup-content {
+  margin: 10px !important;
+}

@@ -11,7 +11,10 @@
   font-family: "BrownLight";
 }
 
-.colorChange, .cardValues,.cardDescription,.cardDetail{
+.colorChange,
+.cardValues,
+.cardDescription,
+.cardDetail {
   color: rgba(34, 34, 34, 0.979);
 }
 
@@ -28,19 +31,19 @@
 }
 
 .cardPoster {
-  --poster-width:38.5%;
+  --poster-width: 38.5%;
   position: relative;
   height: 100%;
   padding-right: 2.87%;
 }
-.imageData{
+.imageData {
   padding-right: 0.5rem;
   position: absolute;
   bottom: 0.2rem;
-  right:0.8rem;
+  right: 0.8rem;
   width: 5rem;
 }
-.imageData img{
+.imageData img {
   width: 100%;
 }
 
@@ -74,7 +77,7 @@
   /* justify-content: center; */
 }
 
-.cardDescription{
+.cardDescription {
   width: calc(0.55 * 38vw);
   padding-top: 3%;
   padding-bottom: 7%;
@@ -84,7 +87,7 @@
 .cardContent {
   display: flex;
   flex-direction: column;
-  width: calc( 100 - var(--poster-width) );
+  width: calc(100 - var(--poster-width));
   padding-right: 2.87%;
   /* padding: calc(0.25 * var(--card-height)) 0; */
 }
@@ -97,13 +100,13 @@
 .cardDetails {
   padding-bottom: 10px;
 }
-.cardDetail{
+.cardDetail {
   display: flex;
   flex-direction: row;
   align-items: center;
   padding-bottom: 3%;
 }
-.cardDetail span{
+.cardDetail span {
   letter-spacing: 0.8px;
   font-size: 0.65rem;
 }
@@ -117,19 +120,19 @@
 
   /* padding: 0 5px 8px 5px; */
 }
-.cardSuggestions span{
-  font-family: 'BrownLight';
+.cardSuggestions span {
+  font-family: "BrownLight";
   letter-spacing: 0.6px;
   flex-wrap: nowrap;
 }
 .cardSuggestions img {
   height: 11.327px;
-  padding-right:3%;
+  padding-right: 3%;
 }
 .cardScheduled {
   font-weight: 500;
   font-size: 0.6rem;
-  font-family: 'Brown';
+  font-family: "Brown";
 }
 .suggest {
   width: 100%;
