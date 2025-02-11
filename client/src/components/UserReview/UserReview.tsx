@@ -1,9 +1,10 @@
 import { MdStar } from "react-icons/md";
 import styles from "../../styles/UserReview.module.css";
 import style2 from "../../styles/eventpage.module.css";
-import TruncatedText from '../../utils/TruncatedText'
+import TruncatedText from '../../utils/TruncatedText';
+import type {userReviews} from '../../assets/LocationCardsInterface.ts';
 
-export const UserReview: React.FC = ({ data }) => {
+export const UserReview: React.FC<userReviews> = ({ data }) => {
   return (
     <div className={styles.Review}>
       <div className={styles.reviewHeader}>

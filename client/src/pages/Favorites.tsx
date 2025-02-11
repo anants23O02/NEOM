@@ -2,10 +2,9 @@ import { Navbar } from "../components/Navbar/Navbar";
 import styles from "../styles/dashboard.module.css";
 import { HorizontalCard } from "../components/HorizontalCard/HorizontalCard";
 import { LocationCards } from "../assets/Dummydata/LocationCards";
-import { askReview } from "../assets/Dummydata/askreview";
+import { AskReview } from "../assets/Dummydata/askreview";
 import { RecommendCards } from "../assets/Dummydata/RecommendCards";
 import {data} from '../assets/Dummydata/BigrecommendationImages'
-
 import { BigImageCard } from "../components/BigImageCard/BigImageCard";
 import { RecommendCard } from "../components/RecommendCards/RecommendCard";
 import { AttendedCard } from "../components/AttendedCard/AttendedCard";

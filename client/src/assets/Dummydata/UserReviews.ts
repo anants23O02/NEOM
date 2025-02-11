@@ -3,9 +3,9 @@ import user2 from "../img/user2.png";
 import user3 from "../img/user3.png";
 import user4 from "../img/user4.png";
 import user5 from "../img/user5.png";
-import {userReviews} from './LocationCardsInterface.ts'
+import type {UserReviews} from './LocationCardInterface.ts'
 
-export const userReviews: userReviews[] = [
+export const userReviews: UserReviews[] = [
   {
     
     image: user1,

@@ -2,7 +2,10 @@ import {DynamicCardImage} from '../DynamicCardImage/DynamicCardImage';
 import { MdStar } from "react-icons/md";
 import styles from '../../styles/attendedcard.module.css';
 import TruncatedText from '../../utils/TruncatedText';
-export const AttendedCard: React.FC = ({value}) => {
+import type { locationCards } from "../../assets/Dummydata/LocationCardInterface";
+
+
+export const AttendedCard: React.FC<locationCards> = ({value}) => {
     console.log('value.image :>> ', value.image);
     return (
         <>

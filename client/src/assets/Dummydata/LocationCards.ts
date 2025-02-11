@@ -1,8 +1,8 @@
-import type { LocationCards } from "./LocationCardsInterface";
+import type { locationCards } from "./LocationCardInterface";
 import golf from "../img/Golf.jpg";
 import surfing from '../img/surfing.jpg';
 import rooms from '../img/island.jpg';
-import {userReviews} from './userReviews';
+import {userReviews} from './UserReviews';
 
 const eventDescription = [
   [
@@ -16,7 +16,7 @@ const eventDescription = [
 ];
 
 
-export const LocationCards: LocationCards[] = [
+export const LocationCards: locationCards[] = [
   {
     title: "Round of Golf",
     stars: 5.0,
@@ -60,7 +60,7 @@ export const LocationCards: LocationCards[] = [
     title: "Surfing at Leasure",
     stars: 5.0,
     reviews: 23,
-    location: "Sindalah City, Dubai",
+    location: ["Sindalah City","Dubai"],
     images: [surfing],
     about: [
       {
@@ -99,7 +99,7 @@ export const LocationCards: LocationCards[] = [
     title: "Dive into Exciting Island Holiday Experience",
     stars: 5.0,
     reviews: 23,
-    location: "Sindalah City, Dubai",
+    location: ["Sindalah City", "Dubai"],
     images: [rooms],
     about: [
       {
@@ -138,7 +138,7 @@ export const LocationCards: LocationCards[] = [
     title: "Round of Golf",
     stars: 5.0,
     reviews: 23,
-    location: "Sindalah City, Dubai",
+    location: ["Sindalah City", "Dubai"],
     images: [golf],
     about: [
       {
@@ -177,7 +177,7 @@ export const LocationCards: LocationCards[] = [
     title: "Surfing at Leasure",
     stars: 5.0,
     reviews: 23,
-    location: "Sindalah City, Dubai",
+    location: ["Sindalah City", "Dubai"],
     images: [surfing],
     about: [
       {

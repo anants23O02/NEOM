@@ -1,4 +1,3 @@
-// import { LocationCards } from "./LocationCards";
 
 export const RecommendCards = [
   {

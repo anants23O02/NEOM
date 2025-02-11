@@ -3,7 +3,7 @@ import styles from "../styles/dashboard.module.css";
 import { HorizontalCard } from "../components/HorizontalCard/HorizontalCard";
 import { LocationCards } from "../assets/Dummydata/LocationCards";
 import { RecommendCards } from "../assets/Dummydata/RecommendCards";
-import { askReview } from "../assets/Dummydata/askreview";
+import { AskReview } from "../assets/Dummydata/askreview";
 import { BigImageCard } from "../components/BigImageCard/BigImageCard";
 import { RecommendCard } from "../components/RecommendCards/RecommendCard";
 import { AttendedCard } from "../components/AttendedCard/AttendedCard";
@@ -107,7 +107,7 @@ export const Dashboard: React.FC = () => {
               animate={{ x: ` ${translateBig}vw` }}
               transition={{ duration: 0.5 }}
             >
-              {askReview.map((value) => {
+              {AskReview.map((value) => {
                 return <BigImageCard value={value} />;
               })}
             </motion.div>

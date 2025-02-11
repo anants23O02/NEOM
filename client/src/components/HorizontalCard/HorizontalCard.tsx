@@ -1,25 +1,18 @@
-import poster from "../../assets/img/golf.jpg";
 import satisfied from "../../assets/img/appreciation.svg";
 import styles from "../../styles/HorizontalCard.module.css";
 import { MdCalendarToday } from "react-icons/md";
 import { MdStar } from "react-icons/md";
 import { MdLocationOn } from "react-icons/md";
 import { CiGrid41 } from "react-icons/ci";
-import type { LocationCards } from "../../assets/Dummydata/LocationCardsInterface";
+import type { locationCards } from "../../assets/Dummydata/LocationCardInterface";
 import group from '../../assets/img/Group.svg';
 import TruncatedText from '../../utils/TruncatedText';
 
 interface HorizontalCardProps {
-  value: LocationCards;
+  value: locationCards;
 }
 
 export const HorizontalCard: React.FC<HorizontalCardProps> = ({ value }) => {
-  // console.log("event :>> ", value);
-
-  // function TruncatedText(text: string, maxWords: number) {
-  //   return text.split(" ").slice(0, maxWords).join(" ") + "...";
-  // }
-  
   
   return (
     <div className={styles.card}>

@@ -1,14 +1,14 @@
 import art from '../img/art.jpg'
 import surfing from '../img/surfing.jpg';
 import mountain from '../img/mountain.jpg'
-import {askReview} from './LocationCardInterface.ts'
+import type {askReview} from './LocationCardInterface.ts'
 import exp1 from '../img/overwhelmed.svg';
 import exp2 from '../img/joy.svg';
 import exp3 from '../img/boredom.svg';
 
 const exp = [exp1,exp2,exp3];
 
-export const askReview: askReview[] = [
+export const AskReview: askReview[] = [
   {
     experience:exp[0],
     image:art,

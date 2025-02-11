@@ -1,7 +1,8 @@
 import styles from '../../styles/BigRecommendationCard.module.css'
 import review from "../../assets/img/overwhelmed.svg";
+import type {BigRecommendationCardImages} from '../../assets/Dummydata/LocationCardInterface'
 
-export const BigRecommendationCard: React.FC = ({data}) => {
+export const BigRecommendationCard: React.FC<BigRecommendationCardImages> = ({data}) => {
   return (
     <div className={styles.BigRecommend}>
       <div className={styles.CardPoster}>

@@ -7,8 +7,14 @@ import ReactDOMServer from "react-dom/server";
 import ModalComponent from "./ModalComponent";
 import Golf from "../../assets/img/golf.png";
 import Cooking from "../../assets/img/music.png";
-
-const locations = [
+interface Location{
+  id:number;
+  name:string;
+  image:string;
+  lat:number;
+  lng:number;
+}
+const locations:Location[] = [
   {
     id: 1,
     name: "Golf Tournament",
@@ -30,7 +36,7 @@ const createCustomIcon = () =>
   });
 
 const MapComponent: React.FC = () => {
-  const [selectedLocation, setSelectedLocation] = useState(locations[0]);
+  const [selectedLocation, setSelectedLocation] = useState<Location|null>(locations[0]);
 
   return (
     <div
@@ -57,7 +63,7 @@ const MapComponent: React.FC = () => {
             icon={createCustomIcon()}
             eventHandlers={{ click: () => setSelectedLocation(location) }}
           >
-            <Popup closeButton={false}style={{margin:'0 !important'}} >
+            <Popup closeButton={false} style={{margin:'0 !important'}} >
             <div
                 style={{
                   width: "16rem",
