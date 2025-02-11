@@ -29,7 +29,6 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 1rem; /* Increase gap to add more space between the fourImages and bigImage containers */
 }
 
 .fourImages {
@@ -57,9 +56,9 @@
 }
 
 .bigImage {
-  width: calc(50% - 0.5rem);
-  height: 40vw;
-  margin-left: 1rem !important;
+  /* width: calc(50% - 0.5rem); */
+  height: 100%;
+  /* margin-left: 1rem !important; */
 }
 
 .bigImage img {
@@ -75,9 +74,17 @@
   overflow: auto;
 }
 
+.content{
+  display: flex;
+  flex-direction: row;
+  width: 75%;
+}
+
 .contentDescriptionDetails {
   display: flex;
   flex-direction: column;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
 }
 .DescriptionDetail {
   display: flex;
@@ -111,4 +118,13 @@ p {
   color: rgb(25, 25, 25);
   font-family: "Brown";
   margin-bottom: 0.4rem;
+}
+
+.contentDetails{
+  border-bottom: 0.5px solid rgba(93, 93, 93, 0.699);
+  border-top: 0.5px solid rgba(93, 93, 93, 0.699);
+font-size: 0.8rem;
+font-family: 'BrownLight';
+  padding: 1rem 0;
+  color: rgb(34, 34, 34);
 }

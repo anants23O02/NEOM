@@ -10,7 +10,7 @@ import { CiCalendar } from "react-icons/ci";
 import { CiLocationOn } from "react-icons/ci";
 export const Upcoming: React.FC = () => {
 //   const rows = 3;
-  const [rows, setRows] = useState(3)
+  const [rows, setRows] = useState<number>(3)
   const filters = [
     "Stand Up Comedy",
     "RAMP Walk",

@@ -8,8 +8,7 @@ interface TranslatingArrowsProps{
 }
 
 export const TranslatingArrows: React.FC<TranslatingArrowsProps> = ({ leftTranslate, rightTranslate }) => {
-  const [active, setActive] = useState();
-  console.log('active :>> ', active);
+  const [active, setActive] = useState<string>('right');
   return (
     <>
       <FaArrowLeft

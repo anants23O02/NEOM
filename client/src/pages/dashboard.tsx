@@ -30,7 +30,6 @@ export const Dashboard: React.FC = () => {
     if (translateBig < 0) {
       const newtranslate = translateBig + 36;
       settranslateBig(newtranslate);
-      // setActive("left");
     } else {
       return;
     }
@@ -50,16 +49,12 @@ export const Dashboard: React.FC = () => {
     if (translate < 0) {
       const newtranslate = translate + 34;
       settranslate(newtranslate);
-      // setActive("left");
     } else {
       return;
     }
   }
-  // console.log("LocationCards :>> ", LocationCards);
   return (
     <>
-    
-
       <Navbar />
 
       <section className="container">
@@ -130,28 +125,29 @@ export const Dashboard: React.FC = () => {
             Today Recommendation for you, Charlie!
           </div>
           <div className={styles.recommendCards}>
-            {
-              RecommendCards.map((card,i) => {
-                return (
-                  <RecommendCard value ={LocationCards[card.card]} data = {card} key={i} type={'top5'} />
-                )
-              })
-            }
-            
+            {RecommendCards.map((card, i) => {
+              return (
+                <RecommendCard
+                  value={LocationCards[card.card]}
+                  data={card}
+                  key={i}
+                  type={"top5"}
+                />
+              );
+            })}
           </div>
         </div>
       </section>
+
       <section className="container">
         <div className={styles.scheduledSection}>
           <div className={styles.scheduledHeading}>
             Today Recommendation for you, Charlie!
           </div>
           <div className={styles.recommendCards}>
-            {
-              LocationCards.map((card,i) => {
-                return (<AttendedCard value ={card} key={i} />)
-              })
-            }       
+            {LocationCards.map((card, i) => {
+              return <AttendedCard value={card} key={i} />;
+            })}
           </div>
         </div>
       </section>
@@ -160,15 +156,14 @@ export const Dashboard: React.FC = () => {
         <div className={styles.scheduledSection}>
           <div className={styles.scheduledHeadingCenter}>
             Find events on map
- </div>
- <div style={{marginTop:'2rem'}}>
+          </div>
+          <div style={{ marginTop: "2rem" }}>
+            <MapComponent />
+          </div>
+        </div>
+      </section>
 
-            <MapComponent/>
- </div>
- </div>
-</section>
-
-            <Footer/>
+      <Footer />
     </>
   );
 };
