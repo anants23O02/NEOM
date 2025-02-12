@@ -1,0 +1,53 @@
+.completion {
+    padding: 0.2rem;
+    /* margin-right: 1rem; */
+    font-family: "BrownLight";
+    font-weight: 600;
+    font-size: 0.6rem;
+    text-align: right;
+  }
+  .imageSection {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .fourImages {
+    width: calc(50% - 0.25rem);
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem; /* Added gap for vertical spacing between the two .twoImages rows */
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .twoImages {
+    margin: 0.25rem;
+    width: 100%;
+    height: 20vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+     /* Added gap for horizontal spacing between images in the row */
+  }
+  
+  .twoImages img {
+    width: calc(50%); /* Adjust width to prevent overflow */
+    height: 100%;
+    margin: 0.25rem;
+  }
+  
+  .bigImage {
+    width: calc(50% - 2rem);
+    padding-top: 0.25rem;
+    height: calc(40vw + 0.25rem);
+    /* width: 20px; */
+    margin-left: 0.75rem !important;
+  }
+  
+  .bigImage img {
+    width: 100%; /* Adjust width to prevent overflow */
+    height: 100%;
+  }
+  

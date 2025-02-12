@@ -8,6 +8,8 @@ import { BiCategory } from "react-icons/bi";
 import { userReviews } from "../assets/Dummydata/UserReviews";
 import { SlLocationPin } from "react-icons/sl";
 import logo from "../assets/img/overwhelmed.svg";
+import {EventImages} from "../components/EventImages/EventImages";
+
 export const EventPage: React.FC = () => {
   return (
     <>
@@ -31,32 +33,7 @@ export const EventPage: React.FC = () => {
           </div>
         </div>
       </section>
-      <section className="container">
-        <div className={style2.completion}>Completed</div>
-        <div className={style2.imageSection}>
-          <div className={style2.fourImages}>
-            <div className={style2.twoImages}>
-              <img src={image} alt="" style={{ borderRadius: "1rem 0 0 0" }} />
-              <img
-                src={image}
-                alt=""
-                style={{ marginLeft: "0px !important" }}
-              />
-            </div>
-            <div className={style2.twoImages}>
-              <img src={image} alt="" style={{ borderRadius: "0 0 0 1rem" }} />
-              <img
-                src={image}
-                alt=""
-                style={{ marginLeft: "0px !important" }}
-              />
-            </div>
-          </div>
-          <div className={style2.bigImage}>
-            <img src={image} alt="" style={{ borderRadius: "0 1rem 1rem 0" }} />
-          </div>
-        </div>
-      </section>
+              <EventImages image={image} />
       <section className="container">
         <section className="container">
           <div className={style2.content}>
