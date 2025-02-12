@@ -1,7 +1,7 @@
 import React from "react";
 import styles from '../../styles/MapModalComponent.module.css'
 
-const ModalComponent: React.FC<{ location: any; onClose: () => void }> = ({ location, onClose }) => {
+const ModalComponent: React.FC<{ location: any; onClose?:()=>void;}> = ({ location }) => {
   return (
     <div style={{
         width:"14rem",
@@ -12,7 +12,7 @@ const ModalComponent: React.FC<{ location: any; onClose: () => void }> = ({ loca
       zIndex: 1000,
       display:'flex',
       flexDirection:'row'
-    }}>
+    }} >
         <div className={styles.modalImage}>
             <img src={location.image} alt="" />
         </div>

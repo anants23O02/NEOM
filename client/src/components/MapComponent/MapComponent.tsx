@@ -7,6 +7,8 @@ import ReactDOMServer from "react-dom/server";
 import ModalComponent from "./ModalComponent";
 import Golf from "../../assets/img/golf.png";
 import Cooking from "../../assets/img/music.png";
+import styles from '../../styles/MapModalComponent.module.css'
+
 interface Location{
   id:number;
   name:string;
@@ -63,7 +65,7 @@ const MapComponent: React.FC = () => {
             icon={createCustomIcon()}
             eventHandlers={{ click: () => setSelectedLocation(location) }}
           >
-            <Popup closeButton={false} style={{margin:'0 !important'}} >
+            <Popup closeButton={false} className={styles.popup}  >
             <div
                 style={{
                   width: "16rem",

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useRef } from "react";
-import { openModal, closeModal } from "../../store/modalSlice";
-import { RootState } from "./store";
+import { openModal, closeModal,closeIfOutside } from "../../store/modalSlice";
+import { RootState } from "../../store";
 import styles from "../../styles/loginModal.module.css";
 import { IoIosClose } from "react-icons/io";
 
@@ -9,6 +9,7 @@ export function PositionedModal() {
   const dispatch = useDispatch();
   const modal = useSelector((state: RootState) => state.modal);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const modalRef = useRef<HTMLDivElement>(null); // Declare modalRef
 
   const handleButtonClick = () => {
     if (buttonRef.current) {
@@ -23,8 +24,8 @@ export function PositionedModal() {
   };
 
   const handleClickOutside = (event: React.MouseEvent) => {
-    const insideModal = modalRef.current?.contains(event.target as Node);
-    const insideButton = buttonRef.current?.contains(event.target as Node);
+    const insideModal = modalRef.current?.contains(event.target as Node)??false;
+    const insideButton = buttonRef.current?.contains(event.target as Node)??false;
     dispatch(closeIfOutside({ inside: insideModal || insideButton }));
     // console.log('this :>> ', );
     // dispatch(closeModal());

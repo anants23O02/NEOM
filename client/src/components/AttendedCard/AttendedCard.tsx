@@ -5,8 +5,8 @@ import TruncatedText from '../../utils/TruncatedText';
 import type { locationCards } from "../../assets/Dummydata/LocationCardInterface";
 
 
-export const AttendedCard: React.FC<locationCards> = ({value}) => {
-    console.log('value.image :>> ', value.image);
+export const AttendedCard: React.FC<{value:locationCards}> = ({value}) => {
+ 
     return (
         <>
         <div className={styles.attendedCard}>

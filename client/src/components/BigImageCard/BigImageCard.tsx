@@ -1,6 +1,6 @@
 import styles from "../../styles/BigImageCard.module.css";
 import type {askReview} from '../../assets/Dummydata/LocationCardInterface'
-export const BigImageCard: React.FC<askReview> = ({value}) => {
+export const BigImageCard: React.FC<{value:askReview}> = ({value}) => {
   console.log('value :>> ', value);
   return (
     <>

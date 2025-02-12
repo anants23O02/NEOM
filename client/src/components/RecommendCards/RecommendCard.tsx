@@ -2,11 +2,11 @@ import { DynamicCardImage } from "../DynamicCardImage/DynamicCardImage";
 import styles from "../../styles/recommendCard.module.css";
 import logo from "../../assets/img/joy.svg";
 import TruncatedText from "../../utils/TruncatedText";
-import type { locationCards } from "../../assets/LocationCardsInterface";
-import type { RecommendCards } from "../../assets/LocationCardsInterface";
+import type { locationCards } from "../../assets/Dummydata/LocationCardInterface";
+import type { RecommendCards } from "../../assets/Dummydata/LocationCardInterface";
 interface props {
   value: locationCards;
-  data: RecommendCards;
+  data?: RecommendCards;
   type: string;
 }
 

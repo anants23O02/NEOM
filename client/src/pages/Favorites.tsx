@@ -1,18 +1,14 @@
 import { Navbar } from "../components/Navbar/Navbar";
 import styles from "../styles/dashboard.module.css";
-import { HorizontalCard } from "../components/HorizontalCard/HorizontalCard";
 import { LocationCards } from "../assets/Dummydata/LocationCards";
-import { AskReview } from "../assets/Dummydata/askreview";
 import { RecommendCards } from "../assets/Dummydata/RecommendCards";
 import {data} from '../assets/Dummydata/BigrecommendationImages'
-import { BigImageCard } from "../components/BigImageCard/BigImageCard";
 import { RecommendCard } from "../components/RecommendCards/RecommendCard";
-import { AttendedCard } from "../components/AttendedCard/AttendedCard";
 import { Footer } from "../components/Footer/Footer";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { TranslatingArrows } from "../utils/TranslatiingArrows";
-import { BigRecommendationCard } from "../components/BigRecommendationCard/BigRecommendationCarT";
+import { BigRecommendationCard } from "../components/BigRecommendationCard/BigRecommendationCart";
 
 export const Favorites: React.FC = () => {
   const [translateBig, settranslateBig] = useState(0);
@@ -29,7 +25,6 @@ export const Favorites: React.FC = () => {
     if (translateBig < 0) {
       const newtranslate = translateBig + 60;
       settranslateBig(newtranslate);
-      setActive("left");
     } else {
       return;
     }

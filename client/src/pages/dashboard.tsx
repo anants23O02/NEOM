@@ -35,7 +35,7 @@ export const Dashboard: React.FC = () => {
     }
   }
 
-  const upcomingEvents = [0, 1, 2];
+  // const upcomingEvents = [0, 1, 2];
   function rightTranslate() {
     if (translate > -2 * 34) {
       const newtranslate = translate - 34;
