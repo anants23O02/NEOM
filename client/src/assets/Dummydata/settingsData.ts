@@ -1,4 +1,4 @@
-import settingsDataInterface from './LocationCardInterface'
+import {settingsDataInterface} from './LocationCardInterface'
 
 export const settingsData:settingsDataInterface[] = [
     {

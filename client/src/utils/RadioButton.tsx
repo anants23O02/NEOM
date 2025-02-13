@@ -4,37 +4,53 @@ import {
   FormControlLabel,
   FormControl,
 } from "@mui/material";
-import {useDispatch, useSelector} from "react-redux";
-import {altState} from "../store/RadioButton";
-import {RootState} from "../store";
+import { useDispatch, useSelector } from "react-redux";
+import { altState } from "../store/RadioButton";
+import { RootState } from "../store";
 
+export const RadioButton: React.FC<{ options: string[] }> = ({ options }) => {
+  const dispatch = useDispatch();
+  const ButtonState = useSelector((state: RootState) => state.RadioButton);
 
-export const RadioButton: React.FC = () => {
+  const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(altState({ click: event.target.value }));
+  };
+  const fontStyles = {
+    fontFamily: "BrownLight",
+    fontSize: "0.8rem",
+  };
 
-const dispatch = useDispatch();
-const ButtonState = useSelector((state:RootState) => state.RadioButton);
-
-const handleRadioChange = () => {
-    dispatch( 
-        altState({ click: event.target.checked })
-    )
-    console.log('ButtonState.selected :>> ', ButtonState.selected);
-}
-const selectedValue = ButtonState.selected;
   return (
-<>
-<FormControl component="fieldset">
+    <>
+      <FormControl component="fieldset">
         <RadioGroup
           aria-label="options"
           name="options"
-          value={selectedValue ? "option1" : ""} // You can use any value here
+          value={ButtonState.selected}
           onChange={handleRadioChange}
         >
-          <FormControlLabel value="option1" control={<Radio />} label="Option 1" />
-          <FormControlLabel value="option2" control={<Radio />} label="Option 2" />
-          <FormControlLabel value="option3" control={<Radio />} label="Option 3" />
+          <div style={{ display: "flex", flexDirection: "row" }}>
+            <FormControlLabel
+              value="option1"
+              control={<Radio />}
+              label={options[0]}
+              sx={fontStyles}
+            />
+            <FormControlLabel
+              value="option2"
+              control={<Radio />}
+              label={options[1]}
+              sx={fontStyles}
+            />
+            <FormControlLabel
+              value="option3"
+              control={<Radio />}
+              label={options[2]}
+              sx={fontStyles}
+            />
+          </div>
         </RadioGroup>
       </FormControl>
-  </>    
+    </>
   );
 };

@@ -3,7 +3,8 @@ import styles2 from "../styles/settings.module.css";
 import { Navbar } from "../components/Navbar/Navbar";
 import { settingsData } from "../assets/Dummydata/settingsData";
 import { ToggleButton } from "../utils/toggleButton";
-import {RadioButton} from "../utils/RadioButton";
+import { RadioButton } from "../utils/RadioButton";
+
 export const Settings: React.FC = () => {
   return (
     <>
@@ -19,12 +20,13 @@ export const Settings: React.FC = () => {
           </div>
         </div>
       </section>
+
       <section className="container">
         <div className={styles2.heading}>
           {settingsData.map((setting, i) => {
             return (
-              <div className={styles2.settingsSection}>
-                <div key={i} className={styles2.settings}>
+              <div key={i} className={styles2.settingsSection}>
+                <div className={styles2.settings}>
                   <div className={styles2.settingsContent}>
                     <div className={styles2.settingsHeading}>
                       {setting.heading}
@@ -35,41 +37,33 @@ export const Settings: React.FC = () => {
                   </div>
                   <div className={styles2.settingsButton}>
                     {
-                      // optional button to be placed
+                      // Optional button to be placed
                       setting.buttonType === "HeadingButtonToggleSwitch" && (
                         <ToggleButton />
                       )
                     }
                   </div>
                 </div>
-                <div>
-                  {setting.options.length !== 0 && (
-                    <div className={styles2.options}>
-                      {setting.options.map((value, index) => {
-                        return (
-                          <div key={index} className={styles2.optionWrapper}>
-                            {setting.buttonType ===
-                            "OptionButtonRadioButton" ? (
-                              <>
-                                <div className={styles2.optionRadioButton}>
-                               <RadioButton />
-                                </div>
-                                <div className={styles2.option}>{value}</div>
-                              </>
-                            ) : (
-                              <>
-                                <div className={styles2.optionToggleSwitch}>
-                                  <ToggleButton />
-                                </div>
-                                <div className={styles2.option}>{value}</div>
-                              </>
-                            )}
+
+                {/* Rendering options */}
+                {setting.options.length !== 0 && (
+                  <div className={styles2.options}>
+                    {setting.buttonType === "OptionButtonRadioButton" ? (
+                      <div className={styles2.optionRadioButton}>
+                        <RadioButton options={setting.options} />
+                      </div>
+                    ) : (
+                      setting.options.map((value: string, index: number) => (
+                        <div key={index}>
+                          <div className={styles2.optionToggleSwitch}>
+                            <ToggleButton />
                           </div>
-                        );
-                      })}
-                    </div>
-                  )}
-                </div>
+                          <div className={styles2.option}>{value}</div>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                )}
               </div>
             );
           })}
