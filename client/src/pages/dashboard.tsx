@@ -35,7 +35,6 @@ export const Dashboard: React.FC = () => {
     }
   }
 
-  // const upcomingEvents = [0, 1, 2];
   function rightTranslate() {
     if (translate > -2 * 34) {
       const newtranslate = translate - 34;
@@ -53,6 +52,8 @@ export const Dashboard: React.FC = () => {
       return;
     }
   }
+
+  
   return (
     <>
       <Navbar />
@@ -142,7 +143,7 @@ export const Dashboard: React.FC = () => {
       <section className="container">
         <div className={styles.scheduledSection}>
           <div className={styles.scheduledHeading}>
-            Today Recommendation for you, Charlie!
+          Charlie, here is your master journey with us so far
           </div>
           <div className={styles.recommendCards}>
             {LocationCards.map((card, i) => {

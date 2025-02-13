@@ -60,5 +60,5 @@ export interface settingsDataInterface{
   heading:string;
   description:string;
   buttonType:string;
-  options:stirng[];
+  options:string[];
 }

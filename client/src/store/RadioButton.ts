@@ -1,10 +1,10 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 interface RadioButtonState{
-    selected: boolean;
+    selected: string;
 }
 const initialState: RadioButtonState = {
-    selected:false,
+    selected:"option1",
 }
 
 const RadioButtonState = createSlice({
@@ -12,7 +12,7 @@ const RadioButtonState = createSlice({
     initialState,
     reducers:{
         altState: (state,action: PayloadAction<{click:string}>) => {
-            state.selected = action.click;
+            state.selected = action.payload.click;
         },
     },
 });
