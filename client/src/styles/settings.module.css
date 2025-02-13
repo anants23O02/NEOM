@@ -1,0 +1,47 @@
+.heading{
+    padding: 0 10rem;
+}
+.settingsSection{
+    padding:1rem 0;
+    border-bottom: 1px solid rgba(75, 75, 75, 0.196);
+}
+.settings{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+.settingsHeading{
+    font-family: 'BrownLight';
+    font-weight: 500;
+    font-size: 1rem;
+    padding-bottom: 0.6rem;
+}
+.settingsDescription{
+    font-family: 'BrownLight';
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: rgb(95,95,95);
+    padding-bottom: 0.6rem;
+}
+.optionWrapper,.options{
+    display: flex;
+    flex-direction: row;
+}
+.options{
+    padding: 1rem 0;
+}
+.optionWrapper{
+    margin-right: 2rem;
+}
+.optionRadioButton,.optionToggleSwitch{
+    margin-right: 1rem;
+}
+.option{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'BrownLight';
+    font-size: 0.8rem;
+}
