@@ -3,6 +3,7 @@ import { Dashboard } from "../pages/dashboard";
 import { Favorites } from "../pages/Favorites"; // Import Favorites page
 import {Upcoming} from '../pages/Upcoming';
 import {EventPage} from '../pages/EventPage';
+import {Settings} from '../pages/settings'
 
 export const router = createBrowserRouter([
   {
@@ -19,5 +20,9 @@ export const router = createBrowserRouter([
   {
     path: "/event",
     element: <EventPage/>
+  },
+  {
+    path:"/settings",
+    element: <Settings/>
   }
 ]);

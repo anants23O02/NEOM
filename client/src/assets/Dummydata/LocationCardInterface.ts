@@ -55,3 +55,10 @@ export interface RecommendCards{
     card:number;
     pos:number;
 }
+
+export interface settingsDataInterface{
+  heading:string;
+  description:string;
+  buttonType:string;
+  options:stirng[];
+}
