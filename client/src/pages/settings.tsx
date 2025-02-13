@@ -4,7 +4,7 @@ import { Navbar } from "../components/Navbar/Navbar";
 import { settingsData } from "../assets/Dummydata/settingsData";
 import { ToggleButton } from "../utils/toggleButton";
 import { RadioButton } from "../utils/RadioButton";
-
+import {Footer} from "../components/Footer/Footer"
 export const Settings: React.FC = () => {
   return (
     <>
@@ -69,6 +69,9 @@ export const Settings: React.FC = () => {
           })}
         </div>
       </section>
+
+      <Footer/>
     </>
+
   );
 };
