@@ -34,26 +34,26 @@ export const Favorites: React.FC = () => {
     <>
       <Navbar />
       <section className="container">
-        <div className={styles.scheduledSection}>
-          <div className={styles.scheduledHeading}>Good morning Charlie!</div>
-          <div className={styles.scheduleContentValues}>
+        <div className="section">
+          <div className="sectionHeading">Good morning Charlie!</div>
+          <div className="sectionContentValues">
             You have shortlisted 8 events to join later
           </div>
         </div>
-        <div className={styles.recommendCards}>
+        <div className="fitCards">
           {LocationCards.map((card, i) => {
             return <RecommendCard value={card} key={i} type={'remove'} />;
           })}
         </div>
-        <div className={styles.recommendCards}>
+        <div className="fitCards">
           {LocationCards.map((card, i) => {
             return <RecommendCard value={card} key={i} type={'remove'} />;
           })}
         </div>
       </section>
       <section className="container">
-        <div className={styles.scheduledSectionInsider}>
-          <div className={styles.scheduledHeading}>
+        <div className="section sectionTopSpace">
+          <div className="sectionHeading">
             Charlie, hope we understand you better
           </div>
           <div className={styles.ratingcard}>
@@ -79,11 +79,13 @@ export const Favorites: React.FC = () => {
           />
         </div>
       </section>
+
+
       <section className="container">
-        <div className={styles.scheduledSectionInsider}>
-          <div className={styles.scheduledHeading}>Top 5 activities on the island today</div>
+        <div className="section sectionTopSpace">
+          <div className="sectionHeading sectionHeadingLowBottomSpace">Top 5 activities on the island today</div>
         </div>
-        <div className={styles.recommendCards}>
+        <div className="fitCards">
           {RecommendCards.map((card, i) => {
             return <RecommendCard value={LocationCards[card.card]} data={card} key={i} type={'top5'} />;
           })}

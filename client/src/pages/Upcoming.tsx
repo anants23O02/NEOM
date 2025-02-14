@@ -29,9 +29,9 @@ export const Upcoming: React.FC = () => {
     <>
       <Navbar />
       <section className="container">
-        <div className={styles.scheduledSection}>
-          <div className={styles.scheduledHeading}>Hey Charlie,</div>
-          <div className={styles.scheduleContentSecond}>
+        <div className="section">
+          <div className="sectionHeading">Hey Charlie,</div>
+          <div className="sectionContentSecond">
             Let's find something exciting about you.
           </div>
         </div>
@@ -91,7 +91,7 @@ export const Upcoming: React.FC = () => {
       </section>
       <section className="container">
         {Array.from({ length: rows }).map((_, rowIndex) => (
-          <div className={styles.recommendCards} key={rowIndex}>
+          <div className="fitCards" key={rowIndex}>
             {RecommendCards.map((card, i) => (
               <RecommendCard
                 value={LocationCards[card.card]}
@@ -103,7 +103,7 @@ export const Upcoming: React.FC = () => {
         ))}
       </section>
       <section className="container">
-        <div className={styles.scheduledHeadingCenter}>
+        <div className="sectionHeadingCenter">
             <button className={style2.loadButton} onClick={()=>{
                 setRows((prevRows) => prevRows+1);
             }}>

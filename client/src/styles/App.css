@@ -29,8 +29,11 @@ body{
   font-family: "BrownLight";
 }
 
-.sectionSectionInsider {
+.sectionTopSpace {
   padding-top: 3rem;
+}
+.sectionHeadingLowBottomSpace{
+  padding-bottom: 0 !important;
 }
 
 .sectionHeading,
@@ -52,7 +55,6 @@ body{
 .sectionContentValues {
   font-size: 1rem;
   font-weight: 200;
-  /* padding-bottom: 2.3rem; */
   letter-spacing: 0.8px;
 }
 .sectionContentSecond {
