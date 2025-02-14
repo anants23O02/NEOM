@@ -1,7 +1,7 @@
 import styles1 from "../styles/dashboard.module.css";
 import styles2 from "../styles/settings.module.css";
 import { Navbar } from "../components/Navbar/Navbar";
-import { settingsData } from "../assets/Dummydata/settingsData";
+import { settingsData } from "../assets/Dummydata/serverData";
 import { ToggleButton } from "../utils/toggleButton";
 import { RadioButton } from "../utils/RadioButton";
 import {Footer} from "../components/Footer/Footer"

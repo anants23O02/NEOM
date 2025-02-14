@@ -1,0 +1,7 @@
+.feeling img {
+    filter: grayscale(100%);
+  }
+  .active{
+    filter: none !important;
+    opacity: 1 !important;
+  }
