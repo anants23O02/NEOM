@@ -5,7 +5,7 @@ import TruncatedText from '../../utils/TruncatedText';
 import type { locationCards } from "../../assets/Dummydata/LocationCardInterface";
 
 
-export const AttendedCard: React.FC<{value:locationCards}> = ({value}) => {
+export const AttendedCard: React.FC<{value:locationCards,rating:number}> = ({value,rating}) => {
  
     return (
         <>
@@ -24,11 +24,18 @@ export const AttendedCard: React.FC<{value:locationCards}> = ({value}) => {
         </div>
         <div className={styles.rating}>
             <span> You Rated this event </span>
-            <div className={styles.stars}>
-            {[...Array(5)].map((_, i) => (
-                <MdStar key={i} className={styles.cardStars} />
-            ))}
-            </div>
+            {
+                rating > 0 ? (<div className={styles.stars}>
+                    {[...Array(rating)].map((_, i) => (
+                        <MdStar key={i} className={styles.cardStars} />
+                    ))}
+                    </div>):(
+                        <div>
+                            No rating
+                        </div>
+                    )
+            }
+            
         </div>
         </div>
             </div>

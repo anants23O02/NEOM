@@ -11,3 +11,61 @@ body{
 .navbar{
   border:1px solid #EEEEEE;
 }
+
+.section {
+  padding: 1.5rem 0rem;
+}
+
+.fontIvy,
+.sectionHeading,
+.sectionHeadingCenter,
+.sectionContentSecond {
+  font-family: "IvyMode", sans-serif;
+}
+
+.fontBrownLight,
+.sectionContent,
+.sectionContentValues {
+  font-family: "BrownLight";
+}
+
+.sectionSectionInsider {
+  padding-top: 3rem;
+}
+
+.sectionHeading,
+.sectionHeadingCenter {
+  font-size: 1.7rem;
+  padding-bottom: 0.8rem;
+}
+
+
+.sectionHeadingCenter {
+  text-align: center;
+}
+.sectionContent {
+  font-size: 0.8rem;
+  font-weight: 200;
+  padding-bottom: 2.3rem;
+  letter-spacing: 0.4px;
+}
+.sectionContentValues {
+  font-size: 1rem;
+  font-weight: 200;
+  /* padding-bottom: 2.3rem; */
+  letter-spacing: 0.8px;
+}
+.sectionContentSecond {
+  font-size: 1rem;
+  font-weight: 200;
+  padding-bottom: 0.5rem;
+  letter-spacing: 0.8px;
+}
+.fitCards {
+  padding-top: 0.8rem;
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
+  justify-content: space-between;
+  align-items: center;
+}

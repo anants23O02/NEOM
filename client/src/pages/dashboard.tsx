@@ -1,5 +1,5 @@
 import { Navbar } from "../components/Navbar/Navbar";
-import styles from "../styles/dashboard.module.css";
+import globalStyles from "../styles/dashboard.module.css";
 import { HorizontalCard } from "../components/HorizontalCard/HorizontalCard";
 import { LocationCards } from "../assets/Dummydata/LocationCards";
 import { RecommendCards } from "../assets/Dummydata/RecommendCards";
@@ -12,9 +12,9 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { TranslatingArrows } from "../utils/TranslatiingArrows";
 import MapComponent from "../components/MapComponent/MapComponent";
+import { userCharlie } from "../assets/Dummydata/userData";
 
 export const Dashboard: React.FC = () => {
-  console.log(RecommendCards[0].pos);
   const [translate, settranslate] = useState(0);
   const [translateBig, settranslateBig] = useState(0);
   function rightTranslateBig() {
@@ -53,21 +53,19 @@ export const Dashboard: React.FC = () => {
     }
   }
 
-  
   return (
     <>
       <Navbar />
-
       <section className="container">
-        <div className={styles.scheduledSection}>
-          <div className={styles.scheduledHeading}>Good morning Charlie!</div>
-          <div className={styles.scheduleContent}>
+        <div className="section">
+          <div className="sectionHeading">Good morning Charlie!</div>
+          <div className="sectionContent">
             Below listed are your itineraries, have a look to the timings and
             the location. <br /> We wish you to enjoy the activities and the
             weather!
           </div>
 
-          <div className={styles.scheduledCards} style={{}}>
+          <div className={globalStyles.scheduledCards} style={{}}>
             <motion.div
               style={{
                 display: "flex",
@@ -79,8 +77,13 @@ export const Dashboard: React.FC = () => {
               animate={{ x: ` ${translate}vw` }}
               transition={{ duration: 0.5 }}
             >
-              {LocationCards.slice(1).map((card, i) => {
-                return <HorizontalCard value={card} key={i} />;
+              {userCharlie.scheduledEvents.map((id, i) => {
+                const matchedCard = LocationCards.find(
+                  (card) => card.id === id
+                );
+                return matchedCard ? (
+                  <HorizontalCard value={matchedCard} key={i} />
+                ) : null;
               })}
             </motion.div>
           </div>
@@ -92,11 +95,11 @@ export const Dashboard: React.FC = () => {
       </section>
 
       <section className="container">
-        <div className={styles.scheduledSection}>
-          <div className={styles.scheduledHeading}>
+        <div className="section">
+          <div className="sectionHeading">
             Charlie, hope we understand you better
           </div>
-          <div className={styles.ratingcard}>
+          <div className={globalStyles.ratingcard}>
             <motion.div
               style={{
                 display: "flex",
@@ -121,11 +124,11 @@ export const Dashboard: React.FC = () => {
       </section>
 
       <section className="container">
-        <div className={styles.scheduledSection}>
-          <div className={styles.scheduledHeading}>
+        <div className="section">
+          <div className="sectionHeading">
             Today Recommendation for you, Charlie!
           </div>
-          <div className={styles.recommendCards}>
+          <div className="fitCards">
             {RecommendCards.map((card, i) => {
               return (
                 <RecommendCard
@@ -141,23 +144,30 @@ export const Dashboard: React.FC = () => {
       </section>
 
       <section className="container">
-        <div className={styles.scheduledSection}>
-          <div className={styles.scheduledHeading}>
-          Charlie, here is your master journey with us so far
+        <div className="section">
+          <div className="sectionHeading">
+            Charlie, here is your master journey with us so far
           </div>
-          <div className={styles.recommendCards}>
-            {LocationCards.map((card, i) => {
-              return <AttendedCard value={card} key={i} />;
+          <div className="fitCards">
+            {userCharlie.attendedEvents.map((event, i) => {
+              const matchedCard = LocationCards.find(
+                (card) => card.id === event.eventId
+              );
+              return matchedCard ? (
+                <AttendedCard
+                  value={matchedCard}
+                  rating={event.rating}
+                  key={i}
+                />
+              ) : null;
             })}
           </div>
         </div>
       </section>
 
       <section className="container">
-        <div className={styles.scheduledSection}>
-          <div className={styles.scheduledHeadingCenter}>
-            Find events on map
-          </div>
+        <div className="section">
+          <div className="sectionHeadingCenter">Find events on map</div>
           <div style={{ marginTop: "2rem" }}>
             <MapComponent />
           </div>

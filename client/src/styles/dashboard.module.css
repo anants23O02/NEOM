@@ -1,88 +1,13 @@
-.fontIvy,
-.scheduledHeading,
-.scheduledHeadingCenter,
-.scheduleContentSecond {
-  font-family: "IvyMode", sans-serif;
-}
-
-.fontBrownLight,
-.scheduleContent,
-.scheduleContentValues {
-  font-family: "BrownLight";
-}
-
-.scheduledSection {
-  padding: 1.5rem 0rem;
-  /* overflow: auto; */
-}
-
-.scheduledSectionInsider {
-  padding-top: 3rem;
-  /* padding-bottom: 1rem; */
-}
-.scheduledHeading,
-.scheduledHeadingCenter {
-  font-size: 1.7rem;
-  padding-bottom: 0.8rem;
-}
-.scheduledHeadingCenter {
-  text-align: center;
-}
-.scheduleContent {
-  font-size: 0.8rem;
-  font-weight: 200;
-  padding-bottom: 2.3rem;
-  letter-spacing: 0.4px;
-}
-.scheduleContentValues {
-  font-size: 1rem;
-  font-weight: 200;
-  /* padding-bottom: 2.3rem; */
-  letter-spacing: 0.8px;
-}
-.scheduleContentSecond {
-  font-size: 1rem;
-  font-weight: 200;
-  padding-bottom: 0.5rem;
-  letter-spacing: 0.8px;
-}
-
-.scheduledCards {
+.scheduledCards,
+.ratingcard {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: max-content;
   gap: 15px;
   overflow: auto !important;
-  /* transform: translate(-25vw); */
 }
 
 .ratingcard {
   padding-top: 0.8rem;
-  display: flex;
-  flex-direction: row;
-  gap: 15px;
-  width: max-content;
-  overflow: auto;
-}
-.recommendCards {
-  padding-top: 0.8rem;
-  display: flex;
-  flex-direction: row;
-  overflow: auto;
-  justify-content: space-between;
-  align-items: center;
-}
-.ratingcard {
-  display: flex;
-  flex-direction: row;
-  gap: 15px;
-  width: max-content;
-  overflow: auto;
-}
-.RecommendCards {
-  display: flex;
-  flex-direction: row;
-  gap: 15px;
-  width: max-content;
 }
