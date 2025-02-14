@@ -4,16 +4,16 @@ import { Navbar } from "../components/Navbar/Navbar";
 import style2 from "../styles/upcoming.module.css";
 import { RecommendCard } from "../components/RecommendCards/RecommendCard";
 import { Footer } from "../components/Footer/Footer";
-import { RecommendCards } from "../assets/Dummydata/RecommendCards";
 import { LocationCards } from "../assets/Dummydata/LocationCards";
 import { CiCalendar } from "react-icons/ci";
 import { CiLocationOn } from "react-icons/ci";
-
-
+import { UpcomingEvents } from "../assets/Dummydata/serverData";
+import { DivideArrays } from "../utils/DivideArrays";
 
 export const Upcoming: React.FC = () => {
-//   const rows = 3;
-  const [rows, setRows] = useState<number>(3)
+  //   const rows = 3;
+
+  const upcomingEventArray = DivideArrays(UpcomingEvents, 5);
   const filters = [
     "Stand Up Comedy",
     "RAMP Walk",
@@ -28,6 +28,7 @@ export const Upcoming: React.FC = () => {
   return (
     <>
       <Navbar />
+      
       <section className="container">
         <div className="section">
           <div className="sectionHeading">Hey Charlie,</div>
@@ -43,12 +44,11 @@ export const Upcoming: React.FC = () => {
               <div className={style2.QuesValue}>What suits your schedules?</div>
               <div className={style2.inputValues}>
                 <div className={style2.Input}>
-                    <CiCalendar style={{color:'red'}} />
-                  <div className={style2.DatePick}>
-                    Pick a date</div>
+                  <CiCalendar style={{ color: "red" }} />
+                  <div className={style2.DatePick}>Pick a date</div>
                 </div>
                 <div className={style2.Input}>
-                    <CiLocationOn style={{color:'red'}} />
+                  <CiLocationOn style={{ color: "red" }} />
                   <div className={style2.LocationPick}>Pick a Location</div>
                 </div>
               </div>
@@ -90,29 +90,32 @@ export const Upcoming: React.FC = () => {
         </div>
       </section>
       <section className="container">
-        {Array.from({ length: rows }).map((_, rowIndex) => (
-          <div className="fitCards" key={rowIndex}>
-            {RecommendCards.map((card, i) => (
-              <RecommendCard
-                value={LocationCards[card.card]}
-                type={"onlyHeart"}
-                key={i}
-              />
-            ))}
-          </div>
-        ))}
+        {upcomingEventArray.map((upcomingEvents, i) => {
+          return (
+            <div className="fitCards" key={i}>
+              {upcomingEvents.map((id, i) => {
+                const matchedCard = LocationCards.find(
+                  (card) => card.id === id
+                );
+                return matchedCard ? (
+                  <RecommendCard
+                    value={matchedCard}
+                    type={"onlyHeart"}
+                    key={i}
+                  />
+                ) : null;
+              })}
+            </div>
+          );
+        })}
       </section>
       <section className="container">
         <div className="sectionHeadingCenter">
-            <button className={style2.loadButton} onClick={()=>{
-                setRows((prevRows) => prevRows+1);
-            }}>
-                Load More
-            </button>
+          <button className={style2.loadButton}>Load More</button>
         </div>
       </section>
 
-      <Footer/>
+      <Footer />
     </>
   );
 };

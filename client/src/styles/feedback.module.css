@@ -1,0 +1,14 @@
+.feedbackCard{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.cardImage{
+    width: 40%;
+    height: 60%;
+}
+.cardImage img{
+    width: 100%;
+    /* height: 100%; */
+}

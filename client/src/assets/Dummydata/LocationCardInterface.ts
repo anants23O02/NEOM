@@ -78,5 +78,6 @@ export interface userDataInterface{
   interests:stringg[];
   scheduledEvents:number[];
   attendedEventRatings:attendedEvent[];
-  favortiteEvents:number[]
+  favortiteEvents:number[];
+  AskReview:askReview[];
 }

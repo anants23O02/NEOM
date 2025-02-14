@@ -1,8 +1,8 @@
 import { Navbar } from "../components/Navbar/Navbar";
 import styles from "../styles/dashboard.module.css";
 import { LocationCards } from "../assets/Dummydata/LocationCards";
-import { RecommendCards } from "../assets/Dummydata/RecommendCards";
-import { data } from "../assets/Dummydata/BigrecommendationImages";
+import { RecommendCards } from "../assets/Dummydata/serverData";
+import { data } from "../assets/Dummydata/serverData";
 import { RecommendCard } from "../components/RecommendCards/RecommendCard";
 import { Footer } from "../components/Footer/Footer";
 import { motion } from "framer-motion";
