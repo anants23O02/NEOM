@@ -72,6 +72,8 @@
   display: flex;
   flex-direction: row;
   gap: 10px;
+  justify-content: center;
+  align-items: center;
 }
 
 .CardContentReview img {
@@ -79,9 +81,12 @@
 }
 
 .CardContentReview p {
+  display: flex;
+  flex-direction: column;
   font-family: "BrownLight";
   font-size: 0.8rem;
   display: block;
   width: max-content;
   align-items: center;
+  justify-content: center;
 }

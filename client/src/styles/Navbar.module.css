@@ -23,7 +23,7 @@
   list-style: none;
   text-decoration: none;
   font-family: "Brown", sans-serif;
-  font-size: 0.6rem;
+  font-size: 0.8rem;
   line-height: 1.458rem;
   gap: 1.5rem;
   padding: 10px 0px;
@@ -33,6 +33,7 @@
 .NavbarOptions li a {
   text-decoration: none;
   color: black;
+  letter-spacing: 0.6px;
 }
 .NavbarOptions li.activeD {
   color: #ff385c;
