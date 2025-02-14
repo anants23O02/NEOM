@@ -30,5 +30,5 @@ export  const userCharlie:userDataInterface = {
             rating:3,
         }
     ],
-    favortiteEvents:[0,1,2,3,4,0,1,2,3]
+    favortiteEvents:[4,1,2,3,4,4,1,2,3,5]
 }
