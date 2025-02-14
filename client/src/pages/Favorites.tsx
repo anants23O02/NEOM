@@ -2,15 +2,19 @@ import { Navbar } from "../components/Navbar/Navbar";
 import styles from "../styles/dashboard.module.css";
 import { LocationCards } from "../assets/Dummydata/LocationCards";
 import { RecommendCards } from "../assets/Dummydata/RecommendCards";
-import {data} from '../assets/Dummydata/BigrecommendationImages'
+import { data } from "../assets/Dummydata/BigrecommendationImages";
 import { RecommendCard } from "../components/RecommendCards/RecommendCard";
 import { Footer } from "../components/Footer/Footer";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { TranslatingArrows } from "../utils/TranslatiingArrows";
 import { BigRecommendationCard } from "../components/BigRecommendationCard/BigRecommendationCart";
+import { userCharlie } from "../assets/Dummydata/userData";
+import { DivideArrays } from "../utils/DivideArrays";
 
 export const Favorites: React.FC = () => {
+  const favorites = DivideArrays(userCharlie.favortiteEvents, 5);
+  console.log("favorites :>> ", favorites);
   const [translateBig, settranslateBig] = useState(0);
   function rightTranslateBig() {
     if (translateBig > 2 * -60) {
@@ -40,16 +44,19 @@ export const Favorites: React.FC = () => {
             You have shortlisted 8 events to join later
           </div>
         </div>
-        <div className="fitCards">
-          {LocationCards.map((card, i) => {
-            return <RecommendCard value={card} key={i} type={'remove'} />;
-          })}
-        </div>
-        <div className="fitCards">
-          {LocationCards.map((card, i) => {
-            return <RecommendCard value={card} key={i} type={'remove'} />;
-          })}
-        </div>
+        {favorites.map((array, i) => {
+          return(
+
+            <div className="fitCards">
+            {array.map((id, i) => {
+              const matchedCard = LocationCards.find((card) => card.id === id);
+              console.log("matchedCard :>> ", matchedCard);
+              return matchedCard ? (
+                <RecommendCard value={matchedCard} key={i} type={"remove"} />
+              ) : null;
+            })}
+          </div>);
+        })}
       </section>
       <section className="container">
         <div className="section sectionTopSpace">
@@ -80,18 +87,26 @@ export const Favorites: React.FC = () => {
         </div>
       </section>
 
-
       <section className="container">
         <div className="section sectionTopSpace">
-          <div className="sectionHeading sectionHeadingLowBottomSpace">Top 5 activities on the island today</div>
+          <div className="sectionHeading sectionHeadingLowBottomSpace">
+            Top 5 activities on the island today
+          </div>
         </div>
         <div className="fitCards">
           {RecommendCards.map((card, i) => {
-            return <RecommendCard value={LocationCards[card.card]} data={card} key={i} type={'top5'} />;
+            return (
+              <RecommendCard
+                value={LocationCards[card.card]}
+                data={card}
+                key={i}
+                type={"top5"}
+              />
+            );
           })}
         </div>
       </section>
-      <Footer/>
+      <Footer />
     </>
   );
 };
