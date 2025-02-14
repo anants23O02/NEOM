@@ -54,7 +54,7 @@ export const Settings: React.FC = () => {
                       </div>
                     ) : (
                       setting.options.map((value: string, index: number) => (
-                        <div key={index}>
+                        <div className={styles2.options} key={index}>
                           <div className={styles2.optionToggleSwitch}>
                             <ToggleButton />
                           </div>

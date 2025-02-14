@@ -25,12 +25,12 @@ export const settingsData:settingsDataInterface[] = [
     },{
         heading:'Notifications',
         description: 'Which type of notification would you like to recieve?',
-        buttonType:'OptionButtonRadioButton',
+        buttonType:'OptionButtonToggleSwitch',
         options:['Emails','Newsletters','Personalized Notification'],
     },{
         heading:'Language',
         description: 'Culpa consectetur do magna duis ut mollit enim irure amet amet magna do eiusmod.',
-        buttonType:'OptionButtonToggleSwitch',
+        buttonType:'OptionButtonRadioButton',
         options:['English','French','Arabic'],
     },
 ]

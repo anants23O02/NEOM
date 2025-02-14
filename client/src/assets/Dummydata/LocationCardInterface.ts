@@ -46,7 +46,6 @@ export interface locationCards {
   userReviews: UserReviews[];
 }
 
-
 export interface BigRecommendationCardImages {
     title:string;
     image:string;
@@ -61,4 +60,23 @@ export interface settingsDataInterface{
   description:string;
   buttonType:string;
   options:string[];
+}
+
+interface attendedEvent{
+  eventId:number;
+  rating:number;
+}
+
+export interface userDataInterface{
+  userId:number;
+  profilePic:string;
+  name:string;
+  email:string;
+  phoneNo:number;
+  birthDay:string;
+  interestCards:number[];
+  interests:stringg[];
+  scheduledEvents:number[];
+  attendedEventRatings:attendedEvent[];
+  favortiteEvents:number[]
 }

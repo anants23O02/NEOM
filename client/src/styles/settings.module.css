@@ -1,5 +1,5 @@
 .heading{
-    padding: 0 10rem;
+    padding: 0 12%;
 }
 .settingsSection{
     padding:1rem 0;
@@ -44,4 +44,7 @@
     justify-content: center;
     font-family: 'BrownLight';
     font-size: 0.8rem;
+    margin-right: 0.6rem;
+    letter-spacing: 0.5px;
+    color: rgb(95,95,95);
 }
