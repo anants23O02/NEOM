@@ -1,5 +1,4 @@
 import { Navbar } from "../components/Navbar/Navbar";
-import globalStyles from "../styles/dashboard.module.css";
 import { HorizontalCard } from "../components/HorizontalCard/HorizontalCard";
 import { LocationCards } from "../assets/Dummydata/LocationCards";
 import { RecommendCards } from "../assets/Dummydata/serverData";
@@ -10,8 +9,9 @@ import { Footer } from "../components/Footer/Footer";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { TranslatingArrows } from "../utils/TranslatiingArrows";
-import MapComponent from "../components/MapComponent/MapComponent";
 import { userCharlie } from "../assets/Dummydata/userData";
+import globalStyles from "../styles/dashboard.module.css";
+import MapComponent from "../components/MapComponent/MapComponent";
 
 export const Dashboard: React.FC = () => {
   const [translate, settranslate] = useState(0);

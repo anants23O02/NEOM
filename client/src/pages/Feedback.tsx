@@ -11,7 +11,6 @@ export const Feedback: React.FC = () => {
   return (
     <>
       <Navbar />
-      {/* <section className="container"> */}
       <div className={Styles.feedbackHeader}>
         <div className={Styles.feedbackHeaderLeft}>
           <div className={Styles.headerLeftImage}>
@@ -30,7 +29,6 @@ export const Feedback: React.FC = () => {
           <Speedometer value={0.5} />
         </div>
       </div>
-      {/* </section> */}
 
       <section className="container">
         <div className={Styles.cardWrapper}>
