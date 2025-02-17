@@ -1,0 +1,56 @@
+.profileEditing{
+    margin: 1rem 0;
+    width: 50vw;
+    margin: 3rem;
+    padding: 3rem;
+    margin:0 auto ;
+    background-color: white;
+}
+
+.ProfileSection{
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+}
+.profileFormLeft{
+    display: flex;
+    flex-direction: column;
+}
+.profileFormRight{
+    display: flex;
+    flex-direction: column;
+}
+.profilePicture{
+    width: 8rem;
+    height: 8rem;
+}
+.profilePicture img{
+    border-radius: 0.6rem;
+    width: 100%;
+    height: 100%;
+}
+.formImages{
+    width: 100%;
+}
+.formImages img{
+    width: 5rem;
+    border-radius: 0.6rem;
+    padding: 0.3rem;
+}
+.form{}
+.formValue{
+    margin-bottom: 1rem;
+}
+.formValue input{
+    padding: 2% 15%;
+    border-radius: 0.4rem;
+    border:1px solid rgba(105, 105, 105, 0.444);
+}
+.formQuestion{
+    color: rgba(105, 105, 105, 0.924);
+    font-size: 0.6rem;
+    font-family: 'Brown';
+    padding-bottom: 0.6rem;
+    letter-spacing: 0.4px;
+}

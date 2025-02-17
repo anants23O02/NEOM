@@ -6,12 +6,12 @@ import exp1 from "../img/overwhelmed.svg";
 import exp2 from "../img/joy.svg";
 import exp3 from "../img/boredom.svg"; // import image from '../img/socializing';
 import userDataInterface from "./LocationCardInterface";
-
+import picture from "../img/socializing.png";
 const exp = [exp1, exp2, exp3];
 
 export const userCharlie: userDataInterface = {
   userId: 0,
-  profilePic: "this",
+  profilePic: picture,
   name: "Charlie",
   email: "Charlie@gmail.com",
   phoneNo: 9889286809,
