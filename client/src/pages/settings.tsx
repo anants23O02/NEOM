@@ -4,7 +4,7 @@ import { Navbar } from "../components/Navbar/Navbar";
 import { settingsData } from "../assets/Dummydata/serverData";
 import { ToggleButton } from "../utils/toggleButton";
 import { RadioButton } from "../utils/RadioButton";
-import {Footer} from "../components/Footer/Footer"
+import { Footer } from "../components/Footer/Footer";
 export const Settings: React.FC = () => {
   return (
     <>
@@ -36,16 +36,11 @@ export const Settings: React.FC = () => {
                     </div>
                   </div>
                   <div className={styles2.settingsButton}>
-                    {
-                      // Optional button to be placed
-                      setting.buttonType === "HeadingButtonToggleSwitch" && (
-                        <ToggleButton />
-                      )
-                    }
+                    {setting.buttonType === "HeadingButtonToggleSwitch" && (
+                      <ToggleButton />
+                    )}
                   </div>
                 </div>
-
-                {/* Rendering options */}
                 {setting.options.length !== 0 && (
                   <div className={styles2.options}>
                     {setting.buttonType === "OptionButtonRadioButton" ? (
@@ -70,8 +65,7 @@ export const Settings: React.FC = () => {
         </div>
       </section>
 
-      <Footer/>
+      <Footer />
     </>
-
   );
 };
