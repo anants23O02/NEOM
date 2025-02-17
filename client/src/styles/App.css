@@ -21,6 +21,7 @@ body{
 .sectionHeadingCenter,
 .sectionContentSecond {
   font-family: "IvyMode", sans-serif;
+  letter-spacing: 0.4px;
 }
 
 .fontBrownLight,

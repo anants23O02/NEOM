@@ -1,14 +1,146 @@
-.feedbackCard{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
+.feedbackHeader {
+  padding: 4% 0;
+  width: 100%;
+  height: 40vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  /* height: 40vh; Adjust as needed */
+  background: linear-gradient(
+    to right,
+    #fdd9c1,
+    /* Peach */ #faeab1,
+    /* Soft Yellow */ #e4d5f5 /* Lavender */
+  );
 }
-.cardImage{
-    width: 40%;
-    height: 60%;
+.feedbackHeaderLeft{
+  width: 40%;
+  margin-left: 7.5%;
+  display: flex;
+  flex-direction: column;
 }
-.cardImage img{
-    width: 100%;
-    /* height: 100%; */
+.headerLeftImage img{
+  width: 4rem;
+  margin-bottom: 2%;
+}
+.feedbackHeaderRight{
+  /* position: absolute; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* width: 30%; */
+  margin-right: 7.5%;
+}
+
+.feedbackCard {
+  border-bottom: 1px solid rgba(95, 95, 95, 0.286);
+  padding: 3% 0;
+  /* margin-bottom: 3% ; */
+  width: 100%;
+  height: 38vh;
+  display: flex;
+  flex-direction: row;
+}
+.cardImage {
+  width: 16vw;
+  height: 100%;
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.cardImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+
+/* Gradient Overlay */
+.cardImage::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Cover the full image */
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.8) 20%,
+    rgba(0, 0, 0, 0) 80%
+  );
+  border-radius: 1rem;
+}
+
+.cardContent {
+  width: 70%;
+  padding-left: 2%;
+}
+.font-BrownLight,
+.contentDate {
+  font-family: "BrownLight";
+}
+.contentHeading {
+  padding-bottom: 1%;
+  font-family: "Ivymode";
+  font-size: 1.3rem;
+}
+.contentDate {
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  font-size: 0.8rem;
+  color: rgb(95, 95, 95);
+  padding-top: 1%;
+  padding-bottom: 2%;
+}
+.contentDescription {
+  line-height: 130%;
+  font-size: 1rem;
+  color: rgb(95, 95, 95);
+}
+.cardWrapper {
+  padding: 0 10%;
+}
+.contentReview {
+  padding-top: 2%;
+}
+.imageOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 14vw;
+  margin: 5%;
+  color: rgb(151, 151, 151);
+  z-index: 2; /* Ensures it is above the gradient */
+}
+.overlayHeading {
+  color: rgb(219, 217, 217);
+  font-size: 1rem;
+  font-family: "IvyMode";
+  padding-bottom: 0.2rem;
+}
+.overlayDate {
+  padding-bottom: 0.2rem;
+  font-size: 0.6rem;
+}
+
+.overlayReviews {
+  font-size: 0.6rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* gap:6rem; */
+}
+.overlayReviewNumber {
+  text-decoration: underline;
+}
+.reviewButton {
+  font-family: "BrownLight";
+  font-size: 0.8rem;
+  border-radius: 0.5rem;
+  color: rgba(255, 255, 255, 0.745);
+  background-color: black;
+  padding: 1% 3%;
 }

@@ -5,7 +5,7 @@ import {Upcoming} from '../pages/Upcoming';
 import {EventPage} from '../pages/EventPage';
 import {Settings} from '../pages/settings';
 import {Feedback} from '../pages/Feedback';
-
+import {EditProfile} from '../pages/EditProfile'
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -29,6 +29,10 @@ export const router = createBrowserRouter([
   {
     path:"/feedback",
     element: <Feedback/>
+  },
+  {
+    path:"/edit-profile",
+    element: <EditProfile/>
   }
   
 ]);

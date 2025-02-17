@@ -1,11 +1,9 @@
-import anger from "../../assets/img/anger.svg";
-import appreciation from "../../assets/img/appreciation.svg";
-import boredom from "../../assets/img/boredom.svg";
-import disappointed from "../../assets/img/disappointed.svg";
-import joy from "../../assets/img/joy.svg";
-import overwhelmed from "../../assets/img/overwhelmed.svg";
+import {smileyReviews} from '../../utils/SmileySvg'
 import styles from "../../styles/reviewIcon.module.css";
 import { useState } from "react";
+
+const [anger, appreciation, boredom, disappointed, joy, overwhelmed] = [...smileyReviews];
+
 
 export const ReviewIcon: React.FC<{value:number}> = ({value}) => {
   const [color, setColor] = useState<number>(value);
