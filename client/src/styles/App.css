@@ -1,19 +1,21 @@
+@import url('./variables.css');
+
 body{
-  background-color: #F9F7F2;
+  background-color: var(--background-color);
   padding: 0 !important;
   margin: 0 !important;
 }
 .container{
-  padding:5px 7.5%;
+  padding:5px var(--spacing-container);
   overflow: hidden;
 }
 
 .navbar{
-  border:1px solid #EEEEEE;
+  border:1px solid var(--line-color);
 }
 
 .section {
-  padding: 1.5rem 0rem;
+  padding: var(--spacing-vertical-section) 0rem;
 }
 
 .fontIvy,
@@ -21,7 +23,7 @@ body{
 .sectionHeadingCenter,
 .sectionContentSecond {
   font-family: "IvyMode", sans-serif;
-  letter-spacing: 0.4px;
+  letter-spacing: var(--letter-spacing-small);
 }
 
 .fontBrownLight,
@@ -30,42 +32,34 @@ body{
   font-family: "BrownLight";
 }
 
-.sectionTopSpace {
-  padding-top: 3rem;
-}
-.sectionHeadingLowBottomSpace{
-  padding-bottom: 0 !important;
-}
-
 .sectionHeading,
 .sectionHeadingCenter {
-  font-size: 1.7rem;
-  padding-bottom: 0.8rem;
+  font-size: var(--font-size-heading);
+  color: var(--primary-text-color);
+  padding-bottom: var(--space-around-static);
 }
-
-
+.sectionDescription{
+  padding-top: var(--section-description-space);
+}
+.notopPadding{
+  padding-top: 0 !important;
+}
 .sectionHeadingCenter {
   text-align: center;
 }
 .sectionContent {
-  font-size: 0.8rem;
-  font-weight: 200;
-  padding-bottom: 2.3rem;
-  letter-spacing: 0.4px;
+  font-size: var(--font-size-medium);
+  font-weight: var(--font-weight-small);
+  padding-bottom: var(--space-around-static);
+  letter-spacing: var(--letter-spacing-small);
 }
-.sectionContentValues {
-  font-size: 1rem;
-  font-weight: 200;
-  letter-spacing: 0.8px;
+.sectionContentLarge {
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-small);
+  letter-spacing: var(--letter-spacing-medium);
 }
-.sectionContentSecond {
-  font-size: 1rem;
-  font-weight: 200;
-  padding-bottom: 0.5rem;
-  letter-spacing: 0.8px;
-}
+
 .fitCards {
-  padding-top: 0.8rem;
   display: flex;
   flex-direction: row;
   overflow: auto;
