@@ -11,46 +11,47 @@ const reviews = {
   0.5: {
     image: anger,
     description: [
-      "Extremely disappointing, a complete waste of time.",
-      "This event has a rating of 0.5 which makes this event Unacceptable"
+      "Completely disappointing.",
+      "Rating: 0.5 - Unacceptable"
     ]
   },
   1.0: {
     image: disappointed,
     description: [
-      "Very poor experience, lacks value and quality.",
-      "This event has a rating of 1.0 which makes this event Subpar"
+      "Poor quality experience.",
+      "Rating: 1.0 - Subpar"
     ]
   },
   1.5: {
     image: boredom,
     description: [
-      "Below expectations, could use a lot of improvement.",
-      "This event has a rating of 1.5 which makes this event Mediocre"
+      "Below expectations.",
+      "Rating: 1.5 - Mediocre"
     ]
   },
   2.5: {
     image: disappointed,
     description: [
-      "An average event, a few highlights but still needs improvements.",
-      "This event has a rating of 2.5 which makes this event Satisfactory"
+      "Average with improvements.",
+      "Rating: 2.5 - Satisfactory"
     ]
   },
   3.5: {
     image: joy,
     description: [
-      "Good experience, but could use a few enhancements.",
-      "This event has a rating of 3.5 which makes this event Solid"
+      "Good, but needs tweaks.",
+      "Rating: 3.5 - Solid"
     ]
   },
   4.5: {
     image: overwhelmed,
     description: [
-      "Great event, highly recommended with minor improvements.",
-      "This event has a rating of 4.5 which makes this event Excellent"
+      "Great, highly recommended.",
+      "Rating: 4.5 - Excellent"
     ]
   }
 };
+
 
 
 export const getReview = (rating) => {
