@@ -40,7 +40,9 @@ export const Favorites: React.FC = () => {
       <section className="container">
         <div className="section">
           <div className="sectionHeading">Good morning Charlie!</div>
+
           <div className="sectionContentLarge">
+
             You have shortlisted 8 events to join later
           </div>
         </div>
@@ -59,7 +61,9 @@ export const Favorites: React.FC = () => {
         })}
       </section>
       <section className="container">
+
         <div className="section ">
+
           <div className="sectionHeading">
             Charlie, hope we understand you better
           </div>
@@ -88,8 +92,10 @@ export const Favorites: React.FC = () => {
       </section>
 
       <section className="container">
+
         <div className="section">
           <div className="sectionHeading">
+
             Top 5 activities on the island today
           </div>
         </div>

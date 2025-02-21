@@ -17,6 +17,7 @@ export const AttendedCard: React.FC<{
           <div className={styles.attendance}>3 Guests attended this event</div>
           <div className={styles.date}>on Nov 17,2025</div>
           <div className={styles.rating}>
+
             {rating > 0 ? (
               <>
                 <span> You Rated this event </span>
@@ -26,6 +27,7 @@ export const AttendedCard: React.FC<{
                   ))}
                 </div>
               </>
+
             ) : (
               <div>No rating</div>
             )}

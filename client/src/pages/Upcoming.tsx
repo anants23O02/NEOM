@@ -32,7 +32,9 @@ export const Upcoming: React.FC = () => {
       <section className="container">
         <div className="section">
           <div className="sectionHeading">Hey Charlie,</div>
+
           <div className="sectionContentLarge">
+
             Let's find something exciting about you.
           </div>
         </div>

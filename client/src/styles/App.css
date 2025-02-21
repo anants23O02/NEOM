@@ -11,11 +11,13 @@ body{
 }
 
 .navbar{
+
   border:1px solid var(--line-color);
 }
 
 .section {
   padding: var(--spacing-vertical-section) 0rem;
+
 }
 
 .fontIvy,
@@ -23,7 +25,9 @@ body{
 .sectionHeadingCenter,
 .sectionContentSecond {
   font-family: "IvyMode", sans-serif;
+
   letter-spacing: var(--letter-spacing-small);
+
 }
 
 .fontBrownLight,
@@ -31,6 +35,7 @@ body{
 .sectionContentValues {
   font-family: "BrownLight";
 }
+
 
 .sectionHeading,
 .sectionHeadingCenter {
@@ -44,10 +49,12 @@ body{
 .notopPadding{
   padding-top: 0 !important;
 }
+
 .sectionHeadingCenter {
   text-align: center;
 }
 .sectionContent {
+
   font-size: var(--font-size-medium);
   font-weight: var(--font-weight-small);
   padding-bottom: var(--space-around-static);
@@ -60,6 +67,7 @@ body{
 }
 
 .fitCards {
+
   display: flex;
   flex-direction: row;
   overflow: auto;

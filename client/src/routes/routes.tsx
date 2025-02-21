@@ -5,8 +5,10 @@ import {Upcoming} from '../pages/Upcoming';
 import {EventPage} from '../pages/EventPage';
 import {Settings} from '../pages/settings';
 import {Feedback} from '../pages/Feedback';
+
 import {EditProfile} from '../pages/EditProfile';
 import {Login} from '../pages/Login'
+
 
 export const router = createBrowserRouter([
   {
@@ -35,10 +37,12 @@ export const router = createBrowserRouter([
   {
     path:"/edit-profile",
     element: <EditProfile/>
+
   },
   {
     path:"/login",
     element: <Login/>
+
   }
   
 ]);

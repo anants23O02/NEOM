@@ -15,6 +15,7 @@ import MapComponent from "../components/MapComponent/MapComponent";
 
 export const Dashboard: React.FC = () => {
 
+
 const checkAuth = async () => {
     const res = await fetch("/auth/google/user", {
         credentials: "include", // Sends cookies
@@ -24,6 +25,7 @@ const checkAuth = async () => {
 }
 
 checkAuth();
+
 
   const [translate, settranslate] = useState(0);
   const [translateBig, settranslateBig] = useState(0);
@@ -74,6 +76,7 @@ checkAuth();
             the location. <br /> We wish you to enjoy the activities and the
             weather!
           </div>
+
           <div className="sectionDescription">
             <div className={globalStyles.scheduledCards} style={{}}>
               <motion.div
@@ -101,11 +104,13 @@ checkAuth();
               leftTranslate={leftTranslate}
               rightTranslate={rightTranslate}
             />
+
           </div>
         </div>
       </section>
 
       <section className="container">
+
         <div className="section ">
           <div className="sectionHeading">
             Charlie, hope we understand you better
@@ -133,6 +138,7 @@ checkAuth();
               leftTranslate={leftTranslateBig}
               rightTranslate={rightTranslateBig}
             />
+
           </div>
         </div>
       </section>
@@ -142,6 +148,7 @@ checkAuth();
           <div className="sectionHeading">
             Today Recommendation for you, Charlie!
           </div>
+
           <div className="sectionDescription">
             <div className="fitCards">
               {RecommendCards.map((card, i) => {
@@ -155,6 +162,7 @@ checkAuth();
                 );
               })}
             </div>
+
           </div>
         </div>
       </section>
@@ -164,6 +172,7 @@ checkAuth();
           <div className="sectionHeading">
             Charlie, here is your master journey with us so far
           </div>
+
           <div className="sectionDescription">
             <div className="fitCards">
               {userCharlie.attendedEvents.map((event, i) => {
@@ -179,6 +188,7 @@ checkAuth();
                 ) : null;
               })}
             </div>
+
           </div>
         </div>
       </section>
@@ -186,10 +196,12 @@ checkAuth();
       <section className="container">
         <div className="section">
           <div className="sectionHeadingCenter">Find events on map</div>
+
           <div className="sectionDescription">
             <div>
               <MapComponent />
             </div>
+
           </div>
         </div>
       </section>
