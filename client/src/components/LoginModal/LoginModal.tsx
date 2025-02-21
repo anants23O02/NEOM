@@ -27,8 +27,6 @@ export function PositionedModal() {
     const insideModal = modalRef.current?.contains(event.target as Node)??false;
     const insideButton = buttonRef.current?.contains(event.target as Node)??false;
     dispatch(closeIfOutside({ inside: insideModal || insideButton }));
-    // console.log('this :>> ', );
-    // dispatch(closeModal());
   };
 
   const top = modal.position.top + 25;

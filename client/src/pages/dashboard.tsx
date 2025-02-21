@@ -14,6 +14,19 @@ import globalStyles from "../styles/dashboard.module.css";
 import MapComponent from "../components/MapComponent/MapComponent";
 
 export const Dashboard: React.FC = () => {
+
+
+const checkAuth = async () => {
+    const res = await fetch("/auth/google/user", {
+        credentials: "include", // Sends cookies
+    });
+    const data = await res.json();
+    console.log('thsi',data); // Debugging
+}
+
+checkAuth();
+
+
   const [translate, settranslate] = useState(0);
   const [translateBig, settranslateBig] = useState(0);
   function rightTranslateBig() {
@@ -64,61 +77,69 @@ export const Dashboard: React.FC = () => {
             weather!
           </div>
 
-          <div className={globalStyles.scheduledCards} style={{}}>
-            <motion.div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-                width: " max-content",
-                gap: "15px",
-              }}
-              animate={{ x: ` ${translate}vw` }}
-              transition={{ duration: 0.5 }}
-            >
-              {userCharlie.scheduledEvents.map((id, i) => {
-                const matchedCard = LocationCards.find(
-                  (card) => card.id === id
-                );
-                return matchedCard ? (
-                  <HorizontalCard value={matchedCard} key={i} />
-                ) : null;
-              })}
-            </motion.div>
+          <div className="sectionDescription">
+            <div className={globalStyles.scheduledCards} style={{}}>
+              <motion.div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  width: " max-content",
+                  gap: "15px",
+                }}
+                animate={{ x: ` ${translate}vw` }}
+                transition={{ duration: 0.5 }}
+              >
+                {userCharlie.scheduledEvents.map((id, i) => {
+                  const matchedCard = LocationCards.find(
+                    (card) => card.id === id
+                  );
+                  return matchedCard ? (
+                    <HorizontalCard value={matchedCard} key={i} />
+                  ) : null;
+                })}
+              </motion.div>
+            </div>
+            <TranslatingArrows
+              leftTranslate={leftTranslate}
+              rightTranslate={rightTranslate}
+            />
+
           </div>
-          <TranslatingArrows
-            leftTranslate={leftTranslate}
-            rightTranslate={rightTranslate}
-          />
         </div>
       </section>
 
       <section className="container">
-        <div className="section">
+
+        <div className="section ">
           <div className="sectionHeading">
             Charlie, hope we understand you better
           </div>
-          <div className={globalStyles.ratingcard}>
-            <motion.div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-                width: " max-content",
-                gap: "15px",
-              }}
-              animate={{ x: ` ${translateBig}vw` }}
-              transition={{ duration: 0.5 }}
-            >
-              {userCharlie.AskReview.map((value) => {
-                return <BigImageCard value={value} />;
-              })}
-            </motion.div>
+
+          <div className="sectionDescription">
+            <div className={globalStyles.ratingcard}>
+              <motion.div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  width: " max-content",
+                  gap: "15px",
+                }}
+                animate={{ x: ` ${translateBig}vw` }}
+                transition={{ duration: 0.5 }}
+              >
+                {userCharlie.AskReview.map((value) => {
+                  return <BigImageCard value={value} />;
+                })}
+              </motion.div>
+            </div>
+            <TranslatingArrows
+              leftTranslate={leftTranslateBig}
+              rightTranslate={rightTranslateBig}
+            />
+
           </div>
-          <TranslatingArrows
-            leftTranslate={leftTranslateBig}
-            rightTranslate={rightTranslateBig}
-          />
         </div>
       </section>
 
@@ -127,17 +148,21 @@ export const Dashboard: React.FC = () => {
           <div className="sectionHeading">
             Today Recommendation for you, Charlie!
           </div>
-          <div className="fitCards">
-            {RecommendCards.map((card, i) => {
-              return (
-                <RecommendCard
-                  value={LocationCards[card.card]}
-                  data={card}
-                  key={i}
-                  type={"top5"}
-                />
-              );
-            })}
+
+          <div className="sectionDescription">
+            <div className="fitCards">
+              {RecommendCards.map((card, i) => {
+                return (
+                  <RecommendCard
+                    value={LocationCards[card.card]}
+                    data={card}
+                    key={i}
+                    type={"top5"}
+                  />
+                );
+              })}
+            </div>
+
           </div>
         </div>
       </section>
@@ -147,19 +172,23 @@ export const Dashboard: React.FC = () => {
           <div className="sectionHeading">
             Charlie, here is your master journey with us so far
           </div>
-          <div className="fitCards">
-            {userCharlie.attendedEvents.map((event, i) => {
-              const matchedCard = LocationCards.find(
-                (card) => card.id === event.eventId
-              );
-              return matchedCard ? (
-                <AttendedCard
-                  value={matchedCard}
-                  rating={event.rating}
-                  key={i}
-                />
-              ) : null;
-            })}
+
+          <div className="sectionDescription">
+            <div className="fitCards">
+              {userCharlie.attendedEvents.map((event, i) => {
+                const matchedCard = LocationCards.find(
+                  (card) => card.id === event.eventId
+                );
+                return matchedCard ? (
+                  <AttendedCard
+                    value={matchedCard}
+                    rating={event.rating}
+                    key={i}
+                  />
+                ) : null;
+              })}
+            </div>
+
           </div>
         </div>
       </section>
@@ -167,8 +196,12 @@ export const Dashboard: React.FC = () => {
       <section className="container">
         <div className="section">
           <div className="sectionHeadingCenter">Find events on map</div>
-          <div style={{ marginTop: "2rem" }}>
-            <MapComponent />
+
+          <div className="sectionDescription">
+            <div>
+              <MapComponent />
+            </div>
+
           </div>
         </div>
       </section>

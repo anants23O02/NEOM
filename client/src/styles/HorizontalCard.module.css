@@ -1,3 +1,5 @@
+@import url("./variables.css");
+
 .fontIvy,
 .cardHeading {
   font-family: "Ivymode";
@@ -15,19 +17,18 @@
 .cardValues,
 .cardDescription,
 .cardDetail {
-  color: rgba(34, 34, 34, 0.979);
+  color: var(--primary-text-color);
 }
 
 .card {
-  --card-height: 17.7vw;
+  height: var(--horizontal-card-height);
+  width: var(--horizonatal-card-width);
+  border-radius: var(--border-radius-small);
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: var(--card-height);
-  width: 38vw;
   overflow: hidden;
   border: 1px solid black;
-  border-radius: 0.6vw;
 }
 
 .cardPoster {
@@ -54,8 +55,8 @@
 }
 
 .cardHeading {
-  font-size: 1.2rem;
-  padding-bottom: 8px;
+  font-size: var(--font-size-heading-small);
+  padding-bottom: 1%;
   padding-top: 4px;
 }
 
@@ -63,13 +64,13 @@
   display: flex;
   flex-direction: row;
   color: red;
-  font-size: 0.8rem;
+  font-size: var(--font-size-medium);
   /* padding-bottom: 5px; */
   justify-content: center;
 }
 
 .cardValues {
-  font-size: 0.6rem;
+  font-size: var(--font-size-small);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -81,7 +82,7 @@
   width: calc(0.55 * 38vw);
   padding-top: 3%;
   padding-bottom: 7%;
-  font-size: 0.75rem;
+  font-size: var(--font-size-medium);
 }
 
 .cardContent {
@@ -98,31 +99,31 @@
 }
 
 .cardDetails {
-  padding-bottom: 10px;
+  padding-bottom: 7%;
 }
 .cardDetail {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding-bottom: 3%;
+  padding-bottom: 2%;
 }
 .cardDetail span {
-  letter-spacing: 0.8px;
-  font-size: 0.65rem;
+  letter-spacing: var(--letter-spacing-medium);
+  font-size: var(--font-size-small);
 }
 
 .cardSuggestions {
   display: flex;
   flex-direction: row;
   align-items: center;
-  font-size: 0.6rem;
+  font-size: var(--font-size-small);
   width: 70%;
 
   /* padding: 0 5px 8px 5px; */
 }
 .cardSuggestions span {
   font-family: "BrownLight";
-  letter-spacing: 0.6px;
+  letter-spacing: var(--letter-spacing-small);
   flex-wrap: nowrap;
 }
 .cardSuggestions img {
@@ -131,7 +132,7 @@
 }
 .cardScheduled {
   font-weight: 500;
-  font-size: 0.6rem;
+  font-size: var(--font-size-small);
   font-family: "Brown";
 }
 .suggest {
