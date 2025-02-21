@@ -16,7 +16,7 @@ import MapComponent from "../components/MapComponent/MapComponent";
 export const Dashboard: React.FC = () => {
 
 const checkAuth = async () => {
-    const res = await fetch("http://localhost:5000/auth/user", {
+    const res = await fetch("/auth/google/user", {
         credentials: "include", // Sends cookies
     });
     const data = await res.json();
