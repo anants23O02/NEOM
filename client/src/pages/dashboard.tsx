@@ -14,6 +14,17 @@ import globalStyles from "../styles/dashboard.module.css";
 import MapComponent from "../components/MapComponent/MapComponent";
 
 export const Dashboard: React.FC = () => {
+
+const checkAuth = async () => {
+    const res = await fetch("http://localhost:5000/auth/user", {
+        credentials: "include", // Sends cookies
+    });
+    const data = await res.json();
+    console.log('thsi',data); // Debugging
+}
+
+checkAuth();
+
   const [translate, settranslate] = useState(0);
   const [translateBig, settranslateBig] = useState(0);
   function rightTranslateBig() {
