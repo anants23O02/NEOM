@@ -3,7 +3,6 @@ import globalStyles from "../styles/dashboard.module.css";
 import { HorizontalCard } from "../components/HorizontalCard/HorizontalCard";
 import { LocationCards } from "../assets/Dummydata/LocationCards";
 import { RecommendCards } from "../assets/Dummydata/serverData";
-// import { AskReview } from "../assets/Dummydata/userData";
 import { BigImageCard } from "../components/BigImageCard/BigImageCard";
 import { RecommendCard } from "../components/RecommendCards/RecommendCard";
 import { AttendedCard } from "../components/AttendedCard/AttendedCard";
@@ -13,6 +12,7 @@ import { useState } from "react";
 import { TranslatingArrows } from "../utils/TranslatiingArrows";
 import MapComponent from "../components/MapComponent/MapComponent";
 import { userCharlie } from "../assets/Dummydata/userData";
+import { askReview } from "../assets/Dummydata/LocationCardInterface";
 
 export const Dashboard: React.FC = () => {
   const [translate, settranslate] = useState(0);
@@ -77,7 +77,7 @@ export const Dashboard: React.FC = () => {
               animate={{ x: ` ${translate}vw` }}
               transition={{ duration: 0.5 }}
             >
-              {userCharlie.scheduledEvents.map((id, i) => {
+              {userCharlie.scheduledEvents.map((id:number, i:number) => {
                 const matchedCard = LocationCards.find(
                   (card) => card.id === id
                 );
@@ -111,7 +111,7 @@ export const Dashboard: React.FC = () => {
               animate={{ x: ` ${translateBig}vw` }}
               transition={{ duration: 0.5 }}
             >
-              {userData.AskReview.map((value) => {
+              {userCharlie.AskReview.map((value:askReview) => {
                 return <BigImageCard value={value} />;
               })}
             </motion.div>
