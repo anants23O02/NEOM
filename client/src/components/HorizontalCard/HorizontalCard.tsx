@@ -1,41 +1,53 @@
-import satisfied from "../../assets/img/appreciation.svg";
 import styles from "../../styles/HorizontalCard.module.css";
-import { MdCalendarToday } from "react-icons/md";
+import { CiCalendar } from "react-icons/ci";
 import { MdStar } from "react-icons/md";
-import { MdLocationOn } from "react-icons/md";
-import { CiGrid41 } from "react-icons/ci";
+import { CiLocationOn } from "react-icons/ci";
+import { BiCategory } from "react-icons/bi";
 import type { locationCards } from "../../assets/Dummydata/LocationCardInterface";
-import group from '../../assets/img/Group.svg';
-import TruncatedText from '../../utils/TruncatedText';
+import group from "../../assets/img/Group.svg";
+import TruncatedText from "../../utils/TruncatedText";
+import { getReview } from "../../utils/SmileySvg";
+import { ConvertDate } from "../../utils/DateValue";
 
 interface HorizontalCardProps {
   value: locationCards;
 }
 
 export const HorizontalCard: React.FC<HorizontalCardProps> = ({ value }) => {
-  
+  const Review = getReview(value.stars);
+  const startDateArray = ConvertDate(value.about[1].startDate);
+  const endDateArray = ConvertDate(value.about[1].endDate);
   return (
     <div className={styles.card}>
+
+
+      {/* image side */}
       <div className={styles.cardPoster}>
         <img src={value.images[0]} alt="" />
         <div className={styles.imageData}>
-            <img src={group} alt="" />
+          <img src={group} alt="" />
         </div>
       </div>
+
+
+{/* content side */}
       <div className={styles.cardContent}>
+
         <div className={styles.cardHeading}>
-          {TruncatedText(value.title,4)}</div>
+          {TruncatedText(value.title, 4)}
+        </div>
+
         <div className={styles.stars}>
           {[...Array(value.stars)].map((_, i) => (
             <MdStar key={i} className={styles.cardStars} />
           ))}
           <div
             className={styles.cardValues}
-          >{`${value.stars} ( ${value.reviews} Reviews )`}</div>
+          >{`${value.stars}.0  ( ${value.reviews} Reviews )`}</div>
         </div>
 
         <div className={styles.cardDescription}>
-          {TruncatedText(value.description[0],20)}
+          {TruncatedText(value.description[0], 20)}
           <span style={{ color: "red", textDecoration: "underline" }}>
             read more
           </span>
@@ -43,32 +55,34 @@ export const HorizontalCard: React.FC<HorizontalCardProps> = ({ value }) => {
 
         <div className={styles.cardDetails}>
           <div className={styles.cardDetail}>
-            <MdCalendarToday
+            <CiCalendar
               style={{
                 color: "red",
-                fontSize: "12px",
+                // fontSize: "11px",
                 paddingRight: "2.3%",
                 alignItems: "center",
               }}
             />
-            <span>Nov 10, 10:30 AM - Nov 29, 6:30 PM</span>
+            <span>
+              {`${startDateArray[1]} ${startDateArray[2]}, ${startDateArray[3]}:${startDateArray[4]} AM - ${endDateArray[1]} ${endDateArray[2]}, ${endDateArray[3]}:${endDateArray[4]} PM`}
+            </span>
           </div>
           <div className={styles.cardDetail}>
-            <MdLocationOn
+            <CiLocationOn
               style={{
                 color: "red",
-                fontSize: "12px",
+                // fontSize: "11px",
                 paddingRight: "2.3%",
                 alignItems: "center",
               }}
             />
-            <span>{value.location}</span>
+            <span>{value.location[0]}</span>
           </div>
           <div className={styles.cardDetail}>
-            <CiGrid41
+            <BiCategory
               style={{
                 color: "red",
-                fontSize: "12px",
+                // fontSize: "11px",
                 paddingRight: "2.3%",
                 alignItems: "center",
               }}
@@ -76,14 +90,21 @@ export const HorizontalCard: React.FC<HorizontalCardProps> = ({ value }) => {
             <span>{value.category} </span>
           </div>
         </div>
+
+
         <div className={styles.suggest}>
+
           <div className={styles.cardSuggestions}>
-            <img src={satisfied} alt="" />
-            <span>Overwhelmed vibes are coming here</span>
+            <img src={Review.image} alt="" />
+            <span>{Review.description[0]} </span>
           </div>
+
           <div className={styles.cardScheduled}>Scheduled</div>
+
         </div>
+
       </div>
+
     </div>
   );
 };

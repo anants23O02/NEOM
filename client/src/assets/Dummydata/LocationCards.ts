@@ -35,10 +35,10 @@ export const LocationCards: locationCards[] = [
         experienceDesc: eventDescription[0],
       },
       {
-        startTime: "10:30 AM",
+        startTime: "10:30 AM", // Year, Month (0-based), Day, Hours, Minutes, Seconds
         endTime: "06:30 PM",
-        startDate: new Date("2025-03-02"),
-        endDate: new Date("2025-03-07"),
+        startDate: new Date(2025, 8, 10, 10, 30),
+        endDate: new Date(2025, 8, 29, 6, 30),
         guests: 1,
       },
     ],
@@ -58,7 +58,7 @@ export const LocationCards: locationCards[] = [
   },
   {
     title: "Surfing at Leasure",
-    stars: 5.0,
+    stars: 4.0,
     reviews: 23,
     location: ["Sindalah City","Dubai"],
     images: [surfing],
@@ -76,8 +76,8 @@ export const LocationCards: locationCards[] = [
       {
         startTime: "10:30 AM",
         endTime: "06:30 PM",
-        startDate: new Date("2025-03-02"),
-        endDate: new Date("2025-03-07"),
+        startDate: new Date(2025, 9, 10, 10, 30),
+        endDate: new Date(2025, 9, 10, 10, 30),
         guests: 1,
       },
     ],
@@ -97,7 +97,7 @@ export const LocationCards: locationCards[] = [
   },
   {
     title: "Dive into Exciting Island Holiday Experience",
-    stars: 5.0,
+    stars: 3.0,
     reviews: 23,
     location: ["Sindalah City", "Dubai"],
     images: [rooms],
@@ -115,8 +115,8 @@ export const LocationCards: locationCards[] = [
       {
         startTime: "10:30 AM",
         endTime: "06:30 PM",
-        startDate: new Date("2025-03-02"),
-        endDate: new Date("2025-03-07"),
+        startDate: new Date(2025, 9, 10, 10, 30),
+        endDate: new Date(2025, 9, 10, 10, 30),
         guests: 1,
       },
     ],
@@ -136,7 +136,7 @@ export const LocationCards: locationCards[] = [
   },
   {
     title: "Round of Golf",
-    stars: 5.0,
+    stars: 2.0,
     reviews: 23,
     location: ["Sindalah City", "Dubai"],
     images: [golf],
@@ -154,8 +154,8 @@ export const LocationCards: locationCards[] = [
       {
         startTime: "10:30 AM",
         endTime: "06:30 PM",
-        startDate: new Date("2025-03-02"),
-        endDate: new Date("2025-03-07"),
+        startDate: new Date(2025, 9, 10, 10, 30),
+        endDate: new Date(2025, 9, 10, 10, 30),
         guests: 1,
       },
     ],
@@ -175,7 +175,7 @@ export const LocationCards: locationCards[] = [
   },
   {
     title: "Surfing at Leasure",
-    stars: 5.0,
+    stars: 1.0,
     reviews: 23,
     location: ["Sindalah City", "Dubai"],
     images: [surfing],
@@ -193,8 +193,8 @@ export const LocationCards: locationCards[] = [
       {
         startTime: "10:30 AM",
         endTime: "06:30 PM",
-        startDate: new Date("2025-03-02"),
-        endDate: new Date("2025-03-07"),
+        startDate: new Date(2025, 9, 10, 10, 30),
+        endDate: new Date(2025, 9, 10, 10, 30),
         guests: 1,
       },
     ],

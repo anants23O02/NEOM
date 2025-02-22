@@ -4,16 +4,16 @@ import { Navbar } from "../components/Navbar/Navbar";
 import { settingsData } from "../assets/Dummydata/serverData";
 import { ToggleButton } from "../utils/toggleButton";
 import { RadioButton } from "../utils/RadioButton";
-import {Footer} from "../components/Footer/Footer"
+import { Footer } from "../components/Footer/Footer";
 export const Settings: React.FC = () => {
   return (
     <>
       <Navbar />
       <section className="container">
         <div className={styles2.heading}>
-          <div className={styles1.scheduledSection}>
-            <div className={styles1.scheduledHeading}>Good Morning Charlie</div>
-            <div className={styles1.scheduledContent}>
+          <div className="section">
+            <div className="sectionHeading">Good Morning Charlie</div>
+            <div className="sectionContent">
               You can change the settings for your personal data and other
               information.
             </div>
@@ -36,16 +36,11 @@ export const Settings: React.FC = () => {
                     </div>
                   </div>
                   <div className={styles2.settingsButton}>
-                    {
-                      // Optional button to be placed
-                      setting.buttonType === "HeadingButtonToggleSwitch" && (
-                        <ToggleButton />
-                      )
-                    }
+                    {setting.buttonType === "HeadingButtonToggleSwitch" && (
+                      <ToggleButton />
+                    )}
                   </div>
                 </div>
-
-                {/* Rendering options */}
                 {setting.options.length !== 0 && (
                   <div className={styles2.options}>
                     {setting.buttonType === "OptionButtonRadioButton" ? (
@@ -70,8 +65,7 @@ export const Settings: React.FC = () => {
         </div>
       </section>
 
-      <Footer/>
+      <Footer />
     </>
-
   );
 };

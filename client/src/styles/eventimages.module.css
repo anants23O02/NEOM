@@ -36,6 +36,7 @@
     width: calc(50%); /* Adjust width to prevent overflow */
     height: 100%;
     margin: 0.25rem;
+    object-fit: cover;
   }
   
   .bigImage {
@@ -47,6 +48,7 @@
   }
   
   .bigImage img {
+    object-fit: cover;
     width: 100%; /* Adjust width to prevent overflow */
     height: 100%;
   }

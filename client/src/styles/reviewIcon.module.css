@@ -1,4 +1,6 @@
 .feeling img {
+    height: 2rem;
+    padding-right: 15px;
     filter: grayscale(100%);
   }
   .active{

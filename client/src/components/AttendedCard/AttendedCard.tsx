@@ -17,13 +17,17 @@ export const AttendedCard: React.FC<{
           <div className={styles.attendance}>3 Guests attended this event</div>
           <div className={styles.date}>on Nov 17,2025</div>
           <div className={styles.rating}>
-            <span> You Rated this event </span>
+
             {rating > 0 ? (
-              <div className={styles.stars}>
-                {[...Array(rating)].map((_, i) => (
-                  <MdStar key={i} className={styles.cardStars} />
-                ))}
-              </div>
+              <>
+                <span> You Rated this event </span>
+                <div className={styles.stars}>
+                  {[...Array(rating)].map((_, i) => (
+                    <MdStar key={i} className={styles.cardStars} />
+                  ))}
+                </div>
+              </>
+
             ) : (
               <div>No rating</div>
             )}
