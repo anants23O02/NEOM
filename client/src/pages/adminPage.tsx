@@ -5,7 +5,7 @@ export const Admin: React.FC = () => {
   return (
     <>
       <button onClick={() => navigate("/add-events")}>Add Event</button>
-      <button>Add Event Type</button>
+      <button onClick={() => navigate("/add-event-type")}>Add Event Type</button>
       <button>Add Event Experience</button>
       <button>Add Location</button>
       <button>Add Operator Review</button>

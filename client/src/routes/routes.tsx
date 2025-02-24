@@ -9,7 +9,7 @@ import {Admin} from '../pages/adminPage'
 import {EditProfile} from '../pages/EditProfile';
 import {Login} from '../pages/Login';
 import {EventForm} from '../pages/addEvent';
-
+import {EventTypeForm} from '../pages/addEventType';
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -50,5 +50,9 @@ export const router = createBrowserRouter([
   {
     path:"/add-events",
     element: <EventForm/>
+  },
+  {
+    path:"/add-event-type",
+    element: <EventTypeForm/>
   }
 ]);

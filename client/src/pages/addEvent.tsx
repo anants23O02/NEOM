@@ -53,7 +53,7 @@ export const EventForm = () => {
     
     try {
       const response = await fetch(
-        "http://localhost:5000/api/admin/add-event",
+        "/api/admin/add-event",
         {
           method: "POST",
           body: sendingData,
