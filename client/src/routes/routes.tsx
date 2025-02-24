@@ -5,10 +5,10 @@ import {Upcoming} from '../pages/Upcoming';
 import {EventPage} from '../pages/EventPage';
 import {Settings} from '../pages/settings';
 import {Feedback} from '../pages/Feedback';
-
+import {Admin} from '../pages/adminPage'
 import {EditProfile} from '../pages/EditProfile';
-import {Login} from '../pages/Login'
-
+import {Login} from '../pages/Login';
+import {EventForm} from '../pages/addEvent';
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +42,13 @@ export const router = createBrowserRouter([
   {
     path:"/login",
     element: <Login/>
+  },
+  {
+    path:"/Admin",
+    element: <Admin/>
+  },
+  {
+    path:"/add-events",
+    element: <EventForm/>
   }
-  
 ]);
