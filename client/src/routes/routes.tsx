@@ -10,6 +10,7 @@ import {EditProfile} from '../pages/EditProfile';
 import {Login} from '../pages/Login';
 import {EventForm} from '../pages/addEvent';
 import {EventTypeForm} from '../pages/addEventType';
+import {SetUser} from '../pages/setUser'
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -54,5 +55,9 @@ export const router = createBrowserRouter([
   {
     path:"/add-event-type",
     element: <EventTypeForm/>
+  },
+  {
+    path:"/setUser",
+    element: <SetUser/>
   }
 ]);

@@ -1,5 +1,4 @@
 import pool from "../config/db.js";
-
 export const addEvents = async (req, res) => {
   console.log("req.body.images :>> ", req.body);
   const query = `INSERT INTO events (title,stars,reviews,city,country,images,event_type_id,about_location_id,user_experience_id,start_date,end_date,category,event_desc)
@@ -42,7 +41,5 @@ export const addEvents = async (req, res) => {
     jsonEvent_desc,
   ];
   const results = await pool.query(query, value);
-  
   return res.status(201).json({ user: results.rows[0], redirect: "admin" });
-
 };
