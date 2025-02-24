@@ -1,5 +1,24 @@
 @import url('./variables.css');
 
+
+.event-form{
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  padding:2rem;
+}
+.event-form input{
+  margin: 1rem;
+  padding: 1rem;
+}
+.event-form textarea{
+  margin: 1rem;
+  padding: 1rem;
+}
+.event-form button{
+  margin: 1rem;
+  padding: 1rem;
+}
 body{
   background-color: var(--background-color);
   padding: 0 !important;
