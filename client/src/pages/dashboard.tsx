@@ -16,15 +16,7 @@ import MapComponent from "../components/MapComponent/MapComponent";
 export const Dashboard: React.FC = () => {
 
 
-const checkAuth = async () => {
-    const res = await fetch("/auth/google/user", {
-        credentials: "include", // Sends cookies
-    });
-    const data = await res.json();
-    console.log('thsi',data); // Debugging
-}
 
-checkAuth();
 
 
   const [translate, settranslate] = useState(0);

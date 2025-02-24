@@ -61,7 +61,9 @@ export const EventForm = () => {
       );
       if (!response.ok) throw new Error("Failed to submit form");
       console.log("Form submitted successfully");
-      window.location.href = response.redirect;
+      const redirect = await response.json();
+      console.log('redirect :>> ', redirect);
+      window.location.href = `/${redirect.redirect}`;
     } catch (error) {
       console.error("Error submitting form:", error);
     }
