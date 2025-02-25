@@ -1,4 +1,4 @@
-
+import {useSelector} from "react-redux";
 import styles from "../../styles/Navbar.module.css";
 import logo from "../../assets/img/logo2.png";
 import { FaBell } from "react-icons/fa";
@@ -7,6 +7,15 @@ import { Link } from "react-router-dom";
 import { PositionedModal } from "../LoginModal/LoginModal";
 
 export const Navbar: React.FC = () => {
+
+    const user = useSelector((state) => state.user.user);
+    let data = "logout";
+    if (user.user?.user){
+      data = user.user.user;
+    }
+
+
+
   return (
     <nav className="container navbar">
       <div className={styles.NavbarItems}>
@@ -24,8 +33,9 @@ export const Navbar: React.FC = () => {
                 location.pathname === "/favorites" ? styles.activeD : ""
               }
             >
-              <a href="#">
-                <Link to="/favorites">My Favorites</Link>
+              <a href="/favorites">
+              My Favorites
+                {/* <Link to="/favorites">My Favorites</Link> */}
               </a>
             </li>
             <li
@@ -43,7 +53,7 @@ export const Navbar: React.FC = () => {
               <FaBell style={{ color: "grey" }} />
             </li>
             <li>
-              <PositionedModal />
+              <PositionedModal user={data} />
             </li>
             <li>
               <RiGlobalLine />

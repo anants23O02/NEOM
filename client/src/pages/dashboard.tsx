@@ -12,12 +12,17 @@ import { TranslatingArrows } from "../utils/TranslatiingArrows";
 import { userCharlie } from "../assets/Dummydata/userData";
 import globalStyles from "../styles/dashboard.module.css";
 import MapComponent from "../components/MapComponent/MapComponent";
+import { useSelector } from "react-redux";
 
 export const Dashboard: React.FC = () => {
-
-
-
-
+  const data = useSelector((state) => state.user.user);
+  // console.log('data :>> ', data);
+  let user = "Charlie";
+  if (data.user?.user){
+    user = data.user.user.firstname;
+  }
+  // const user = data ? (data.user.user.firstname) : ("Charlie");
+  // console.log('user :>> ', data.user);
 
   const [translate, settranslate] = useState(0);
   const [translateBig, settranslateBig] = useState(0);
@@ -62,7 +67,9 @@ export const Dashboard: React.FC = () => {
       <Navbar />
       <section className="container">
         <div className="section">
-          <div className="sectionHeading">Good morning Charlie!</div>
+          <div className="sectionHeading">
+            {`Good morning ${user}!`}
+          </div>
           <div className="sectionContent">
             Below listed are your itineraries, have a look to the timings and
             the location. <br /> We wish you to enjoy the activities and the
@@ -96,16 +103,14 @@ export const Dashboard: React.FC = () => {
               leftTranslate={leftTranslate}
               rightTranslate={rightTranslate}
             />
-
           </div>
         </div>
       </section>
 
       <section className="container">
-
         <div className="section ">
           <div className="sectionHeading">
-            Charlie, hope we understand you better
+            {`${user}, hope we understand you better`}
           </div>
 
           <div className="sectionDescription">
@@ -121,8 +126,8 @@ export const Dashboard: React.FC = () => {
                 animate={{ x: ` ${translateBig}vw` }}
                 transition={{ duration: 0.5 }}
               >
-                {userCharlie.AskReview.map((value) => {
-                  return <BigImageCard value={value} />;
+                {userCharlie.AskReview.map((value, i) => {
+                  return <BigImageCard value={value} key={i} />;
                 })}
               </motion.div>
             </div>
@@ -130,7 +135,6 @@ export const Dashboard: React.FC = () => {
               leftTranslate={leftTranslateBig}
               rightTranslate={rightTranslateBig}
             />
-
           </div>
         </div>
       </section>
@@ -138,7 +142,7 @@ export const Dashboard: React.FC = () => {
       <section className="container">
         <div className="section">
           <div className="sectionHeading">
-            Today Recommendation for you, Charlie!
+            {`Today Recommendation for you, ${user}!`}
           </div>
 
           <div className="sectionDescription">
@@ -154,7 +158,6 @@ export const Dashboard: React.FC = () => {
                 );
               })}
             </div>
-
           </div>
         </div>
       </section>
@@ -162,7 +165,7 @@ export const Dashboard: React.FC = () => {
       <section className="container">
         <div className="section">
           <div className="sectionHeading">
-            Charlie, here is your master journey with us so far
+            {`${user}, here is your master journey with us so far`}
           </div>
 
           <div className="sectionDescription">
@@ -180,7 +183,6 @@ export const Dashboard: React.FC = () => {
                 ) : null;
               })}
             </div>
-
           </div>
         </div>
       </section>
@@ -193,7 +195,6 @@ export const Dashboard: React.FC = () => {
             <div>
               <MapComponent />
             </div>
-
           </div>
         </div>
       </section>
