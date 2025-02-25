@@ -14,10 +14,16 @@ export const SetUser: React.FC = () => {
       dispatch(login(data));
       console.log("thsi", data);
       // Save image in localStorage
-      localStorage.setItem("profilePic", data.user.profilepic);
-      window.location.href = "/";
+      // localStorage.setItem("profilePic", data.user.profilepic);
+      window.location.href = "/fetch";
     };
     checkAuth();
   }, [dispatch]);
-  return <></>;
+  return (
+<>
+<div style={{margin:"auto"}} >
+  Logging In.....
+</div>
+</>
+  );
 };

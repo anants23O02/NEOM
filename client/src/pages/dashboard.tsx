@@ -16,14 +16,15 @@ import { useSelector } from "react-redux";
 
 export const Dashboard: React.FC = () => {
   const data = useSelector((state) => state.user.user);
-  // console.log('data :>> ', data);
+  const events = useSelector((state) => state.events.events)
+  console.log('data :>> ', data);
+  console.log('events :>> ', events);
+  
   let user = "Charlie";
   if (data.user?.user){
     user = data.user.user.firstname;
   }
-  // const user = data ? (data.user.user.firstname) : ("Charlie");
-  // console.log('user :>> ', data.user);
-
+  
   const [translate, settranslate] = useState(0);
   const [translateBig, settranslateBig] = useState(0);
   function rightTranslateBig() {

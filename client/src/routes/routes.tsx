@@ -11,9 +11,10 @@ import {Login} from '../pages/Login';
 import {EventForm} from '../pages/addEvent';
 import {EventTypeForm} from '../pages/addEventType';
 import {SetUser} from '../pages/setUser'
+import {Fetch} from "../pages/Fetch"
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/dashboard",
     element: <Dashboard />,
   },
   {
@@ -41,7 +42,7 @@ export const router = createBrowserRouter([
 
   },
   {
-    path:"/login",
+    path:"/",
     element: <Login/>
   },
   {
@@ -59,5 +60,10 @@ export const router = createBrowserRouter([
   {
     path:"/setUser",
     element: <SetUser/>
+  }
+  ,
+  {
+    path:"/fetch",
+    element: <Fetch/>
   }
 ]);

@@ -22,10 +22,10 @@ export const Navbar: React.FC = () => {
         <img className={styles.NavbarLogo} src={logo} alt="neom" />
         <div className={styles.NavItems}>
           <ul className={styles.NavbarOptions}>
-            <li className={location.pathname === "/" ? styles.activeD : ""}>
+            <li className={location.pathname === "/dashboard" ? styles.activeD : ""}>
               <a href="#">
                 {" "}
-                <Link to="/">Dashboard</Link>{" "}
+                <Link to="/dashboard">Dashboard</Link>{" "}
               </a>
             </li>
             <li
