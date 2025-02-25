@@ -29,9 +29,10 @@ export const googleCallBack = async (req,res) => {
         const {access_token,id_token} = tokenRes.data;
         const userRes = await axios.get(`https://www.googleapis.com/oauth2/v3/userinfo?access_token=${access_token}`);
         const user = userRes.data
-        const token = jwt.sign({user},process.env.JWT_SECRET,{expiresIn:"1h"});
+        console.log('user :>> ', user);
+        const token = jwt.sign({user},process.env.JWT_SECRET,{expiresIn:"7d"});
         res.cookie("token",token,{httpOnly:true});
-        res.redirect("http://localhost:5173/");
+        res.redirect("http://localhost:5173/setUser");
     }
     catch(error){
         console.log('error :>> ', error);

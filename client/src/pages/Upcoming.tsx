@@ -9,10 +9,12 @@ import { CiCalendar } from "react-icons/ci";
 import { CiLocationOn } from "react-icons/ci";
 import { UpcomingEvents } from "../assets/Dummydata/serverData";
 import { DivideArrays } from "../utils/DivideArrays";
+import { useSelector } from "react-redux";
+
 
 export const Upcoming: React.FC = () => {
-  //   const rows = 3;
-
+  const events = useSelector((state) => state.events.events)
+  
   const upcomingEventArray = DivideArrays(UpcomingEvents, 5);
   const filters = [
     "Stand Up Comedy",

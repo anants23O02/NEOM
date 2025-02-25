@@ -1,0 +1,93 @@
+.login{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: auto;
+    align-items: center;
+    /* justify-content: center */
+}
+
+.loginForm {
+    width: 30%;
+    padding: 20px;
+    background: #F9F7F2;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    /* margin: 50px auto; */
+    font-family: 'Poppins', sans-serif;
+   
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+
+  
+  /* Label Styling */
+  
+  
+  .formGroup label {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+    font-weight: 600;
+  }
+  
+  /* Input Styling */
+  .formGroup input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
+  
+  /* Input Focus Effect */
+  .formGroup input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+  }
+  
+  /* Submit Button */
+  .submit,.googleSignin,.signup {
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .googleSignin,.signup{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin:1rem 0;
+    width: 30%;
+    border: 1px solid black !important;
+    background: white !important;
+    color: black;
+  }
+  .signup{
+    width: 100%;
+  }
+  .googleSignin:hover{
+    background: rgba(220, 220, 220, 0.638)  !important;
+  }
+  .signup:hover{
+    background: #0056b3 !important;
+    color: white;
+  }
+  
+  .submit:hover {
+    background: #0056b3;
+  }
+  

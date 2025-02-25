@@ -5,14 +5,17 @@ import {Upcoming} from '../pages/Upcoming';
 import {EventPage} from '../pages/EventPage';
 import {Settings} from '../pages/settings';
 import {Feedback} from '../pages/Feedback';
-
+import {Admin} from '../pages/adminPage'
 import {EditProfile} from '../pages/EditProfile';
-import {Login} from '../pages/Login'
-
-
+import {Login} from '../pages/Login';
+import {EventForm} from '../pages/addEvent';
+import {EventTypeForm} from '../pages/addEventType';
+import {SetUser} from '../pages/setUser';
+import {Fetch} from "../pages/Fetch";
+import {SignUp} from '../pages/SignUp';
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/dashboard",
     element: <Dashboard />,
   },
   {
@@ -40,8 +43,32 @@ export const router = createBrowserRouter([
 
   },
   {
-    path:"/login",
+    path:"/",
     element: <Login/>
+  },
+  {
+    path:"/Admin",
+    element: <Admin/>
+  },
+  {
+    path:"/add-events",
+    element: <EventForm/>
+  },
+  {
+    path:"/add-event-type",
+    element: <EventTypeForm/>
+  },
+  {
+    path:"/setUser",
+    element: <SetUser/>
   }
-  
+  ,
+  {
+    path:"/fetch",
+    element: <Fetch/>
+  },
+  {
+    path:"/signUp",
+    element: <SignUp/>
+  }
 ]);

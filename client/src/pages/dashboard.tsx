@@ -12,21 +12,19 @@ import { TranslatingArrows } from "../utils/TranslatiingArrows";
 import { userCharlie } from "../assets/Dummydata/userData";
 import globalStyles from "../styles/dashboard.module.css";
 import MapComponent from "../components/MapComponent/MapComponent";
+import { useSelector } from "react-redux";
 
 export const Dashboard: React.FC = () => {
-
-
-const checkAuth = async () => {
-    const res = await fetch("/auth/google/user", {
-        credentials: "include", // Sends cookies
-    });
-    const data = await res.json();
-    console.log('thsi',data); // Debugging
-}
-
-checkAuth();
-
-
+  const data = useSelector((state) => state.user.user);
+  const events = useSelector((state) => state.events.events)
+  console.log('data :>> ', data);
+  console.log('events :>> ', events);
+  
+  let user = "Charlie";
+  if (data.user?.user){
+    user = data.user.user.firstname;
+  }
+  
   const [translate, settranslate] = useState(0);
   const [translateBig, settranslateBig] = useState(0);
   function rightTranslateBig() {
@@ -70,7 +68,9 @@ checkAuth();
       <Navbar />
       <section className="container">
         <div className="section">
-          <div className="sectionHeading">Good morning Charlie!</div>
+          <div className="sectionHeading">
+            {`Good morning ${user}!`}
+          </div>
           <div className="sectionContent">
             Below listed are your itineraries, have a look to the timings and
             the location. <br /> We wish you to enjoy the activities and the
@@ -104,16 +104,14 @@ checkAuth();
               leftTranslate={leftTranslate}
               rightTranslate={rightTranslate}
             />
-
           </div>
         </div>
       </section>
 
       <section className="container">
-
         <div className="section ">
           <div className="sectionHeading">
-            Charlie, hope we understand you better
+            {`${user}, hope we understand you better`}
           </div>
 
           <div className="sectionDescription">
@@ -129,8 +127,8 @@ checkAuth();
                 animate={{ x: ` ${translateBig}vw` }}
                 transition={{ duration: 0.5 }}
               >
-                {userCharlie.AskReview.map((value) => {
-                  return <BigImageCard value={value} />;
+                {userCharlie.AskReview.map((value, i) => {
+                  return <BigImageCard value={value} key={i} />;
                 })}
               </motion.div>
             </div>
@@ -138,7 +136,6 @@ checkAuth();
               leftTranslate={leftTranslateBig}
               rightTranslate={rightTranslateBig}
             />
-
           </div>
         </div>
       </section>
@@ -146,7 +143,7 @@ checkAuth();
       <section className="container">
         <div className="section">
           <div className="sectionHeading">
-            Today Recommendation for you, Charlie!
+            {`Today Recommendation for you, ${user}!`}
           </div>
 
           <div className="sectionDescription">
@@ -162,7 +159,6 @@ checkAuth();
                 );
               })}
             </div>
-
           </div>
         </div>
       </section>
@@ -170,7 +166,7 @@ checkAuth();
       <section className="container">
         <div className="section">
           <div className="sectionHeading">
-            Charlie, here is your master journey with us so far
+            {`${user}, here is your master journey with us so far`}
           </div>
 
           <div className="sectionDescription">
@@ -188,7 +184,6 @@ checkAuth();
                 ) : null;
               })}
             </div>
-
           </div>
         </div>
       </section>
@@ -201,7 +196,6 @@ checkAuth();
             <div>
               <MapComponent />
             </div>
-
           </div>
         </div>
       </section>
