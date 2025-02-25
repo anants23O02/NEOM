@@ -1,7 +1,9 @@
 import styles from "../styles/login.module.css";
 import { FcGoogle } from "react-icons/fc";
+import {useNavigate} from "react-router-dom";
 
 export const Login: React.FC = () => {
+    const navigate = useNavigate();
   const handleLogin = () => {
     window.location.replace("/auth/google");
   };
@@ -11,8 +13,8 @@ export const Login: React.FC = () => {
     console.log("form submitted :>> ");
     return;
   };
-  const handleRegistration = () => {
-    return;
+  const handleSignUp = () => {
+    window.location.href = "/signUp"
   };
 
   return (
@@ -37,8 +39,8 @@ export const Login: React.FC = () => {
                   Log In
                 </button>
               </form>
-            <button className={styles.signup} onClick={handleRegistration}>Sign Up</button>
             </div>
+            <button onClick={handleSignUp} className={styles.signup} >Sign Up</button>
             <button className={styles.googleSignin} onClick={handleLogin}>
               <FcGoogle /> Login in with Google
             </button>

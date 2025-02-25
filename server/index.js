@@ -20,7 +20,8 @@ app.get("/", (req, res) => {
 
 app.use("/auth", authRouter);
 app.use("/api/admin",adminRouter);
-app.use("/api/",dataRouter)
+app.use("/api/",dataRouter);
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

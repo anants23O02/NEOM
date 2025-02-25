@@ -10,8 +10,9 @@ import {EditProfile} from '../pages/EditProfile';
 import {Login} from '../pages/Login';
 import {EventForm} from '../pages/addEvent';
 import {EventTypeForm} from '../pages/addEventType';
-import {SetUser} from '../pages/setUser'
-import {Fetch} from "../pages/Fetch"
+import {SetUser} from '../pages/setUser';
+import {Fetch} from "../pages/Fetch";
+import {SignUp} from '../pages/SignUp';
 export const router = createBrowserRouter([
   {
     path: "/dashboard",
@@ -65,5 +66,9 @@ export const router = createBrowserRouter([
   {
     path:"/fetch",
     element: <Fetch/>
+  },
+  {
+    path:"/signUp",
+    element: <SignUp/>
   }
 ]);
