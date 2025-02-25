@@ -1,15 +1,23 @@
+import { useDispatch } from "react-redux";
+import { login } from "../store/userSlice";
+import { useEffect } from "react";
 
-export const SetUser:React.FC = () => {
+export const SetUser: React.FC = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
     const checkAuth = async () => {
-        const res = await fetch("/auth/google/user", {
-            credentials: "include", // Sends cookies
-        });
-        const data = await res.json();
-        console.log('thsi',data);
-    }
+      const res = await fetch("/auth/google/user", {
+        credentials: "include",
+      });
+      const data = await res.json();
+      dispatch(login(data));
+      console.log("thsi", data);
+      // Save image in localStorage
+      localStorage.setItem("profilePic", data.user.profilepic);
+      window.location.href = "/";
+    };
     checkAuth();
-    return(
-<>
-</>
-    );
-}
+  }, [dispatch]);
+  return <></>;
+};
