@@ -9,5 +9,5 @@ const Router = express.Router();
 Router.get("/google",googleRedirect);
 Router.get("/google/callback", googleCallBack);
 Router.get("/google/user",authGoogleMiddleware,userAccount);
-Router.get("/signUp",regMiddleware,registerAccount);
+Router.post("/signUp",regMiddleware,registerAccount);
 export default Router ;

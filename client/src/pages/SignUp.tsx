@@ -1,7 +1,7 @@
 import styles from "../styles/signUp.module.css";
 import { useState } from "react";
 
-export const SignUp: React.FC = async () => {
+export const SignUp: React.FC =  () => {
   const initialState = {
     firstName: "",
     lastName: "",
@@ -15,16 +15,20 @@ export const SignUp: React.FC = async () => {
   const [formData, setformData] = useState(initialState);
 
   const handleSubmit = async () => {
-    // console.log("registered :>> ");
     const sendingData = new FormData();
     sendingData.entries(formData).forEach(([key, value]) => {
       sendingData.append(key, value);
     });
+
+    if (images) {
+      sendingData.append("images",images);
+    }
     const res = await fetch("/auth/signUp", {
       method: "POST",
       body: sendingData,
     });
     const redirect = await res.json;
+    console.log('redirect :>> ', redirect);
     window.location.href = `${redirect.redirect}`;
   };
   const handleChange = (e) => {
