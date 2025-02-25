@@ -13,8 +13,6 @@ export const SetUser: React.FC = () => {
       const data = await res.json();
       dispatch(login(data));
       console.log("thsi", data);
-      // Save image in localStorage
-      // localStorage.setItem("profilePic", data.user.profilepic);
       window.location.href = "/fetch";
     };
     checkAuth();
