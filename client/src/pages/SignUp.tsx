@@ -1,7 +1,7 @@
 import styles from "../styles/signUp.module.css";
 import { useState } from "react";
 
-export const SignUp: React.FC =  () => {
+export const SignUp: React.FC = () => {
   const initialState = {
     firstName: "",
     lastName: "",
@@ -10,7 +10,7 @@ export const SignUp: React.FC =  () => {
     birthday: "",
     password: "",
   };
-
+  const [preview, setPreview] = useState(null);
   const [images, setImages] = useState<File | null>(null);
   const [formData, setformData] = useState(initialState);
 
@@ -21,14 +21,14 @@ export const SignUp: React.FC =  () => {
     });
 
     if (images) {
-      sendingData.append("images",images);
+      sendingData.append("images", images);
     }
     const res = await fetch("/auth/signUp", {
       method: "POST",
       body: sendingData,
     });
     const redirect = await res.json;
-    console.log('redirect :>> ', redirect);
+    console.log("redirect :>> ", redirect);
     window.location.href = `${redirect.redirect}`;
   };
   const handleChange = (e) => {
@@ -39,6 +39,8 @@ export const SignUp: React.FC =  () => {
   const handleFileChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
       setImages(e.target.files[0]);
+      const imageUrl = URL.createObjectURL(e.target.files[0]);
+      setPreview(imageUrl);
     }
   };
 
@@ -51,6 +53,28 @@ export const SignUp: React.FC =  () => {
             <div className={styles.formBox}>
               <h2 className={styles.heading}>Create an Account</h2>
               <form onSubmit={handleSubmit}>
+                <div className={styles.inputGroup}>
+                  {!preview && (
+                    <label htmlFor="fileInput" className={styles.inputLabel}>
+                      Upload Profile Picture
+                    </label>
+                  )}
+                  <input
+                    type="file"
+                    id="fileInput"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                    required
+                    className={styles.fileInput}
+                  />
+                  {preview && (
+                    <img
+                      src={preview}
+                      alt="Profile Preview"
+                      className={styles.imagePreview}
+                    />
+                  )}
+                </div>
                 <div className={styles.inputGroup}>
                   <label className={styles.label}>First Name</label>
                   <input
@@ -71,16 +95,7 @@ export const SignUp: React.FC =  () => {
                     className={styles.input}
                   />
                 </div>
-                <div className={styles.inputGroup}>
-                  <label className={styles.label}>Profile Picture</label>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleFileChange}
-                    required
-                    className={styles.fileInput}
-                  />
-                </div>
+
                 <div className={styles.inputGroup}>
                   <label className={styles.label}>Email</label>
                   <input

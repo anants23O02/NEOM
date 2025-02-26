@@ -27,7 +27,7 @@
     margin-bottom: 15px;
   }
   
-  .label {
+  .label,.inputLabel {
     display: block;
     font-size: 14px;
     margin-bottom: 5px;
@@ -55,5 +55,27 @@
   
   .submitBtn:hover {
     background: #0056b3;
+  }
+  
+
+  .inputLabel{
+    padding: 1rem;
+    border: 1px solid black;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+  }
+  .fileInput{
+    display: none;
+  }
+
+  .imagePreview {
+    margin-top: 10px;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid black;
   }
   
