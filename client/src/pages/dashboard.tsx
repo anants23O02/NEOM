@@ -15,15 +15,13 @@ import MapComponent from "../components/MapComponent/MapComponent";
 import { useSelector } from "react-redux";
 
 export const Dashboard: React.FC = () => {
-  const data = useSelector((state) => state.user.user);
-  const events = useSelector((state) => state.events.events)
+  const data = useSelector((state) => state.user.user.user);
+  const events = useSelector((state) => state.events.events.events)
   console.log('data :>> ', data);
   console.log('events :>> ', events);
   
-  let user = "Charlie";
-  if (data.user?.user){
-    user = data.user.user.firstname;
-  }
+  let user = data.user.firstname;
+ 
   
   const [translate, settranslate] = useState(0);
   const [translateBig, settranslateBig] = useState(0);

@@ -1,6 +1,5 @@
-import dotenv from "dotenv";
-import jwt from "jsonwebtoken";
-import pool from "../config/db.js";
+import {generateJWT} from "../../utils/generateJWT.js";
+import pool from "../../config/db.js";
 
 export const registerAccount = async (req,res) => {
     console.log('here :>> ',req.body);
@@ -21,7 +20,7 @@ export const registerAccount = async (req,res) => {
         const values = [picture,firstName,lastName,email,phoneNo,birthday,2]
         const results = await pool.query(query,values);
         const user = results.rows[0]
-        const token = jwt.sign({user},process.env.JWT_SECRET,{expiresIn:"7d"});
+        const token = generateJWT(user);
         res.cookie("token",token,{httpOnly:true});
     }
 

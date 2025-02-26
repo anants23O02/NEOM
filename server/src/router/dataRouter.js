@@ -1,5 +1,5 @@
 import express from "express";
-import {sendEvents} from "../controller/sendEvents.js";
+import {sendEvents} from "../controller/DataControllers/sendEvents.js";
 
 const Router = express.Router();
 

@@ -13,7 +13,6 @@ export const Fetch:React.FC = () => {
               throw new Error("u suck"); 
             }
             const events = await res.json();
-            // console.log('events :>> ', events);
             dispatch(setEvents(events)); 
             window.location.href = "/dashboard";
           }

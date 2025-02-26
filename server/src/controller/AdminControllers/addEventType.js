@@ -1,4 +1,4 @@
-import pool from "../config/db.js";
+import pool from "../../config/db.js";
 
 export const addEventType = async (req, res) => {
     const query = `INSERT INTO event_types (event_name,event_description)

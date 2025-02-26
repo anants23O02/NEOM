@@ -10,10 +10,10 @@ import {EditProfile} from '../pages/EditProfile';
 import {Login} from '../pages/Login';
 import {EventForm} from '../pages/addEvent';
 import {EventTypeForm} from '../pages/addEventType';
-import {SetUser} from '../pages/setUser';
-import {Fetch} from "../pages/Fetch";
-import {SignUp} from '../pages/SignUp';
-import {SignIn} from '../pages/signIn';
+import {SetUser} from '../services/LoginServices/setUser';
+import {Fetch} from "../API/Fetch";
+import {SignUp} from '../services/LoginServices/SignUp';
+import {SignIn} from '../services/LoginServices/signIn';
 
 export const router = createBrowserRouter([
   {

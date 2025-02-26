@@ -11,10 +11,10 @@ import { UpcomingEvents } from "../assets/Dummydata/serverData";
 import { DivideArrays } from "../utils/DivideArrays";
 import { useSelector } from "react-redux";
 
-
 export const Upcoming: React.FC = () => {
-  const events = useSelector((state) => state.events.events)
-  
+  const data = useSelector((state) => state.user.user.user);
+  const events = useSelector((state) => state.events.events.events);
+  // console.log('events :>> ', events);
   const upcomingEventArray = DivideArrays(UpcomingEvents, 5);
   const filters = [
     "Stand Up Comedy",
@@ -30,13 +30,12 @@ export const Upcoming: React.FC = () => {
   return (
     <>
       <Navbar />
-      
+
       <section className="container">
         <div className="section">
-          <div className="sectionHeading">Hey Charlie,</div>
+          <div className="sectionHeading">{`Hey ${data.user.firstname},`}</div>
 
           <div className="sectionContentLarge">
-
             Let's find something exciting about you.
           </div>
         </div>
@@ -94,25 +93,15 @@ export const Upcoming: React.FC = () => {
         </div>
       </section>
       <section className="container">
-        {upcomingEventArray.map((upcomingEvents, i) => {
+        <div className="fitCards">
+        {events.slice(5).map((upcomingEvent) => {
           return (
-            <div className="fitCards" key={i}>
-              {upcomingEvents.map((id, i) => {
-                const matchedCard = LocationCards.find(
-                  (card) => card.id === id
-                );
-                return matchedCard ? (
-                  <RecommendCard
-                    value={matchedCard}
-                    type={"onlyHeart"}
-                    key={i}
-                  />
-                ) : null;
-              })}
-            </div>
-          );
-        })}
+              <RecommendCard value={upcomingEvent} type="onlyHeart" />
+            );
+          })}
+          </div>
       </section>
+
       <section className="container">
         <div className="sectionHeadingCenter">
           <button className={style2.loadButton}>Load More</button>

@@ -86,7 +86,7 @@ body{
 }
 
 .fitCards {
-
+  padding-bottom: 1rem;
   display: flex;
   flex-direction: row;
   overflow: auto;

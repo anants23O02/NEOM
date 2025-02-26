@@ -1,4 +1,4 @@
-import styles from "../styles/signUp.module.css";
+import styles from "../../styles/signUp.module.css";
 import { useState } from "react";
 
 export const SignUp: React.FC = () => {

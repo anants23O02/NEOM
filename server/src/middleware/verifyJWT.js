@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 dotenv.config();
 
-export const authGoogleMiddleware = (req, res,next) => {
+export const verifyJWTMiddleware = (req, res,next) => {
   const token = req.cookies.token;
   if (!token) {
     return res.status(401).json({ error: "No token provided" });

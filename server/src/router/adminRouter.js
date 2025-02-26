@@ -1,6 +1,6 @@
 import express from "express";
-import {addEvents} from "../controller/addEvents.js";
-import {addEventType} from "../controller/addEventType.js"
+import {addEvents} from "../controller/AdminControllers/addEvents.js";
+import {addEventType} from "../controller/AdminControllers/addEventType.js"
 import {uploadImage} from "../middleware/cloudinaryMiddleware.js";
 const Router = express.Router();
 

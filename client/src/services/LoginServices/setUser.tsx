@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { login } from "../store/userSlice";
+import { login } from "../../store/userSlice";
 import { useEffect } from "react";
 
 export const SetUser: React.FC = () => {

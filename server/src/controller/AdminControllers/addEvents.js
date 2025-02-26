@@ -1,4 +1,4 @@
-import pool from "../config/db.js";
+import pool from "../../config/db.js";
 
 export const addEvents = async (req, res) => {
   try {
