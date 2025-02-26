@@ -14,22 +14,28 @@ export const SignUp: React.FC = () => {
   const [images, setImages] = useState<File | null>(null);
   const [formData, setformData] = useState(initialState);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    console.log("this")
     const sendingData = new FormData();
-    sendingData.entries(formData).forEach(([key, value]) => {
+    Object.entries(formData).forEach(([key, value]) => {
       sendingData.append(key, value);
     });
 
     if (images) {
       sendingData.append("images", images);
     }
+    console.log(sendingData);
     const res = await fetch("/auth/signUp", {
       method: "POST",
       body: sendingData,
     });
-    const redirect = await res.json;
-    console.log("redirect :>> ", redirect);
-    window.location.href = `${redirect.redirect}`;
+    if(!res.ok){
+      console.log("u suck man");
+    }
+    const redirect = await res.json();
+    console.log('redirect :>> ', redirect);
+    // window.location.href = `${redirect.redirect}`;
   };
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -79,7 +85,7 @@ export const SignUp: React.FC = () => {
                   <label className={styles.label}>First Name</label>
                   <input
                     type="text"
-                    name="firstname"
+                    name="firstName"
                     onChange={handleChange}
                     required
                     className={styles.input}
@@ -89,7 +95,7 @@ export const SignUp: React.FC = () => {
                   <label className={styles.label}>Last Name</label>
                   <input
                     type="text"
-                    name="lastname"
+                    name="lastName"
                     onChange={handleChange}
                     required
                     className={styles.input}

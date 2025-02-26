@@ -76,9 +76,9 @@
     background: white !important;
     color: black;
   }
-  .signup{
+  /* .signup{
     width: 100%;
-  }
+  } */
   .googleSignin:hover{
     background: rgba(220, 220, 220, 0.638)  !important;
   }
