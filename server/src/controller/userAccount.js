@@ -8,6 +8,7 @@ cloudinary.v2.config({
 });
 
 export const userAccount = async (req, res) => {
+  if(req.body.sub) {
   try {
     const { sub, picture, given_name, family_name, email } = req.body;
 
@@ -38,4 +39,9 @@ export const userAccount = async (req, res) => {
   } catch (error) {
     return res.status(500).json({ error: "Internal Server Error" });
   }
+}
+else if(req.body.googleid === 2){
+  console.log('here handling login ');
+}
+
 };

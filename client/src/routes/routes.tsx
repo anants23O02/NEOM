@@ -13,6 +13,8 @@ import {EventTypeForm} from '../pages/addEventType';
 import {SetUser} from '../pages/setUser';
 import {Fetch} from "../pages/Fetch";
 import {SignUp} from '../pages/SignUp';
+import {SignIn} from '../pages/signIn';
+
 export const router = createBrowserRouter([
   {
     path: "/dashboard",
@@ -70,5 +72,9 @@ export const router = createBrowserRouter([
   {
     path:"/signUp",
     element: <SignUp/>
+  },
+  {
+    path:"/signIn",
+    element: <SignIn/>
   }
 ]);

@@ -2,14 +2,12 @@ import { useDispatch } from "react-redux";
 import { login } from "../store/userSlice";
 import { useEffect } from "react";
 
-export const SetUser: React.FC = () => {
-  const dispatch = useDispatch();
+export const SignIn:React.FC = () => {
+    const dispatch = useDispatch();
 
   useEffect(() => {
     const checkAuth = async () => {
-
-      
-      const res = await fetch("/auth/google/user", {
+      const res = await fetch("/auth/signIn", {
         credentials: "include",
       });
       const data = await res.json();
@@ -19,11 +17,14 @@ export const SetUser: React.FC = () => {
     };
     checkAuth();
   }, [dispatch]);
-  return (
-<>
-<div style={{margin:"auto"}} >
-  Logging In.....
-</div>
-</>
-  );
-};
+    
+return(
+    <>
+    <div style={{height:"100%",padding:"auto"}} >
+        User is being registered and signing In.....
+    </div>
+    </>
+
+)
+
+}
