@@ -35,7 +35,7 @@ export const SignUp: React.FC = () => {
     }
     const redirect = await res.json();
     console.log('redirect :>> ', redirect);
-    // window.location.href = `${redirect.redirect}`;
+    window.location.href = `${redirect.redirect}`;
   };
   const handleChange = (e) => {
     const { name, value } = e.target;

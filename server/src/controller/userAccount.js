@@ -9,7 +9,7 @@ cloudinary.v2.config({
 
 export const userAccount = async (req, res) => {
   try {
-    const { sub, picture, given_name, family_name, email } = req.user;
+    const { sub, picture, given_name, family_name, email } = req.body;
 
     const userCheck = await pool.query(
       "SELECT * FROM users WHERE googleid = $1",

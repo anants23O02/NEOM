@@ -12,7 +12,7 @@ export const authGoogleMiddleware = (req, res,next) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const userData = decoded.user;
-    req.user = userData;
+    req.body = userData;
     next();
   } catch (error) {
     console.error("JWT Verification Error:", error);
