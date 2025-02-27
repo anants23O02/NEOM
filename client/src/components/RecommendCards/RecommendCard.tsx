@@ -4,8 +4,8 @@ import logo from "../../assets/img/joy.svg";
 import TruncatedText from "../../utils/TruncatedText";
 import type { locationCards } from "../../assets/Dummydata/LocationCardInterface";
 import type { RecommendCards } from "../../assets/Dummydata/LocationCardInterface";
-import {getReview} from "../../utils/SmileySvg";
-import {ConvertDate} from '../../utils/DateValue';
+import { getReview } from "../../utils/SmileySvg";
+import { ConvertDate } from "../../utils/DateValue";
 interface props {
   value: locationCards;
   data?: RecommendCards;
@@ -13,9 +13,11 @@ interface props {
 }
 
 export const RecommendCard: React.FC<props> = ({ value, data, type }) => {
-  console.log('value.start_date :>> ', new Date(value.start_date));
+  console.log("value.start_date :>> ", new Date(value.start_date));
+  console.log('value :>> ', value);
   const startDate = ConvertDate(new Date(value.start_date));
   const endDate = ConvertDate(new Date(value.end_date));
+
   const Review = getReview(Number(value.stars));
   let overlay;
   if (data) {
@@ -25,33 +27,26 @@ export const RecommendCard: React.FC<props> = ({ value, data, type }) => {
   return (
     <>
       <div className={styles.recommendCard}>
-        <DynamicCardImage
-          image={value.images}
-          type={type}
-          overlay={overlay}
-        />
+        <DynamicCardImage image={value.images} type={type} overlay={overlay} />
         <div className={styles.recommendCardContent}>
           <div className={styles.label}>
             <div className={styles.review}>
               <img src={Review.image} alt="" />
-              <span>
-                  {Review.description[0]}
-              </span>
+              <span>{Review.description[0]}</span>
             </div>
             <div className={styles.date}>
-              {
-                // startDate[1] === endDate[1] ?
-                //   `${startDate[1]} ${startDate[2]} - ${endDate[2]}`:
-                //   `${startDate[1]} ${startDate[2]} - ${endDate[1]} ${endDate[2]}`
-              }
+              {startDate[1] === endDate[1]
+                ? `${startDate[1]} ${startDate[2]} - ${endDate[2]}`
+                : `${startDate[1]} ${startDate[2]} - ${endDate[1]} ${endDate[2]}`}
             </div>
           </div>
           <div className={styles.title}>{TruncatedText(value.title, 3)}</div>
           <div className={styles.time}>
-{/* {
-  `${startDate[3]}:${startDate[4] < 10 ? "0" + String(startDate[4]): startDate[4]} AM - ${endDate[3]}:${endDate[4] < 10 ? "0" + String(endDate[4]): endDate[4]} PM`
-} */}
-
+            {`${startDate[3]}:${
+              startDate[4] < 10 ? "0" + String(startDate[4]) : startDate[4]
+            } AM - ${endDate[3]}:${
+              endDate[4] < 10 ? "0" + String(endDate[4]) : endDate[4]
+            } PM`}
           </div>
         </div>
       </div>

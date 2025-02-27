@@ -15,15 +15,15 @@ interface HorizontalCardProps {
 
 export const HorizontalCard: React.FC<HorizontalCardProps> = ({ value }) => {
   const Review = getReview(value.stars);
-  const startDateArray = ConvertDate(value.about[1].startDate);
-  const endDateArray = ConvertDate(value.about[1].endDate);
+  const startDateArray = ConvertDate(new Date(value.start_date));
+  const endDateArray = ConvertDate(new Date(value.end_date));
   return (
     <div className={styles.card}>
 
 
       {/* image side */}
       <div className={styles.cardPoster}>
-        <img src={value.images[0]} alt="" />
+        <img src={value.images} alt="" />
         <div className={styles.imageData}>
           <img src={group} alt="" />
         </div>
@@ -38,16 +38,16 @@ export const HorizontalCard: React.FC<HorizontalCardProps> = ({ value }) => {
         </div>
 
         <div className={styles.stars}>
-          {[...Array(value.stars)].map((_, i) => (
+          {[...Array(Number(value.stars))].map((_, i) => (
             <MdStar key={i} className={styles.cardStars} />
           ))}
           <div
             className={styles.cardValues}
-          >{`${value.stars}.0  ( ${value.reviews} Reviews )`}</div>
+          >{`${value.stars}  ( ${value.reviews} Reviews )`}</div>
         </div>
 
         <div className={styles.cardDescription}>
-          {TruncatedText(value.description[0], 20)}
+          {TruncatedText(value.event_desc, 20)}
           <span style={{ color: "red", textDecoration: "underline" }}>
             read more
           </span>
@@ -76,7 +76,7 @@ export const HorizontalCard: React.FC<HorizontalCardProps> = ({ value }) => {
                 alignItems: "center",
               }}
             />
-            <span>{value.location[0]}</span>
+            <span>{value.city}</span>
           </div>
           <div className={styles.cardDetail}>
             <BiCategory

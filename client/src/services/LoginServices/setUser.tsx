@@ -7,8 +7,6 @@ export const SetUser: React.FC = () => {
 
   useEffect(() => {
     const checkAuth = async () => {
-
-      
       const res = await fetch("/auth/google/user", {
         credentials: "include",
       });
@@ -20,10 +18,8 @@ export const SetUser: React.FC = () => {
     checkAuth();
   }, [dispatch]);
   return (
-<>
-<div style={{margin:"auto"}} >
-  Logging In.....
-</div>
-</>
+    <>
+      <div style={{ margin: "auto" }}>Logging In.....</div>
+    </>
   );
 };

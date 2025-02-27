@@ -11,9 +11,14 @@ import { TranslatingArrows } from "../utils/TranslatiingArrows";
 import { BigRecommendationCard } from "../components/BigRecommendationCard/BigRecommendationCart";
 import { userCharlie } from "../assets/Dummydata/userData";
 import { DivideArrays } from "../utils/DivideArrays";
+import { useSelector } from "react-redux";
+
 
 export const Favorites: React.FC = () => {
-  const favorites = DivideArrays(userCharlie.favortiteEvents, 5);
+  const userData = useSelector((state) => state.user.user.user);
+  const events = useSelector((state) => state.events.events.events);
+  const favorites = DivideArrays(userData.fav_events, 5);
+
   console.log("favorites :>> ", favorites);
   const [translateBig, settranslateBig] = useState(0);
   function rightTranslateBig() {
@@ -48,11 +53,9 @@ export const Favorites: React.FC = () => {
         </div>
         {favorites.map((array, i) => {
           return(
-
             <div className="fitCards">
             {array.map((id, i) => {
-              const matchedCard = LocationCards.find((card) => card.id === id);
-              console.log("matchedCard :>> ", matchedCard);
+              const matchedCard = events.find((card) => card.id === id);
               return matchedCard ? (
                 <RecommendCard value={matchedCard} key={i} type={"remove"} />
               ) : null;
@@ -100,11 +103,11 @@ export const Favorites: React.FC = () => {
           </div>
         </div>
         <div className="fitCards">
-          {RecommendCards.map((card, i) => {
+          {events.slice(5).map((card, i) => {
             return (
               <RecommendCard
-                value={LocationCards[card.card]}
-                data={card}
+                value={card}
+                data={{pos:i+1}}
                 key={i}
                 type={"top5"}
               />

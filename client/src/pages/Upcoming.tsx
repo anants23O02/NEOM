@@ -14,8 +14,8 @@ import { useSelector } from "react-redux";
 export const Upcoming: React.FC = () => {
   const data = useSelector((state) => state.user.user.user);
   const events = useSelector((state) => state.events.events.events);
-  // console.log('events :>> ', events);
-  const upcomingEventArray = DivideArrays(UpcomingEvents, 5);
+  const upcomingEventArray = DivideArrays(events, 5);
+
   const filters = [
     "Stand Up Comedy",
     "RAMP Walk",
@@ -93,13 +93,15 @@ export const Upcoming: React.FC = () => {
         </div>
       </section>
       <section className="container">
-        <div className="fitCards">
-        {events.slice(5).map((upcomingEvent) => {
+        {upcomingEventArray.map((upcomingEvent) => {
           return (
-              <RecommendCard value={upcomingEvent} type="onlyHeart" />
-            );
-          })}
-          </div>
+            <div className="fitCards">
+              {upcomingEvent.map((event) => {
+                return <RecommendCard value={event} type="onlyHeart" />;
+              })}
+            </div>
+          );
+        })}
       </section>
 
       <section className="container">

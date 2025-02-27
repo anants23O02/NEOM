@@ -1,4 +1,4 @@
-import express from "express";
+ import express from "express";
 import {googleRedirect,googleCallBack} from "../controller/AuthControllers/authController.js"
 import {userAccount} from "../controller/AuthControllers/userAccount.js";
 import {verifyJWTMiddleware} from "../middleware/verifyJWT.js"
