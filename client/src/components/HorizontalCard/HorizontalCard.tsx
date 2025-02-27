@@ -8,19 +8,22 @@ import group from "../../assets/img/Group.svg";
 import TruncatedText from "../../utils/TruncatedText";
 import { getReview } from "../../utils/SmileySvg";
 import { ConvertDate } from "../../utils/DateValue";
+import { useNavigate } from "react-router-dom";
 
 interface HorizontalCardProps {
   value: locationCards;
 }
 
 export const HorizontalCard: React.FC<HorizontalCardProps> = ({ value }) => {
+  const navigate = useNavigate();
   const Review = getReview(value.stars);
+  const handleClick =() => {
+    navigate(`/event/${value.id}`);
+  }
   const startDateArray = ConvertDate(new Date(value.start_date));
   const endDateArray = ConvertDate(new Date(value.end_date));
   return (
-    <div className={styles.card}>
-
-
+    <div className={styles.card} onClick= {handleClick}>
       {/* image side */}
       <div className={styles.cardPoster}>
         <img src={value.images} alt="" />
@@ -29,10 +32,8 @@ export const HorizontalCard: React.FC<HorizontalCardProps> = ({ value }) => {
         </div>
       </div>
 
-
-{/* content side */}
+      {/* content side */}
       <div className={styles.cardContent}>
-
         <div className={styles.cardHeading}>
           {TruncatedText(value.title, 4)}
         </div>
@@ -91,20 +92,15 @@ export const HorizontalCard: React.FC<HorizontalCardProps> = ({ value }) => {
           </div>
         </div>
 
-
         <div className={styles.suggest}>
-
           <div className={styles.cardSuggestions}>
             <img src={Review.image} alt="" />
             <span>{Review.description[0]} </span>
           </div>
 
           <div className={styles.cardScheduled}>Scheduled</div>
-
         </div>
-
       </div>
-
     </div>
   );
 };

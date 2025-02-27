@@ -18,8 +18,10 @@ export const Favorites: React.FC = () => {
   const userData = useSelector((state) => state.user.user.user);
   const events = useSelector((state) => state.events.events.events);
   const favorites = DivideArrays(userData.fav_events, 5);
-
   console.log("favorites :>> ", favorites);
+
+
+  
   const [translateBig, settranslateBig] = useState(0);
   function rightTranslateBig() {
     if (translateBig > 2 * -60) {

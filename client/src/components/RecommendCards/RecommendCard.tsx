@@ -6,28 +6,39 @@ import type { locationCards } from "../../assets/Dummydata/LocationCardInterface
 import type { RecommendCards } from "../../assets/Dummydata/LocationCardInterface";
 import { getReview } from "../../utils/SmileySvg";
 import { ConvertDate } from "../../utils/DateValue";
+import { useNavigate } from "react-router-dom";
+
+
 interface props {
   value: locationCards;
   data?: RecommendCards;
   type: string;
 }
 
-export const RecommendCard: React.FC<props> = ({ value, data, type }) => {
-  console.log("value.start_date :>> ", new Date(value.start_date));
-  console.log('value :>> ', value);
+export const RecommendCard: React.FC<props> = ({ value, data, type, favorites }) => {
+  const navigate = useNavigate();
+
   const startDate = ConvertDate(new Date(value.start_date));
   const endDate = ConvertDate(new Date(value.end_date));
-
   const Review = getReview(Number(value.stars));
   let overlay;
   if (data) {
     overlay = data.pos;
   }
+  const handleClick =() => {
+    navigate(`/event/${value.id}`);
+  }
 
   return (
     <>
-      <div className={styles.recommendCard}>
-        <DynamicCardImage image={value.images} type={type} overlay={overlay} />
+      <div className={styles.recommendCard} onClick= {handleClick}>
+        <DynamicCardImage
+          image={value.images}
+          type={type}
+          overlay={overlay}
+          eventid={value.id}
+          favorites={favorites}
+        />
         <div className={styles.recommendCardContent}>
           <div className={styles.label}>
             <div className={styles.review}>

@@ -37,17 +37,21 @@
   right: 5px;
   -webkit-text-stroke: 1px white; /* White stroke */
 }
-.heart {
+.heart,.heartRed {
   position: absolute;
   color: rgba(255, 255, 255, 0.593);
+  /* color: red; */
   padding: 1rem;
   top: 0;
   right: 0;
   font-size: 1.5rem;
 
   fill: rgba(0, 0, 0, 0.701);
+  /* fill: red; */
 }
-
+.heartRed{
+  fill: red;
+}
 .removeButton {
   font-family: "BrownLight";
   font-weight: 600;

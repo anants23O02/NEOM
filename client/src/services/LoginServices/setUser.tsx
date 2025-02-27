@@ -11,6 +11,7 @@ export const SetUser: React.FC = () => {
         credentials: "include",
       });
       const data = await res.json();
+      console.log('login state data :>> ', data);
       dispatch(login(data));
       console.log("thsi", data);
       window.location.href = "/fetch";

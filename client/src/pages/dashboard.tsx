@@ -43,7 +43,8 @@ export const Dashboard: React.FC = () => {
   }
 
   function rightTranslate() {
-    if (translate > -2 * 34) {
+    const value = data.user_events.filter((event) => event.status === "scheduled").length - 1.5;
+    if (translate > value * -34) {
       const newtranslate = translate - 34;
       settranslate(newtranslate);
     } else {
@@ -85,8 +86,12 @@ export const Dashboard: React.FC = () => {
                 animate={{ x: ` ${translate}vw` }}
                 transition={{ duration: 0.5 }}
               >
-                {data.fav_events.map((id, i) => {
-                  const matchedCard = events.find((card) => card.id === id);
+                {data.user_events.map((id, i) => {
+                  if (id.status !== "scheduled") {
+                    return
+                  }
+
+                  const matchedCard = events.find((card) => card.id === id.event_id);
                   return matchedCard ? (
                     <HorizontalCard value={matchedCard} key={i} />
                   ) : null;

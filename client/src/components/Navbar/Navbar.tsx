@@ -33,9 +33,9 @@ export const Navbar: React.FC = () => {
                 location.pathname === "/favorites" ? styles.activeD : ""
               }
             >
-              <a href="/favorites">
-              My Favorites
-                {/* <Link to="/favorites">My Favorites</Link> */}
+              <a >
+              {/* My Favorites */}
+                <Link to="/favorites">My Favorites</Link>
               </a>
             </li>
             <li
