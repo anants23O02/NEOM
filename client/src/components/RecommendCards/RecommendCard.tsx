@@ -22,6 +22,7 @@ export const RecommendCard: React.FC<props> = ({ value, data, type, favorites })
   const endDate = ConvertDate(new Date(value.end_date));
   const Review = getReview(Number(value.stars));
   let overlay;
+
   if (data) {
     overlay = data.pos;
   }
@@ -31,7 +32,7 @@ export const RecommendCard: React.FC<props> = ({ value, data, type, favorites })
 
   return (
     <>
-      <div className={styles.recommendCard} onClick= {handleClick}>
+      <div className={styles.recommendCard} >
         <DynamicCardImage
           image={value.images}
           type={type}
@@ -39,7 +40,7 @@ export const RecommendCard: React.FC<props> = ({ value, data, type, favorites })
           eventid={value.id}
           favorites={favorites}
         />
-        <div className={styles.recommendCardContent}>
+        <div className={styles.recommendCardContent} onClick= {handleClick}>
           <div className={styles.label}>
             <div className={styles.review}>
               <img src={Review.image} alt="" />
