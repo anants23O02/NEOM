@@ -12,13 +12,12 @@ import { BigRecommendationCard } from "../components/BigRecommendationCard/BigRe
 import { userCharlie } from "../assets/Dummydata/userData";
 import { DivideArrays } from "../utils/DivideArrays";
 import { useSelector } from "react-redux";
-
+import {useEffect} from "react"
 
 export const Favorites: React.FC = () => {
   const userData = useSelector((state) => state.user.user.user);
   const events = useSelector((state) => state.events.events.events);
-  const favorites = DivideArrays(userData.fav_events, 5);
-  console.log("favorites :>> ", favorites);
+
 
 
   
@@ -49,11 +48,10 @@ export const Favorites: React.FC = () => {
           <div className="sectionHeading">Good morning Charlie!</div>
 
           <div className="sectionContentLarge">
-
             You have shortlisted 8 events to join later
           </div>
         </div>
-        {favorites.map((array, i) => {
+        {DivideArrays(userData.fav_events, 5).map((array, i) => {
           return(
             <div className="fitCards">
             {array.map((id, i) => {
@@ -105,7 +103,7 @@ export const Favorites: React.FC = () => {
           </div>
         </div>
         <div className="fitCards">
-          {events.slice(5).map((card, i) => {
+          {events.slice(4).map((card, i) => {
             return (
               <RecommendCard
                 value={card}

@@ -146,7 +146,7 @@ export const Dashboard: React.FC = () => {
 
           <div className="sectionDescription">
             <div className="fitCards">
-              {events.slice(5).map((card, i) => {
+              {events.slice(4 ).map((card, i) => {
                 return (
                   <RecommendCard
                     value={card}

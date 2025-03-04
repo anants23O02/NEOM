@@ -1,52 +1,91 @@
+import { useState, useEffect } from "react";
 import styles from "../styles/login.module.css";
 import { FcGoogle } from "react-icons/fc";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const Login: React.FC = () => {
-    const navigate = useNavigate();
-  const handleLogin = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    
+    console.log("Email:", email, "Password:", password);
+  }, [email, password]);
+
+  const handleGoogleLogin = () => {
     window.location.replace("/auth/google");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("form submitted :>> ");
-    return;
+
+    const data = { email, password };
+
+    try {
+      const res = await fetch("/auth/login", {
+        method: "POST",  
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data), 
+      });
+        if (res.ok) {
+          window.location.replace("/signIn")
+        }
+
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
+
   const handleSignUp = () => {
-    window.location.href = "/signUp"
+    navigate("/signUp");
   };
 
   return (
-    <>
-      <section className="container">
-        <div className="section">
-          <div className={styles.login}>
-            <div className="sectionHeading">Welcome to Neom!</div>
-            <div className="sectionContent">Login or Sign Up</div>
-            <div className={styles.loginForm}>
-              <form action="" onSubmit={handleSubmit}>
-                <div className={styles.formGroup}>
-                  <label htmlFor="">Email</label>
-                  <input type="text" name="email" />
-                </div>
+    <section className="container">
+      <div className="section">
+        <div className={styles.login}>
+          <div className="sectionHeading">Welcome to Neom!</div>
+          <div className="sectionContent">Login or Sign Up</div>
+          <div className={styles.loginForm}>
+            <form onSubmit={handleSubmit}>
+              <div className={styles.formGroup}>
+                <label>Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
 
-                <div className={styles.formGroup}>
-                  <label htmlFor="">Password</label>
-                  <input type="text" name="password" />
-                </div>
-                <button className={styles.submit} type="submit">
-                  Log In
-                </button>
-              </form>
-            </div>
-            <button onClick={handleSignUp} className={styles.signup} >Sign Up</button>
-            <button className={styles.googleSignin} onClick={handleLogin}>
-              <FcGoogle /> Login in with Google
-            </button>
+              <div className={styles.formGroup}>
+                <label>Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </div>
+              <button className={styles.submit} type="submit">
+                Log In
+              </button>
+            </form>
           </div>
+          <button onClick={handleSignUp} className={styles.signup}>
+            Sign Up
+          </button>
+          <button className={styles.googleSignin} onClick={handleGoogleLogin}>
+            <FcGoogle /> Login with Google
+          </button>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };

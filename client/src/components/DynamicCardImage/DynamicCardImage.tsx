@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../styles/DynamicCardImage.module.css";
-import { addFavoriteEvent, removeFavoriteEvent } from "../../store/userSlice.ts";
+import {
+  addFavoriteEvent,
+  removeFavoriteEvent,
+} from "../../store/userSlice.ts";
 import { useDispatch, useSelector } from "react-redux";
 import { FiHeart } from "react-icons/fi";
-import { RootState } from "../../store/store"; 
-import { useNavigate } from "react-router-dom"; // ✅ Import useNavigate
+import { RootState } from "../../store/store";
+import { useNavigate } from "react-router-dom";
 
 interface DynamicCardImageProps {
   image: string;
   type?: string;
   overlay?: string | number;
-  eventid: number; 
+  eventid: number;
 }
 
 export const DynamicCardImage: React.FC<DynamicCardImageProps> = ({
@@ -23,33 +26,31 @@ export const DynamicCardImage: React.FC<DynamicCardImageProps> = ({
   const navigate = useNavigate();
   const userData = useSelector((state: RootState) => state.user.user);
   const favEvents = userData?.user?.fav_events || [];
+  
   const [isFavorite, setIsFavorite] = useState(favEvents.includes(eventid));
-  const [red, setRed] = useState(true);
 
   useEffect(() => {
     setIsFavorite(favEvents.includes(eventid));
   }, [favEvents, eventid]);
 
   const handleClick = () => {
-    setRed(!red);
-    if (red)
-    {
     if (favEvents.includes(eventid)) {
-      return;
+      console.log('isthisworking :>> ');
+      dispatch(removeFavoriteEvent(eventid));
+      setIsFavorite(false);
     }
-    dispatch(addFavoriteEvent(eventid));
+    else{
+
+      dispatch(addFavoriteEvent(eventid));
+    }
   };
-}
 
   const removeFavorite = () => {
-    if (!red)
-      {
-        dispatch(removeFavoriteEvent(eventid));
-      }
+    dispatch(removeFavoriteEvent(eventid));
   };
 
   const handleClickImage = () => {
-    navigate(`/event/${eventid}`); 
+    navigate(`/event/${eventid}`);
   };
 
   return (
