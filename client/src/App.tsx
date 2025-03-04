@@ -5,7 +5,10 @@ import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./store/index"; 
 import "./styles/App.css";
 
+
+
 function App() {
+  
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>

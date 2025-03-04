@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { persistReducer } from "redux-persist";
-import  storage  from "redux-persist/lib/storage";
+import storage from "redux-persist/lib/storage";
 
 const initialState = {
   login: false,
@@ -12,6 +12,8 @@ const userLoginSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action) => {
+      // Ensure the payload is consistent and only has one source for fav_events.
+      console.log("action.payload :>> ", action.payload);
       state.user = action.payload;
       state.login = true;
     },
@@ -20,8 +22,33 @@ const userLoginSlice = createSlice({
       state.login = false;
       storage.removeItem("persist:root");
     },
+    addFavoriteEvent: (state, action) => {
+      console.log("Adding favorite event");
+      if (state.user && state.user) {
+        if (state.user.fav_events) {
+          state.user.fav_events = [...state.user.fav_events, action.payload];
+        } else {
+          state.user.fav_events = [action.payload];
+        }
+      }
+    },
+    removeFavoriteEvent: (state, action) => {
+      console.log("Removing favorite event");
+      if (state.user && state.user.fav_events) {
+        state.user.fav_events = state.user.fav_events.filter(
+          (eventId) => eventId !== action.payload
+        );
+      }
+    },
+    addEventSchedule: (state,action) => {
+        state.user.user_events = [...state.user.user_events,{
+          event_id:action.payload,
+          status:"scheduled",
+          event_date:"nhi h"
+        }]
+    }
   },
 });
 
-export const { login, logout } = userLoginSlice.actions;
-export default  userLoginSlice.reducer;
+export const { login, logout, addFavoriteEvent,removeFavoriteEvent,addEventSchedule } = userLoginSlice.actions;
+export default userLoginSlice.reducer;

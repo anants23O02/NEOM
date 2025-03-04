@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 dotenv.config();
 
-export const authGoogleMiddleware = (req, res,next) => {
+export const verifyJWTMiddleware = (req, res,next) => {
   const token = req.cookies.token;
   if (!token) {
     return res.status(401).json({ error: "No token provided" });
@@ -12,7 +12,7 @@ export const authGoogleMiddleware = (req, res,next) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const userData = decoded.user;
-    req.user = userData;
+    req.body = userData;
     next();
   } catch (error) {
     console.error("JWT Verification Error:", error);

@@ -157,3 +157,18 @@ app.get("/auth/logout", (req, res) => {
 
 // Start Server
 app.listen(5000, () => console.log("Server running on http://localhost:5000"));
+
+
+
+
+// CLEAR COOKIE WHEN USER GOES TO SIGNUP PAGE AND GENERATE A NEW JWT TOKEN THEN SEND HIM AGAIN TO /USER
+//THEN WORK ON LOGIN USING EMAIL AND PASSWORD
+//MODIFY CARDS TO WORK WITH DATA FROM EVENTS IN DATABASE
+//SEND ATTENDED SCHEDULED AND FAVORITE CARDS ON THE FRONTEND
+//RENDER DATA AS PER THE DATA FROM BACKEND
+//START WORKING ON FUNCTIONALITY 
+
+
+//create custom hooks to handle global states and restructure the project accordingly
+
+

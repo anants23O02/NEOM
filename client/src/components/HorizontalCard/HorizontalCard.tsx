@@ -8,46 +8,47 @@ import group from "../../assets/img/Group.svg";
 import TruncatedText from "../../utils/TruncatedText";
 import { getReview } from "../../utils/SmileySvg";
 import { ConvertDate } from "../../utils/DateValue";
+import { useNavigate } from "react-router-dom";
 
 interface HorizontalCardProps {
   value: locationCards;
 }
 
 export const HorizontalCard: React.FC<HorizontalCardProps> = ({ value }) => {
+  const navigate = useNavigate();
   const Review = getReview(value.stars);
-  const startDateArray = ConvertDate(value.about[1].startDate);
-  const endDateArray = ConvertDate(value.about[1].endDate);
+  const handleClick =() => {
+    navigate(`/event/${value.id}`);
+  }
+  const startDateArray = ConvertDate(new Date(value.start_date));
+  const endDateArray = ConvertDate(new Date(value.end_date));
   return (
-    <div className={styles.card}>
-
-
+    <div className={styles.card} onClick= {handleClick}>
       {/* image side */}
       <div className={styles.cardPoster}>
-        <img src={value.images[0]} alt="" />
+        <img src={value.images} alt="" />
         <div className={styles.imageData}>
           <img src={group} alt="" />
         </div>
       </div>
 
-
-{/* content side */}
+      {/* content side */}
       <div className={styles.cardContent}>
-
         <div className={styles.cardHeading}>
           {TruncatedText(value.title, 4)}
         </div>
 
         <div className={styles.stars}>
-          {[...Array(value.stars)].map((_, i) => (
+          {[...Array(Number(value.stars))].map((_, i) => (
             <MdStar key={i} className={styles.cardStars} />
           ))}
           <div
             className={styles.cardValues}
-          >{`${value.stars}.0  ( ${value.reviews} Reviews )`}</div>
+          >{`${value.stars}  ( ${value.reviews} Reviews )`}</div>
         </div>
 
         <div className={styles.cardDescription}>
-          {TruncatedText(value.description[0], 20)}
+          {TruncatedText(value.event_desc, 20)}
           <span style={{ color: "red", textDecoration: "underline" }}>
             read more
           </span>
@@ -76,7 +77,7 @@ export const HorizontalCard: React.FC<HorizontalCardProps> = ({ value }) => {
                 alignItems: "center",
               }}
             />
-            <span>{value.location[0]}</span>
+            <span>{value.city}</span>
           </div>
           <div className={styles.cardDetail}>
             <BiCategory
@@ -91,20 +92,15 @@ export const HorizontalCard: React.FC<HorizontalCardProps> = ({ value }) => {
           </div>
         </div>
 
-
         <div className={styles.suggest}>
-
           <div className={styles.cardSuggestions}>
             <img src={Review.image} alt="" />
             <span>{Review.description[0]} </span>
           </div>
 
           <div className={styles.cardScheduled}>Scheduled</div>
-
         </div>
-
       </div>
-
     </div>
   );
 };

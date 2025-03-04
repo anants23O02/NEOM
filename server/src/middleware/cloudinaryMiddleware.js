@@ -1,26 +1,26 @@
-import { v2 as cloudinary } from "cloudinary";
 import multer from "multer";
-import { CloudinaryStorage } from "multer-storage-cloudinary";
-import dotenv from "dotenv";
+import { uploadImageFromBody } from "../utils/uploadImage.js";
 
-dotenv.config();
+const upload = multer({ storage: multer.memoryStorage() });
 
-// Configure Cloudinary
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
+export const uploadImage = (req, res, next) => {
+  upload.single("images")(req, res, async (err) => {
+    console.log('here :>> ', req.body);
+    if (err) return res.status(400).json({ error: "File upload failed" });
 
+    if (!req.file) return res.status(400).json({ error: "No image uploaded" });
 
-const storage = new CloudinaryStorage({
-  cloudinary,
-  params: {
-    folder: "Neom", 
-    allowedFormats: ["jpg", "png", "jpeg"],
-  },
-});
-
-const upload = multer({ storage });
-
-export default upload;
+    try {
+      const base64Image = `data:${
+        req.file.mimetype
+      };base64,${req.file.buffer.toString("base64")}`;
+      const folder = req.body.firstname ? "profiles" : "neom";
+      const imageUrl = await uploadImageFromBody(base64Image, folder); 
+      req.body.picture = imageUrl; // Store Cloudinary URL in req.body
+      console.log('req.body in cloudinary middleware:>> ', req.body);
+      next();
+    } catch (error) {
+      res.status(500).json({ error: "failing now" });
+    }
+  });
+};

@@ -213,3 +213,6 @@ export const LocationCards: locationCards[] = [
     userReviews: userReviews,
   },
 ];
+
+
+

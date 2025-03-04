@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRef } from "react";
 import { openModal, closeModal, closeIfOutside } from "../../store/modalSlice";
 import { RootState } from "../../store";
-import styles from "../../styles/loginModal.module.css";
 import { IoIosClose } from "react-icons/io";
 
 export function PositionedModal({ user }) {
@@ -35,7 +34,7 @@ export function PositionedModal({ user }) {
   const left = modal.position.left - 120;
   return (
     <>
-      <div className={styles.LoginButton} onClick={handleClickOutside}>
+onClick={handleClickOutside}>
 
         <button
           ref={buttonRef}

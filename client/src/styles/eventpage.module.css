@@ -28,10 +28,17 @@
   overflow: auto;
 }
 
+.descContent{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 5rem;
+}
+
 .content{
   display: flex;
   flex-direction: row;
-  width: 75%;
+  width: 60%;
 }
 
 .contentDescriptionDetails {
