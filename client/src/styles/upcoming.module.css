@@ -41,7 +41,11 @@
 .Input,
 .travelbox1,
 .travelbox2,
-.travelbox3 {
+.travelbox3,
+.travelboxAtive,
+.travelboxAtive2,
+.travelboxAtive3,
+.InputActive {
   display: flex;
   flex-direction: row;
   width: auto;
@@ -54,16 +58,22 @@
   border: 1.8px solid rgba(103, 102, 102, 0.798);
 }
 
-.Input {
+.Input,.InputActive {
   margin-right: 0.6rem;
   border-radius: 1rem;
 }
+.InputActive{
+  background-color: black;
+  color: white;
+}
 
-.travelbox1 {
+.travelbox1,
+.travelboxAtive {
   border-radius: 1rem 0 0 1rem;
 }
 
-.travelbox3 {
+.travelbox3,
+.travelboxAtive3 {
   border-radius: 0 1rem 1rem 0;
 }
 
@@ -81,4 +91,11 @@
   margin-top: 3rem;
   border-radius: 0.4rem;
   padding: 0.4rem 1.3rem;
+}
+
+.travelboxAtive,
+.travelboxAtive2,
+.travelboxAtive3 {
+  background-color: black;
+  color: white;
 }

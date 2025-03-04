@@ -1,16 +1,18 @@
 import React, { useState, useRef, useEffect } from "react";
 import styles from "../../styles/loginModal.module.css";
 import { Link } from "react-router-dom";
-
+import { IoReorderThreeOutline } from "react-icons/io5";
 const ProfileModal = ({ user }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [position, setPosition] = useState({ top: 0, left: 0 });
   const modalRef = useRef(null);
   const buttonRef = useRef(null);
   const isOpenRef = useRef(isOpen);
+
   useEffect(() => {
     isOpenRef.current = isOpen;
   }, [isOpen]);
+
   const handleClick = (event) => {
     event.stopPropagation();
     const rect = event.target.getBoundingClientRect();
@@ -20,6 +22,7 @@ const ProfileModal = ({ user }) => {
     });
     setIsOpen((prev) => !prev);
   };
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -34,6 +37,7 @@ const ProfileModal = ({ user }) => {
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       if (isOpenRef.current) {
@@ -48,16 +52,33 @@ const ProfileModal = ({ user }) => {
       window.removeEventListener("wheel", handleScroll);
     };
   }, []);
+
   return (
     <>
       <div className={styles.LoginButton}>
         <button ref={buttonRef} onClick={handleClick} className={styles.Login}>
           {user !== "logout" ? (
-            <img
-              src={user.profilepic}
-              alt="Profile"
-              style={{ width: "1rem", borderRadius: "100%" }}
-            />
+            <div
+              style={{
+                width: "2.7rem",
+                height: "1.5rem",
+                borderRadius: "30%",
+                backgroundColor: "white",
+                display: "flex",
+                flexDirection: "row",
+                padding: "0 0.2rem ",
+                gap:"20%",
+                justifyContent: "center",
+                alignItems:"center",
+              }}
+            >
+              <IoReorderThreeOutline />
+              <img
+                src={user.profilepic}
+                alt="Profile"
+                style={{ width: "1rem", borderRadius: "100%", height: "1rem" }}
+              />
+            </div>
           ) : (
             "login"
           )}
@@ -65,7 +86,7 @@ const ProfileModal = ({ user }) => {
         {isOpen && (
           <div
             ref={modalRef}
-            className={styles.LoginModal} 
+            className={styles.LoginModal}
             style={{
               top: position.top,
               left: position.left,

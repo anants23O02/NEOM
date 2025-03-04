@@ -1,5 +1,5 @@
-import {useState,useEffect} from "react";
-import {useSelector} from "react-redux";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import styles from "../../styles/Navbar.module.css";
 import logo from "../../assets/img/logo2.png";
 import { FaBell } from "react-icons/fa";
@@ -8,29 +8,25 @@ import { Link } from "react-router-dom";
 import { PositionedModal } from "../LoginModal/LoginModal";
 import ProfileModal from "../ProfileModal/ProfileModal";
 
-
 export const Navbar: React.FC = () => {
-   
-
-    
-
-    const user = useSelector((state) => state.user.user);
-    let data = "logout";
-    if (user.user?.user){
-      data = user.user.user;
-    }
+  const user = useSelector((state) => state.user.user);
+  let data = "logout";
+  if (user.user?.user) {
+    data = user.user.user;
+  }
   return (
     <nav className="container navbar">
       <div className={styles.NavbarItems}>
-        <Link to="/dashboard"> 
-        <img className={styles.NavbarLogo} src={logo} alt="neom" />
+        <Link to="/dashboard">
+          <img className={styles.NavbarLogo} src={logo} alt="neom" />
         </Link>
         <div className={styles.NavItems}>
-
           <ul className={styles.NavbarOptions}>
-            
-            
-            <li className={location.pathname === "/dashboard" ? styles.activeD : ""}>
+            <li
+              className={
+                location.pathname === "/dashboard" ? styles.activeD : ""
+              }
+            >
               <a href="#">
                 {" "}
                 <Link to="/dashboard">Dashboard</Link>{" "}
@@ -41,8 +37,8 @@ export const Navbar: React.FC = () => {
                 location.pathname === "/favorites" ? styles.activeD : ""
               }
             >
-              <a >
-              {/* My Favorites */}
+              <a>
+                {/* My Favorites */}
                 <Link to="/favorites">My Favorites</Link>
               </a>
             </li>
@@ -61,8 +57,7 @@ export const Navbar: React.FC = () => {
               <FaBell style={{ color: "grey" }} />
             </li>
             <li>
-        <ProfileModal user={data}/>
-             
+              <ProfileModal user={data} />
             </li>
             <li>
               <RiGlobalLine />
