@@ -1,30 +1,30 @@
 import React from "react";
 import styles from "../../styles/scheduleModal.module.css";
-import {useDispatch} from "react-redux";
-import {addEventSchedule} from "../../store/userSlice";
-
+import { useDispatch } from "react-redux";
+import { addEventSchedule } from "../../store/userSlice";
+import { addToSchedule } from "../../services/eventServices/EventAPI";
 interface MyModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const MyModal: React.FC<MyModalProps> = ({ isOpen, onClose,eventId }) => {
-  const dispatch = useDispatch()
-  console.log('hapeening :>> ');
+const MyModal: React.FC<MyModalProps> = ({ isOpen, onClose, eventId }) => {
+  const dispatch = useDispatch();
+  console.log("hapeening :>> ");
 
-  const reserveSeat = () => {
+  const reserveSeat = async () => {
+    const res = await addToSchedule(eventId, 27);
+    console.log("res :>> ", res);
     dispatch(addEventSchedule(eventId));
-  }
+  };
   if (!isOpen) return null; // Don't render if modal is closed
 
   return (
     <div className={styles.modalOverlay} onClick={onClose}>
-      {/* Stop click from closing if user clicks inside the modal container */}
-      <div className={styles.modalContainer} onClick={(e) => e.stopPropagation()}>
-        
-        {/* Close button (X) in top-right corner */}
-      
-
+      <div
+        className={styles.modalContainer}
+        onClick={(e) => e.stopPropagation()}
+      >
         <h2 className={styles.modalTimeRange}>10:30 AM - 7:30 PM</h2>
 
         <div className={styles.modalDates}>
@@ -49,7 +49,9 @@ const MyModal: React.FC<MyModalProps> = ({ isOpen, onClose,eventId }) => {
 
         <p className={styles.modalSeats}>172 Seats still available</p>
 
-        <button onClick={reserveSeat} className={styles.modalReserveButton}>Reserve my seats</button>
+        <button onClick={reserveSeat} className={styles.modalReserveButton}>
+          Reserve my seats
+        </button>
 
         <p className={styles.modalHelp}>Need help?</p>
       </div>

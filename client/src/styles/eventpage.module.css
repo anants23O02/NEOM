@@ -1,74 +1,170 @@
+.container {
+  display: grid;
+  gap: 1rem;
+}
+.section{
+  padding: 1rem 1rem 0 1rem;
+}
+
+.userReview{
+  margin: 2rem 0;
+  border: 1px solid rgba(0, 0, 0, 0.618);
+  border-radius: 1rem;
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.userReview button{
+  /* height: 2rem; */
+  background-color: black;
+  color: white;
+  font-family: 'BrownLight';
+  padding: 0.8rem 1.5rem;
+  border-radius: 1rem;
+}
+.reviewContent{
+  display: flex;
+  flex-direction: column;
+}
+
+/* Completion Section */
+.completion {
+  font-size: 1rem;
+  font-weight: bold;
+  padding-right: 1rem ;
+}
+
+/* Image Section */
+.imageSection {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* First column for 4 images, second for 1 */
+  /* gap: 1rem; */
+  align-items: stretch; /* Ensures equal height */
+}
+
+.fourImages {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  /* gap: 0.5rem; */
+  height: 100%;
+}
+
+.twoImages {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* gap: 0.5rem; */
+}
+
+.twoImages img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.twoImages img:first-child {
+  border-radius: 1rem 0 0 0;
+}
+
+.twoImages img:last-child {
+  border-radius: 0 0 0 1rem;
+}
+
+.bigImage {
+  display: grid;
+  align-items: stretch;
+}
+
+.bigImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0 1rem 1rem 0;
+}
+
+
+
+/* Heading Section */
 .headingCntent {
   display: flex;
   flex-direction: row;
+  /* grid-template-columns: auto 1fr; */
+  align-items: center;
   gap: 0.7rem;
   font-family: "Brown";
   font-size: 0.8rem;
   color: rgb(93, 93, 93);
 }
+
 .headingstars {
   display: flex;
-  flex-direction: row;
 }
+
 .cardStars {
   color: red;
 }
+
 .headingReviews {
   padding-bottom: 1px;
   border-bottom: 1px solid rgb(93, 93, 93);
 }
 
+/* User Reviews */
 .userReviews {
-  padding: 1rem 0 ;
-  padding-bottom: 4rem ;
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-auto-flow: column;
   gap: 15px;
-  width: max-content;
-  overflow: auto;
+  /* padding: 0rem  4rem; */
+  overflow-x: hidden;
 }
 
-.descContent{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+/* Description Content */
+.descContent {
+  display: grid;
+  grid-template-columns: 60% auto;
   gap: 5rem;
 }
 
-.content{
-  display: flex;
-  flex-direction: row;
-  width: 60%;
+/* Content */
+.content {
+  display: grid;
+  grid-template-columns: 1fr;
 }
 
+/* Description Details */
 .contentDescriptionDetails {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  gap: 1rem;
   margin-top: 1.5rem;
   margin-bottom: 1rem;
 }
+
 .DescriptionDetail {
-  display: flex;
-  flex-direction: row;
-  /* align-items: center; */
-  margin-bottom: 1rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0.8rem;
 }
+
 .DescriptionDetailIcon {
   font-size: 1.3rem;
   font-weight: 500;
   color: rgb(93, 93, 93);
-  margin-right: 0.8rem;
-  width: 1rem;
 }
+
 .DescriptionDetailIcon img {
   width: 1rem;
   height: 1rem;
 }
+
 h3,
 p {
   margin: 0;
 }
 
+/* Description Detail Text */
 .DescriptionDetailText {
   font-family: "BrownLight";
   font-size: 0.8rem;
@@ -81,21 +177,23 @@ p {
   margin-bottom: 0.4rem;
 }
 
-.contentDetails{
-  border-bottom: 0.5px solid rgba(93, 93, 93, 0.699);
+/* Content Details */
+.contentDetails {
   border-top: 0.5px solid rgba(93, 93, 93, 0.699);
-font-size: 0.8rem;
-font-family: 'BrownLight';
+  border-bottom: 0.5px solid rgba(93, 93, 93, 0.699);
+  font-size: 0.8rem;
+  font-family: "BrownLight";
   padding: 1rem 0;
   color: rgb(34, 34, 34);
 }
 
-.operatorReview{
+/* Operator Review */
+.operatorReview {
   font-size: 0.8rem;
-font-family: 'BrownLight';
-  /* padding: 1rem 0; */
+  font-family: "BrownLight";
   color: rgb(34, 34, 34);
 }
-.contentOperatorReview{
-  padding:1rem 0;
+
+.contentOperatorReview {
+  padding: 1rem 0;
 }

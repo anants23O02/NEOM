@@ -25,9 +25,11 @@ export function PositionedModal({ user }) {
   };
 
   const handleClickOutside = (event: React.MouseEvent) => {
-    const insideModal = modalRef.current?.contains(event.target as Node) ?? false;
-    const insideButton = buttonRef.current?.contains(event.target as Node) ?? false;
-    
+    const insideModal =
+      modalRef.current?.contains(event.target as Node) ?? false;
+    const insideButton =
+      buttonRef.current?.contains(event.target as Node) ?? false;
+
     if (!insideModal && !insideButton) {
       dispatch(closeIfOutside({ inside: false }));
     }
@@ -38,7 +40,11 @@ export function PositionedModal({ user }) {
 
   return (
     <div onClick={handleClickOutside}>
-      <button ref={buttonRef} onClick={handleButtonClick} className={styles.Login}>
+      <button
+        ref={buttonRef}
+        onClick={handleButtonClick}
+        className={styles.Login}
+      >
         {user !== "logout" ? (
           <img
             src={user.profilepic || imageUrl || "default-profile.png"}

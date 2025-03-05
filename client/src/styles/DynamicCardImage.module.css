@@ -22,6 +22,7 @@
   height: 100%;
   top: 0;
   left: 0;
+  pointer-events: none;
 }
 
 .number {
@@ -45,7 +46,7 @@
   top: 0;
   right: 0;
   font-size: 1.5rem;
-
+pointer-events: auto;
   fill: rgba(0, 0, 0, 0.701);
   /* fill: red; */
 }
@@ -63,4 +64,5 @@
   background-color: #f9f7f2;
   color: #ff385c;
   border: 1px solid #f9f7f2;
+  pointer-events: auto;
 }

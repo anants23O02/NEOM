@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { FiHeart } from "react-icons/fi";
 import { RootState } from "../../store/store";
 import { useNavigate } from "react-router-dom";
+import {addToFavorite,removeFromFavorite} from "../../services/eventServices/EventAPI";
+
 
 interface DynamicCardImageProps {
   image: string;
@@ -25,8 +27,8 @@ export const DynamicCardImage: React.FC<DynamicCardImageProps> = ({
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userData = useSelector((state: RootState) => state.user.user);
+  const userid = userData.user.user.userid;
   const favEvents = userData?.user?.fav_events || [];
-  
   const [isFavorite, setIsFavorite] = useState(favEvents.includes(eventid));
 
   useEffect(() => {
@@ -35,12 +37,13 @@ export const DynamicCardImage: React.FC<DynamicCardImageProps> = ({
 
   const handleClick = () => {
     if (favEvents.includes(eventid)) {
-      console.log('isthisworking :>> ');
+      const result = removeFromFavorite(eventid,userid);
       dispatch(removeFavoriteEvent(eventid));
       setIsFavorite(false);
     }
     else{
-
+      const result = addToFavorite(eventid,userid);
+      // console.log('userid :>> ', userid);
       dispatch(addFavoriteEvent(eventid));
     }
   };
@@ -79,9 +82,9 @@ export const DynamicCardImage: React.FC<DynamicCardImageProps> = ({
           />
         </div>
       )}
-      <span onClick={handleClickImage}>
-        <img src={image} className={styles.cardImage} alt="Dynamic" />
-      </span>
+      
+        <img src={image} onClick={handleClickImage} className={styles.cardImage} alt="Dynamic" />
+      
     </div>
   );
 };

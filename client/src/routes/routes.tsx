@@ -14,6 +14,8 @@ import { SetUser } from "../services/LoginServices/setUser";
 import { Fetch } from "../API/Fetch";
 import { SignUp } from "../services/LoginServices/SignUp";
 import { SignIn } from "../services/LoginServices/signIn";
+import {Logout} from "../pages/Logout";
+import {SendNotification} from "../services/adminServices/sendNotification";
 
 export const router = createBrowserRouter([
   {
@@ -75,5 +77,14 @@ export const router = createBrowserRouter([
   {
     path: "/signIn",
     element: <SignIn />,
+  },
+  ,
+  {
+    path: "/logout",
+    element: <Logout />,
+  },
+  {
+    path: "/admin-event-reschedule",
+    element: <SendNotification />,
   },
 ]);

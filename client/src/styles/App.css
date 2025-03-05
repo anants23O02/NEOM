@@ -83,6 +83,7 @@ body{
   font-size: var(--font-size-normal);
   font-weight: var(--font-weight-small);
   letter-spacing: var(--letter-spacing-medium);
+  font-family: 'IvyMode';
 }
 
 .fitCards {

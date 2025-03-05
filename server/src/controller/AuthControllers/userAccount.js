@@ -38,7 +38,6 @@ export const userAccount = async (req, res) => {
       const userID = userCheck.rows[0].userid;
       const fav_events = await pool.query(cardsQuery, [userID]);
 
-
       const eventsQuery = ` SELECT JSON_AGG(
       JSON_BUILD_OBJECT(
       'event_id', event_id, 
@@ -50,14 +49,11 @@ export const userAccount = async (req, res) => {
       WHERE user_id = $1;`;
       const user_events = await pool.query(eventsQuery, [userID]);
 
-
       return res.status(200).json({
         user: userCheck.rows[0],
         fav_events: fav_events.rows[0].event_ids,
-        user_events:  user_events.rows[0].events, 
+        user_events: user_events.rows[0].events,
       });
-
-      
     } catch (error) {
       return res.status(500).json({ error: error.message });
     }
