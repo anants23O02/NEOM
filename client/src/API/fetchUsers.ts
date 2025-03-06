@@ -11,6 +11,8 @@ export const fetchUsers = async () => {
         const data = await res.json(); // Read response only once
         console.log("Fetched Users:", data);
         return data;
+
+        
     } catch (error) {
         console.error("Error fetching users:", error);
         return [];

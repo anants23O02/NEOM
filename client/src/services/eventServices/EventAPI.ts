@@ -1,9 +1,7 @@
 import { useSelector } from "react-redux";
 
-
-
-
 export const addToSchedule = async (eventid,userid) => {
+  console.log('eventid :>> ', eventid);
     try {
       const res = await fetch("/api/addEvent", {
         method: "POST",
