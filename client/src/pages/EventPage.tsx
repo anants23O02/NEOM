@@ -42,7 +42,7 @@ export const EventPage: React.FC = () => {
     } else {
       return;
     }
-  }
+  } 
 
   function leftTranslate() {
     if (translate < 0) {
