@@ -11,7 +11,7 @@ import { NotificationModal } from "../NotificationModal/NotificationModal";
 export const Navbar: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
  
-  const bellRef = useRef<HTMLLIElement>(null);
+  const [notificationData,setNotificationData] = useState();
 
   const user = useSelector((state) => state.user.user);
   let data = user.user?.user || "logout";
@@ -21,7 +21,7 @@ export const Navbar: React.FC = () => {
     socket.onopen = () => console.log("Connected to WebSocket");
 
     socket.onmessage = (event) => {
-      console.log("Notification received:", event.data);
+      console.log("Notification received:", setNotificationData(event.data));
       setShowModal(true);
     };
 
@@ -66,12 +66,12 @@ export const Navbar: React.FC = () => {
           </ul>
           <ul className={styles.NavbarProfile}>
             <li
-              ref={bellRef}
+              
               onClick={handleBellClick}
               style={{ position: "relative", cursor: "pointer" }}
             >
               <FaBell style={{ color: "grey" }} />
-              {showModal && <div>notifications</div>}
+              {showModal && <div>{`${notificationData}`}</div>}
             </li>
             <li>
               <ProfileModal user={data} />
