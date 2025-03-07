@@ -8,57 +8,30 @@ import { Link } from "react-router-dom";
 import ProfileModal from "../ProfileModal/ProfileModal";
 import { NotificationModal } from "../NotificationModal/NotificationModal";
 
-
 export const Navbar: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
-  const [notificationData, setNotificationData] = useState();
+ 
+  const [notificationData,setNotificationData] = useState();
+
   const user = useSelector((state) => state.user.user);
-
   let data = user.user?.user || "logout";
-
-  const userId = "27";
-  const socketRef = useRef(null);
-  
   useEffect(() => {
-      let reconnectInterval = null;
-      const connectWebSocket = () => {
-          if (socketRef.current) return;
-          socketRef.current = new WebSocket(`ws://localhost:8080?userId=${userId}`);
-          socketRef.current.onopen = () => {
-              console.log("WebSocket connected");
-              // clearInterval(reconnectInterval); 
-          };
-  
-          socketRef.current.onmessage = (event) => {
-              const notification = JSON.parse(event.data);
-              console.log("New Notification:", notification);
-              setNotificationData(notification.message);
-          };
-  
-          socketRef.current.onclose = () => {
-              console.log("WebSocket disconnected, retrying...");
-              socketRef.current = null;
-          };
-  
-          socketRef.current.onerror = (error) => {
-              console.error("WebSocket Error:", error);
-              socketRef.current?.close();
-          };
-      };
-  
-      connectWebSocket();
-  
-      return () => {
-          if (socketRef.current) {
-              socketRef.current.close();
-              socketRef.current = null;
-          }
-          clearInterval(reconnectInterval);
-      };
+    const socket = new WebSocket("ws://localhost:8080");
+
+    socket.onopen = () => console.log("Connected to WebSocket");
+
+    socket.onmessage = (event) => {
+      console.log("Notification received:", setNotificationData(event.data));
+      setShowModal(true);
+    };
+
+    socket.onerror = (error) => console.error("WebSocket error:", error);
+
+    return () => socket.close();
   }, []);
 
   const handleBellClick = () => {
-    setShowModal(!showModal);
+    setShowModal(!showModal)
   };
 
   return (
@@ -93,6 +66,7 @@ export const Navbar: React.FC = () => {
           </ul>
           <ul className={styles.NavbarProfile}>
             <li
+              
               onClick={handleBellClick}
               style={{ position: "relative", cursor: "pointer" }}
             >

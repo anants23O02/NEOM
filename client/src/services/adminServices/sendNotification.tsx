@@ -5,20 +5,23 @@ import { fetchUsers } from "../../API/fetchUsers";
 export const SendNotification: React.FC = () => {
   const events = useSelector((state) => state.events.events.events);
   const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const getUsers = async () => {
+      const fetchedUsers = await fetchUsers();
+      console.log("fetchedUsers :>> ", fetchedUsers);
+      setUsers(fetchedUsers.users);
+    };
+    getUsers();
+  }, []);
+
+  console.log("Users in Component:", users);
   const initformData = {
     user: "",
     event: "",
     date: "",
   };
   const [formData, setFormData] = useState(initformData);
-
-  useEffect(() => {
-    const getUsers = async () => {
-      const fetchedUsers = await fetchUsers();
-      setUsers(fetchedUsers.users);
-    };
-    getUsers();
-  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
@@ -28,7 +31,7 @@ export const SendNotification: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+    console.log("Form Submitted:", formData);
     const res = await fetch("/api/admin/add-notification", {
       method: "POST",
       headers: {
@@ -36,16 +39,17 @@ export const SendNotification: React.FC = () => {
       },
       body: JSON.stringify({ formData }),
     });
-    const data = await res.status;
-
     setFormData(initformData);
+    const data = await res.status;
+    console.log(" data from api", data);
   };
 
   return (
     <div className={styles.container}>
       <form onSubmit={handleSubmit} className={styles.form}>
         <h2 className={styles.title}>Send Notification</h2>
-        
+
+        {/* First Dropdown */}
         <div className={styles.formInput}>
           <label className={styles.label}>Select User</label>
           <select
@@ -61,6 +65,7 @@ export const SendNotification: React.FC = () => {
           </select>
         </div>
 
+        {/* Second Dropdown */}
         <div className={styles.formInput}>
           <label className={styles.label}>Select Event</label>
           <select
@@ -76,6 +81,7 @@ export const SendNotification: React.FC = () => {
           </select>
         </div>
 
+        {/* Date Picker */}
         <div className={styles.formInput}>
           <label className={styles.label}>Select Date & Time</label>
           <input
@@ -89,9 +95,8 @@ export const SendNotification: React.FC = () => {
         </div>
 
         <button type="submit" className={styles.button}>
-          Send Notification
+          Send Notification 
         </button>
-
       </form>
     </div>
   );
