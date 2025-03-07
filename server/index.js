@@ -5,6 +5,8 @@ import adminRouter from "./src/router/adminRouter.js";
 import dataRouter from "./src/router/dataRouter.js";
 import cors from "cors";
 import {wss} from "./src/WebSocket/notification.js"
+
+
 const app = express();
 app.use(cookieParser());
 app.use(express.json())

@@ -1,0 +1,96 @@
+@import url('./variables.css');
+
+
+.event-form{
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  padding:2rem;
+}
+.event-form input{
+  margin: 1rem;
+  padding: 1rem;
+}
+.event-form textarea{
+  margin: 1rem;
+  padding: 1rem;
+}
+.event-form button{
+  margin: 1rem;
+  padding: 1rem;
+}
+body{
+  background-color: var(--background-color);
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.container{
+  padding:5px var(--spacing-container);
+  overflow: hidden;
+}
+
+.navbar{
+
+  border:1px solid var(--line-color);
+}
+
+.section {
+  padding: var(--spacing-vertical-section) 0rem;
+
+}
+
+.fontIvy,
+.sectionHeading,
+.sectionHeadingCenter,
+.sectionContentSecond {
+  font-family: "IvyMode", sans-serif;
+
+  letter-spacing: var(--letter-spacing-small);
+
+}
+
+.fontBrownLight,
+.sectionContent,
+.sectionContentValues {
+  font-family: "BrownLight";
+}
+
+
+.sectionHeading,
+.sectionHeadingCenter {
+  font-size: var(--font-size-heading);
+  color: var(--primary-text-color);
+  padding-bottom: var(--space-around-static);
+}
+.sectionDescription{
+  padding-top: var(--section-description-space);
+}
+.notopPadding{
+  padding-top: 0 !important;
+}
+
+.sectionHeadingCenter {
+  text-align: center;
+}
+.sectionContent {
+
+  font-size: var(--font-size-medium);
+  font-weight: var(--font-weight-small);
+  padding-bottom: var(--space-around-static);
+  letter-spacing: var(--letter-spacing-small);
+}
+.sectionContentLarge {
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-small);
+  letter-spacing: var(--letter-spacing-medium);
+  font-family: 'IvyMode';
+}
+
+.fitCards {
+  padding-bottom: 1rem;
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
+  gap: 1rem;
+  align-items: center;
+}
