@@ -1,0 +1,48 @@
+.header{
+    border: 1px solid black;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 1rem 0rem;
+}
+.rescheduledEvent{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    overflow: hidden;
+    margin: 1rem 0;
+}
+.eventImage{
+    width: 100%;
+}
+
+.eventImage img{
+    border-radius: 1rem;
+    object-fit: cover;
+    width: 100%;
+    height: 32rem;
+}
+.eventContent{
+    text-align: center;
+    position: absolute;
+    padding: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: 'Brown';
+    /* font-size: 2rem; */
+    color: white;
+}
+.overlayContent{
+    margin: 0.5rem 0;
+}
+.rescheduleButton{
+    justify-content: center;
+    text-align: center;
+    width: 10rem;
+    margin: 1rem auto;
+    padding: 0.5rem ;
+    font-family: 'Brown';
+    border-radius: 0.5rem;
+}
