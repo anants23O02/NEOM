@@ -14,7 +14,7 @@ import { SignIn } from "../services/LoginServices/signIn";
 import {Logout} from "../pages/Logout";
 import {Websocket} from "../pages/websocket";
 import { RescheduledEvent } from "../pages/rescheduleEvent";
-
+import CountdownTimer from "../pages/alternateEvent";
 export const router = createBrowserRouter([
   {
     path: "/dashboard",
@@ -76,5 +76,8 @@ export const router = createBrowserRouter([
   {
     path: "/rescheduled-event",
     element: <RescheduledEvent/>,
+  },{
+    path: "/alternate-event",
+    element: <CountdownTimer/>,
   },
 ]);
