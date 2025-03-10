@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+ import { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import styles from "../../styles/Navbar.module.css";
 import logo from "../../assets/img/logo2.png";
@@ -10,13 +10,8 @@ import { NotificationModal } from "../NotificationModal/NotificationModal";
 
 export const Navbar: React.FC = () => {
   const user = useSelector((state) => state.user.user);
-  let data = user.user?.user || "logout";
-
- 
-
-  const handleBellClick = () => {
-    // setShowModal(!showModal);
-  };
+  
+  const data = user.user?.user || "logout";
 
   return (
     <nav className="container navbar">
@@ -49,12 +44,14 @@ export const Navbar: React.FC = () => {
             </li>
           </ul>
           <ul className={styles.NavbarProfile}>
-            <li
-              onClick={handleBellClick}
-              style={{ position: "relative", cursor: "pointer" }}
-            >
-              <FaBell style={{ color: "grey" }} />
-              {/* {showModal && <div>{`${notificationData}`}</div>} */}
+            <li style={{ position: "relative", cursor: "pointer" }}>
+              {/* <FaBell style={{ color: "grey" }} />
+              {showModal && notificationData && (
+                <NotificationModal
+                  data={notificationData}
+                  onClose={() => setShowModal(false)}
+                /> */}
+              {/* )} */}
             </li>
             <li>
               <ProfileModal user={data} />

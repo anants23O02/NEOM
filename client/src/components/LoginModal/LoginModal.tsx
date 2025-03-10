@@ -1,13 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { openModal, closeModal, closeIfOutside } from "../../store/modalSlice";
 import { RootState } from "../../store";
 import { IoIosClose } from "react-icons/io";
-import styles from "../../styles/yourStyles.module.css"; // Ensure correct import
+import styles from "../../styles/yourStyles.module.css";
 
-export function PositionedModal({ user }) {
+interface PositionedModalProps {
+  user: { profilepic?: string } | "logout";
+  modalId: string; // Unique ID for each modal
+}
+
+export function PositionedModal({ user, modalId }: PositionedModalProps) {
   const dispatch = useDispatch();
-  const modal = useSelector((state: RootState) => state.modal);
+  const modal = useSelector((state: RootState) => state.modal.modals[modalId]); // Select specific modal
   const buttonRef = useRef<HTMLButtonElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   const imageUrl = localStorage.getItem("profilePic");
@@ -17,6 +22,7 @@ export function PositionedModal({ user }) {
       const rect = buttonRef.current.getBoundingClientRect();
       dispatch(
         openModal({
+          id: modalId,
           top: rect.top + window.scrollY,
           left: rect.left + window.scrollX,
         })
@@ -24,22 +30,26 @@ export function PositionedModal({ user }) {
     }
   };
 
-  const handleClickOutside = (event: React.MouseEvent) => {
-    const insideModal =
-      modalRef.current?.contains(event.target as Node) ?? false;
-    const insideButton =
-      buttonRef.current?.contains(event.target as Node) ?? false;
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target as Node) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target as Node)
+      ) {
+        dispatch(closeIfOutside({ id: modalId, inside: false }));
+      }
+    };
 
-    if (!insideModal && !insideButton) {
-      dispatch(closeIfOutside({ inside: false }));
-    }
-  };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [dispatch, modalId]);
 
-  const top = modal.position.top + 25;
-  const left = modal.position.left - 120;
+  if (!modal?.visible) return null; // Ensure modal is defined before accessing properties
 
   return (
-    <div onClick={handleClickOutside}>
+    <div>
       <button
         ref={buttonRef}
         onClick={handleButtonClick}
@@ -56,19 +66,21 @@ export function PositionedModal({ user }) {
         )}
       </button>
 
-      {modal.visible && (
-        <div ref={modalRef} className={styles.LoginModal} style={{ top, left }}>
-          <div className={styles.modalOptions}>
-            <div className={styles.modalOption}>Edit Profile</div>
-            <div className={styles.modalOption}>Feedback</div>
-            <div className={styles.modalOption}>Settings</div>
-          </div>
-          <IoIosClose
-            style={{ width: "1rem", marginLeft: "3.5rem", cursor: "pointer" }}
-            onClick={() => dispatch(closeModal())}
-          />
+      <div
+        ref={modalRef}
+        className={styles.LoginModal}
+        style={{ top: modal.position.top + 25, left: modal.position.left - 120 }}
+      >
+        <div className={styles.modalOptions}>
+          <div className={styles.modalOption}>Edit Profile</div>
+          <div className={styles.modalOption}>Feedback</div>
+          <div className={styles.modalOption}>Settings</div>
         </div>
-      )}
+        <IoIosClose
+          style={{ width: "1rem", marginLeft: "3.5rem", cursor: "pointer" }}
+          onClick={() => dispatch(closeModal({ id: modalId }))}
+        />
+      </div>
     </div>
   );
 }

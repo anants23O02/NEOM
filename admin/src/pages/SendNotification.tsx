@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import styles from "../styles/SendNotification.module.css"; // Import external CSS
-import { fetchUsers } from "../../API/fetchUsers";
-export const SendNotification: React.FC = () => {
+import { fetchUsers } from "../API/fetchUsers";
+import {useSelector} from "react-redux";
 
+export const SendNotification: React.FC = () => {
+  const events = useSelector((state)=>state.events.events.events)
   const [users, setUsers] = useState([]);
 
   useEffect(() => {

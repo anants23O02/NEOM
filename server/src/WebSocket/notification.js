@@ -1,58 +1,65 @@
 import { WebSocketServer } from "ws";
-import pool from "../config/db.js"; // PostgreSQL connection
+import pool from "../config/db.js"; 
 
 const wss = new WebSocketServer({ port: 8080 });
-const users = new Map(); // Store userId -> WebSocket mapping
+const users = new Map(); 
 
 wss.on("connection", (ws, req) => {
   try {
     const url = new URL(req.url, `http://${req.headers.host}`);
-    const userId = String(url.searchParams.get("userId")); // Ensure userId is string
+    const userId = String(url.searchParams.get("userId"));
 
-    if (userId) {
-      users.set(userId, ws);
-      console.log(`User ${userId} connected to WebSocket`);
-    } else {
+    if (!userId) {
       console.log("User ID missing, closing socket.");
-      ws.close();
+      // ws.close();
       return;
     }
 
-    ws.on("close", () => {
-      users.delete(userId);
-      console.log(`User ${userId} disconnected`);
-    });
+    // Close any existing connection for the same user
+    // if (users.has(userId)) {
+    //   users.get(userId).close();
+    //   users.delete(userId);
+    // }
 
-    ws.send(JSON.stringify({ message: "WebSocket connection established" }));
+    users.set(userId, ws);
+    console.log(`User ${userId} connected to WebSocket`);  
+    ws.on("error", (err) => console.error(`WebSocket error for user ${userId}:`, err));
+
+    // ws.on("close", () => {
+    //   users.delete(userId);
+    //   console.log(`User ${userId} disconnected`);
+    // });
+
+    if (ws.readyState === ws.OPEN) {
+      ws.send(JSON.stringify({ message: "WebSocket connection established" }));
+    }
   } catch (error) {
     console.error("WebSocket connection error:", error);
-    ws.close();
+    // ws.close();
   }
 });
 
 const listenForNotifications = async () => {
-  const client = await pool.connect();
-  await client.query("LISTEN new_notification");
+  try {
+    const client = await pool.connect();
+    await client.query("LISTEN new_notification"); 
+    client.on("notification", (msg) => {
+      console.log("Received notification:", msg.payload);
+      const notification = JSON.parse(msg.payload);
+      const userId = String(notification.user_id);
+      console.log("Active WebSocket users:", Array.from(users.keys()));
 
-  client.on("notification", (msg) => {
-    console.log("Received notification:", msg.payload);
-
-    const notification = JSON.parse(msg.payload);
-    const userId = String(notification.user_id); // Convert to string for consistency
-
-    console.log("Active WebSocket users:", Array.from(users.keys()));
-
-    const userSocket = users.get(userId); // Get specific user's WebSocket
-
-    if (userSocket && userSocket.readyState === 1) {
-      console.log(`Sending notification to user ${userId}`);
-      userSocket.send(JSON.stringify(notification)); // Send notification only to the correct user
-    } else {
-      console.log(`User ${userId} is not connected`);
-    }
-  });
-
-  console.log("Listening for PostgreSQL notifications...");
+      const userSocket = users.get(userId);
+      if (userSocket && userSocket.readyState === WebSocket.OPEN) {
+        console.log(`Sending notification to user ${userId}`);
+        userSocket.send(JSON.stringify(notification));
+      } else {
+        console.log(`User ${userId} is not connected`);
+      }
+    });
+  } catch (error) {
+    console.error("Error in listenForNotifications:", error);
+  }
 };
 
 listenForNotifications();
