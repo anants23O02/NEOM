@@ -1,23 +1,20 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Dashboard } from "../pages/dashboard";
-import { Favorites } from "../pages/Favorites"; // Import Favorites page
+import { Favorites } from "../pages/Favorites"; 
 import { Upcoming } from "../pages/Upcoming";
 import { EventPage } from "../pages/EventPage";
 import { Settings } from "../pages/settings";
 import { Feedback } from "../pages/Feedback";
-// import { Admin } from "../pages/adminPage";
 import { EditProfile } from "../pages/EditProfile";
 import { Login } from "../pages/Login";
-// import { EventForm } from "../pages/addEvent";
-// import { EventTypeForm } from "../pages/addEventType";
 import { SetUser } from "../services/LoginServices/setUser";
 import { Fetch } from "../API/Fetch";
 import { SignUp } from "../services/LoginServices/SignUp";
 import { SignIn } from "../services/LoginServices/signIn";
 import {Logout} from "../pages/Logout";
-// import {SendNotification} from "../services/adminServices/sendNotification";
 import {Websocket} from "../pages/websocket";
-
+import { RescheduledEvent } from "../pages/rescheduleEvent";
+import CountdownTimer from "../pages/alternateEvent";
 export const router = createBrowserRouter([
   {
     path: "/dashboard",
@@ -71,11 +68,16 @@ export const router = createBrowserRouter([
   {
     path: "/logout",
     element: <Logout />,
-  },
-
-  
+  },  
   {
     path: "/web-socket",
     element: <Websocket/>,
+  }, 
+  {
+    path: "/rescheduled-event",
+    element: <RescheduledEvent/>,
+  },{
+    path: "/alternate-event",
+    element: <CountdownTimer/>,
   },
 ]);
