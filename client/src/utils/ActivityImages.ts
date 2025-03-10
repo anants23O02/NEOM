@@ -8,6 +8,18 @@ import cooking from "../assets/img/cooking-dining.png";
 import walking from "../assets/img/walking.png";
 import water from "../assets/img/water-sports.png";
 import exploring from "../assets/img/exploring.png";
+import likebuttons from "../assets/img/likeicon.png";
 
-
-export const activities = [child,chinese,golf,socializing,plays,music,cooking,walking,water,exploring];
+export const activities = [
+  child,
+  chinese,
+  golf,
+  socializing,
+  plays,
+  music,
+  cooking,
+  walking,
+  water,
+  exploring,
+];
+export const likebutton = likebuttons;
