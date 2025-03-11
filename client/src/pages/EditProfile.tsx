@@ -1,25 +1,38 @@
-import {FavoriteActivities} from "../components/FavoriteActivities/FavoriteActivities";
+import { FavoriteActivities } from "../components/FavoriteActivities/FavoriteActivities";
 import { Navbar } from "../components/Navbar/Navbar";
 import { Footer } from "../components/Footer/Footer";
 import styles from "../styles/editProfile.module.css";
 import { userCharlie } from "../assets/Dummydata/userData";
 import { useState } from "react";
-import {useSelector} from "react-redux"
+import { useSelector } from "react-redux";
+import edit from "../assets/img/edit.png";
+
 
 export const EditProfile: React.FC = () => {
-  const user = useSelector((state) => state.user.user);  
-  console.log('user :>> ', user);
-
-return (
-  <>
-    <Navbar />
+  const user = useSelector((state) => state.user.user);
+  console.log("user :>> ", user);
+  const handleSave = () => {
+    console.log('saved called');
+  }
+  const handleCancel = () => {
+    console.log('cancel called');
+  }
+  const handleProfilePic= () => {
+    console.log('handle profile pic change');
+  }
+  return (
+    <>
+      <Navbar />
       <section className="container">
         <div className={styles.profileEditing}>
           <div className="sectionHeading">Edit Charlie's profile</div>
           <div className={styles.ProfileSection}>
             <div className={styles.profileFormLeft}>
               <div className={styles.profilePicture}>
+                <div className={styles.editProfilePic} onClick={handleProfilePic} >
+                </div>
                 <img src={user.user.user.profilepic} alt="" />
+                <img src={edit} alt="" />
               </div>
             </div>
             <div className={styles.profileFormRight}>
@@ -48,10 +61,13 @@ return (
                   </div>
                   <input type="text" />
                 </div>
-              </div>              
-              
+              </div>
               <div>
                 <FavoriteActivities user={user} />
+              </div>
+              <div className={styles.buttons}>
+                <button className={styles.saveButton} onClick={handleSave} >Save</button>
+                <button className={styles.cancelButton} onClick={handleCancel} >Cancel</button>
               </div>
             </div>
           </div>

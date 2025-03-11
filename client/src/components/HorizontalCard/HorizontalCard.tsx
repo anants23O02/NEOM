@@ -17,13 +17,13 @@ interface HorizontalCardProps {
 export const HorizontalCard: React.FC<HorizontalCardProps> = ({ value }) => {
   const navigate = useNavigate();
   const Review = getReview(value.stars);
-  const handleClick =() => {
+  const handleClick = () => {
     navigate(`/event/${value.id}`);
-  }
+  };
   const startDateArray = ConvertDate(new Date(value.start_date));
   const endDateArray = ConvertDate(new Date(value.end_date));
   return (
-    <div className={styles.card} onClick= {handleClick}>
+    <div className={styles.card} onClick={handleClick}>
       {/* image side */}
       <div className={styles.cardPoster}>
         <img src={value.images} alt="" />
@@ -48,7 +48,7 @@ export const HorizontalCard: React.FC<HorizontalCardProps> = ({ value }) => {
         </div>
 
         <div className={styles.cardDescription}>
-          {TruncatedText(value.event_desc, 20)}
+          {TruncatedText(value.event_desc, 17)}
           <span style={{ color: "red", textDecoration: "underline" }}>
             read more
           </span>

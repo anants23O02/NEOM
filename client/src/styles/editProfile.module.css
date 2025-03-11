@@ -32,6 +32,15 @@
   width: 100%;
   height: 100%;
 }
+.editProfilePic{
+  position:relative;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 0.6rem;
+  background: rgba(0, 0, 0, 0.5); 
+  z-index: 1; 
+  pointer-events: none; 
+}
 
 .form {
 }
@@ -76,4 +85,34 @@
   background: rgba(0, 0, 0, 0.5); 
   z-index: 1; 
   pointer-events: none; 
+}
+
+
+.saveButton{
+  width: 6rem;
+  height:3rem;
+  padding: 0.5rem;
+  background-color: rgba(255,62,91,255);
+  color: rgba(255, 255, 255, 0.85);
+  border: none;
+  font-size: 1rem;
+  font-family: 'Brown';
+  border-radius: 0.3rem;
+}
+
+.buttons{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+.cancelButton{
+  width: 6rem;
+  height:3rem;
+  padding: 0.5rem;
+  background-color: white;
+  color: rgba(91, 91, 91, 0.79);
+  border: 1px solid rgba(92, 92, 92, 0.715);
+  font-size: 1rem;
+  font-family: 'Brown';
+  border-radius: 0.3rem;
 }
