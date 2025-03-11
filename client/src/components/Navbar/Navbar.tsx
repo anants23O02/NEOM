@@ -9,10 +9,8 @@ import ProfileModal from "../ProfileModal/ProfileModal";
 import { NotificationModal } from "../NotificationModal/NotificationModal";
 
 export const Navbar: React.FC = () => {
-  const user = useSelector((state) => state.user.user);
-  
+  const user = useSelector((state) => state.user.user);  
   const data = user.user?.user || "logout";
-
   return (
     <nav className="container navbar">
       <div className={styles.NavbarItems}>

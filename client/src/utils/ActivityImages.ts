@@ -23,3 +23,6 @@ export const activities = [
   exploring,
 ];
 export const likebutton = likebuttons;
+
+
+export const activitiesStrings = ["Kids","Food","Golf","Comedy","Plays","Music","Exercise","Beach","Water Sports","Cooking"];
