@@ -48,8 +48,8 @@ export const Navbar: React.FC = () => {
                 <NotificationModal
                   data={notificationData}
                   onClose={() => setShowModal(false)}
-                /> */}
-              {/* )} */}
+                />
+              )} */}
             </li>
             <li>
               <ProfileModal user={data} />

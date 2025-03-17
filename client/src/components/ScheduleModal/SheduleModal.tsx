@@ -10,14 +10,13 @@ interface MyModalProps {
 
 const MyModal: React.FC<MyModalProps> = ({ isOpen, onClose, eventId }) => {
   const dispatch = useDispatch();
-  console.log("hapeening :>> ");
 
   const reserveSeat = async () => {
     const res = await addToSchedule(eventId, 27);
-    console.log("res :>> ", res);
     dispatch(addEventSchedule(eventId));
   };
-  if (!isOpen) return null; // Don't render if modal is closed
+
+  if (!isOpen) return null;
 
   return (
     <div className={styles.modalOverlay} onClick={onClose}>
@@ -53,8 +52,8 @@ const MyModal: React.FC<MyModalProps> = ({ isOpen, onClose, eventId }) => {
           Reserve my seats
         </button>
 
-        <p className={styles.modalHelp}>Need help?</p>
       </div>
+      <p className={styles.modalHelp}>Need help?</p>
     </div>
   );
 };
