@@ -17,10 +17,13 @@ import { useSelector } from "react-redux";
 import ScheduleModal from "../components/ScheduleModal/SheduleModal";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
-import {AddReviewModal} from "../components/userReviewModal/userReviewModal";
+import { AddReviewModal } from "../components/userReviewModal/userReviewModal";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import PaymentComponent from "./PaymentComponent";
 
 export const EventPage: React.FC = () => {
-  const [modal, setmodal] = useState(false)
+  const [modal, setmodal] = useState(false);
   const events = useSelector((state) => state.events.events.events);
   const userData = useSelector((state) => state.user.user.user);
   const upcomingEventArray = DivideArrays(UpcomingEvents, 5);
@@ -31,6 +34,12 @@ export const EventPage: React.FC = () => {
   const eventarr = events.filter((card) => card.id === Number(eventId));
   const event = eventarr[0];
   console.log("event :>> ", event, eventId);
+  //This is for setting the event on event page
+
+  const stripePromise = loadStripe(
+    "pk_test_51R3sntPLBQDd5RinRUTU4qn6tjrVfatgpeREConNNZXb3qqZVEiYymE1OZCJJZuqyFD7SiwOzFvZm4guPCArqdwz00GsdACd0h"
+  );
+
   const [translate, settranslate] = useState(0);
 
   function rightTranslate() {
@@ -40,7 +49,7 @@ export const EventPage: React.FC = () => {
     } else {
       return;
     }
-  } 
+  }
 
   function leftTranslate() {
     if (translate < 0) {
@@ -53,24 +62,32 @@ export const EventPage: React.FC = () => {
 
   return (
     <>
-
-    {modal&& <AddReviewModal isOpen={modal} onClose={setmodal} />}
+      {modal && <AddReviewModal isOpen={modal} onClose={setmodal} />}
 
       <Navbar />
 
-      {matchedEvent.length !==0 && <section className="container">
-        <div className={style2.userReview}>
-          <div className={style2.reviewContent}>
-            <div className="sectionHeading">Hey Charlie,</div>
-            <div className="sectionContentLarge">
-              We are sure that you have enjoyed this event a lot. Would you like
-              to share your feedback with us. <br /> It helps us to improve and
-              serve you better.
+      {matchedEvent.length !== 0 && (
+        <section className="container">
+          <div className={style2.userReview}>
+            <div className={style2.reviewContent}>
+              <div className="sectionHeading">Hey Charlie,</div>
+              <div className="sectionContentLarge">
+                We are sure that you have enjoyed this event a lot. Would you
+                like to share your feedback with us. <br /> It helps us to
+                improve and serve you better.
+              </div>
             </div>
+            <button
+              onClick={() => {
+                setmodal(true);
+                console.log("modal :>> ", modal);
+              }}
+            >
+              Add a Review
+            </button>
           </div>
-          <button onClick={() => {setmodal(true);console.log('modal :>> ', modal);}} >Add a Review</button>
-        </div>
-      </section>}
+        </section>
+      )}
 
       <section className="container">
         <div className={style2.section}>
@@ -170,13 +187,15 @@ export const EventPage: React.FC = () => {
               </div>
             </div>
             {matchedEvent.length === 0 && (
-              <ScheduleModal eventId={Number(eventId)} isOpen={true} />
+              <Elements stripe={stripePromise}>
+                <ScheduleModal event={event} isOpen={true} userId={userData.user.userid} />
+              </Elements>
             )}
           </div>
         </section>
       </section>
 
-      <section className="container" style={{margin:"1.3rem 0"}}>
+      <section className="container" style={{ margin: "1.3rem 0" }}>
         <div className={style2.userReviews}>
           <motion.div
             style={{
