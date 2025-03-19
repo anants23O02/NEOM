@@ -28,7 +28,7 @@ export const EditProfile: React.FC = () => {
       <Navbar />
       <section className="container">
         <div className={styles.profileEditing}>
-          <div className="sectionHeading">Edit Charlie's profile</div>
+          <div className="sectionHeading">Edit {`${user.user.user.firstname}`}'s profile</div>
           <div className={styles.ProfileSection}>
             <div className={styles.profileFormLeft}>
                 <div className={styles.profilePicture}>
