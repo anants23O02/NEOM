@@ -15,7 +15,14 @@ import MapComponent from "../components/MapComponent/MapComponent";
 import { useSelector } from "react-redux";
 
 export const Dashboard: React.FC = () => {
+
   const data = useSelector((state) => state.user.user.user);
+  if (!data.fav_events){
+    data.fav_events = []
+  }
+  if(!data.user_events){
+    data.user_events =[]
+  }
   const events = useSelector((state) => state.events.events.events);
   console.log("data :>> ", data);
   console.log("events :>> ", events);
