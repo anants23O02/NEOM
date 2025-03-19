@@ -1,55 +1,59 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
 .completion {
-    padding: 0.2rem;
-    /* margin-right: 1rem; */
-    font-family: "BrownLight";
-    font-weight: 600;
-    font-size: 0.6rem;
-    text-align: right;
-  }
-  .imageSection {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-  
-  .fourImages {
-    width: calc(50% - 0.25rem);
-    display: flex;
-    flex-direction: column;
-    margin: 0.5rem; /* Added gap for vertical spacing between the two .twoImages rows */
-    justify-content: space-around;
-    align-items: center;
-  }
-  
-  .twoImages {
-    margin: 0.25rem;
-    width: 100%;
-    height: 20vw;
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-     /* Added gap for horizontal spacing between images in the row */
-  }
-  
-  .twoImages img {
-    width: calc(50%); /* Adjust width to prevent overflow */
-    height: 100%;
-    margin: 0.25rem;
-    object-fit: cover;
-  }
-  
-  .bigImage {
-    width: calc(50% - 2rem);
-    padding-top: 0.25rem;
-    height: calc(40vw + 0.25rem);
-    /* width: 20px; */
-    margin-left: 0.75rem !important;
-  }
-  
-  .bigImage img {
-    object-fit: cover;
-    width: 100%; /* Adjust width to prevent overflow */
-    height: 100%;
-  }
-  
+  font-size: 0.7rem;
+  /* margin-bottom: 1rem; */
+  text-align: right;
+  padding-bottom: 0.5rem;
+}
+
+/* The overall section is divided into two columns */
+.imageSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Adjust ratio if needed */
+  gap: 1rem;
+}
+
+/* The fourImages container becomes a 2x2 grid */
+.fourImages {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0.5rem;
+  height:20vh;
+}
+
+/* Optional: Ensure images fill their grid cells */
+.fourImages img,
+.bigImage img {
+  width: 100%;
+  object-fit: cover;
+}
+.bigImage img{
+  height:calc(70vh + 0.5rem);
+}
+.fourImages img{
+  height: 35vh;
+}
+.bigImage img{
+  /* width: calc(100% + 0.5rem); */
+}
+
+
+/* Style for the big image container */
+.bigImage {
+  /* You can center or adjust the big image as needed */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -0.5rem;
+}
+
+
+.section{
+  padding: 0rem 1rem 1rem 1rem;
+}

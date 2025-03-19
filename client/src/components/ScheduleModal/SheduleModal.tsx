@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../../styles/scheduleModal.module.css";
-import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import { ConvertDate } from "../../utils/DateValue";
 import { CiCalendar } from "react-icons/ci";
+import { PaymentModal } from "../PaymentModal/PaymentModal";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import CircularProgress from "@mui/material/CircularProgress";
+import { useSelector } from "react-redux";
 
 interface MyModalProps {
   isOpen: boolean;
@@ -11,55 +15,52 @@ interface MyModalProps {
   userId: number;
 }
 
-const MyModal: React.FC = ({ isOpen, onClose, event, userId }) => {
-  const stripe = useStripe();
-  const elements = useElements();
+const stripePromise = loadStripe(
+  "pk_test_51R3sntPLBQDd5RinRUTU4qn6tjrVfatgpeREConNNZXb3qqZVEiYymE1OZCJJZuqyFD7SiwOzFvZm4guPCArqdwz00GsdACd0h"
+);
+
+const MyModal: React.FC<MyModalProps> = ({
+  isOpen,
+  onClose,
+  event,
+  userId,
+  checkScheduledEvent,
+}) => {
   const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [selectedGuests, setSelectedGuests] = useState(1);
+  const [clientSecret, setClientSecret] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const userData = useSelector((state) => state.user.user.user);
+
+  const guests =
+    userData.user_events.find((e) => e.event_id === event.id)?.guests || 0;
+
   const startDate = ConvertDate(event.start_date);
   const endDate = ConvertDate(event.end_date);
 
-  const openPaymentModal = () => {
-    setShowPaymentModal(true);
-  };
-
-  const closePaymentModal = () => {
-    setShowPaymentModal(false);
-  };
-
-  const handlePayment = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!stripe || !elements) {
-      console.log("Stripe or Elements not loaded");
-      return;
-    }
-
-    const cardElement = elements.getElement(CardElement);
-    if (!cardElement) {
-      console.log("CardElement is not available");
-      return;
-    }
-
+  const fetchClientSecret = async () => {
+    setLoading(true); // Show loader
     try {
-      const res = await fetch("/payment/create-payment", {
+      const res = await fetch("/payment/initiate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ event: event.id, user: userId }),
+        body: JSON.stringify({ amount: event.cost * selectedGuests }),
       });
 
       const { clientSecret } = await res.json();
-      const result = await stripe.confirmCardPayment(clientSecret, {
-        payment_method: { card: cardElement },
-      });
-
-      if (result.error) {
-        console.error(result.error.message);
-      } else {
-        console.log("Payment successful!", result.paymentIntent);
-        closePaymentModal();
+      if (clientSecret !== undefined) {
+        setClientSecret(clientSecret);
+        setShowPaymentModal(true);
       }
     } catch (error) {
-      console.error("Error processing payment:", error);
+      console.error("Error fetching clientSecret:", error);
+    } finally {
+      setLoading(false);
     }
+  };
+
+  const openPaymentModal = async () => {
+    await fetchClientSecret();
   };
 
   if (!isOpen) return null;
@@ -72,8 +73,7 @@ const MyModal: React.FC = ({ isOpen, onClose, event, userId }) => {
           onClick={(e) => e.stopPropagation()}
         >
           <h2 className={styles.modalTimeRange}>
-            {" "}
-            {`${startDate[3]}:${startDate[4]} ${startDate[5]} - ${endDate[3]}:${endDate[4]} ${endDate[5]}`}{" "}
+            {`${startDate[3]}:${startDate[4]} ${startDate[5]} - ${endDate[3]}:${endDate[4]} ${endDate[5]}`}
           </h2>
 
           <div className={styles.modalDates}>
@@ -81,13 +81,7 @@ const MyModal: React.FC = ({ isOpen, onClose, event, userId }) => {
               <label>From</label>
               <div>
                 <CiCalendar
-                  style={{
-                    paddingRight: "10px",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "15px",
-                    // marginTop:"2px"
-                  }}
+                  style={{ paddingRight: "10px", fontSize: "15px" }}
                 />
                 {`${startDate[2]} ${startDate[1]} ${startDate[0]}`}
               </div>
@@ -96,92 +90,74 @@ const MyModal: React.FC = ({ isOpen, onClose, event, userId }) => {
               <label>To</label>
               <div>
                 <CiCalendar
-                  style={{
-                    paddingRight: "10px",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "15px",
-                  }}
+                  style={{ paddingRight: "10px", fontSize: "15px" }}
                 />
                 {`${endDate[2]} ${endDate[1]} ${endDate[0]}`}
               </div>
             </div>
           </div>
 
-          <div className={styles.modalGuests}>
-            <label>Guests</label>
-            <select defaultValue="1 adult">
-              <option>1 adult</option>
-              <option>2 adults</option>
-              <option>3 adults</option>
-            </select>
-          </div>
-
-          <div className={styles.eventInformation}>
-            <div className={styles.seats}>
-              <div>Seats Available</div>
-              <p className={styles.modalSeats}>{`${event.seats}`}</p>
+          {checkScheduledEvent ? (
+            <div className={styles.modalGuests}>
+              <label htmlFor="guests">Guests</label>
+              <input id="guests" value={guests ?? ""} readOnly />
             </div>
-
-            <div className={styles.cost}>
-              <div>Cost</div>
-              <p className={styles.modalSeats}>{`$${event.seats}`}</p>
+          ) : (
+            <div className={styles.modalGuests}>
+              <label htmlFor="guests">Guests</label>
+              <select
+                id="guests"
+                value={selectedGuests}
+                onChange={(e) => setSelectedGuests(parseInt(e.target.value))}
+              >
+                <option value={1}>1 adult</option>
+                <option value={2}>2 adults</option>
+                <option value={3}>3 adults</option>
+              </select>
             </div>
-          </div>
+          )}
 
-          <button
-            onClick={openPaymentModal}
-            className={styles.modalReserveButton}
-          >
-            Reserve my seats
-          </button>
+          {!checkScheduledEvent && (
+            <>
+              <div className={styles.eventInformation}>
+                <div className={styles.seats}>
+                  <div>Seats Available</div>
+                  <p className={styles.modalSeats}>{`${event.seats}`}</p>
+                </div>
+                <div className={styles.cost}>
+                  <div>Cost</div>
+                  <p className={styles.modalSeats}>{`$${
+                    event.cost * selectedGuests
+                  }`}</p>
+                </div>
+              </div>
+
+              <button
+                onClick={openPaymentModal}
+                className={styles.modalReserveButton}
+                disabled={loading}
+              >
+                {loading ? (
+                  <CircularProgress size={24} style={{ color: "#fff" }} />
+                ) : (
+                  "Reserve my seats"
+                )}
+              </button>
+            </>
+          )}
         </div>
         <p className={styles.modalHelp}>Need help?</p>
       </div>
 
-      {showPaymentModal && (
-        <div className={styles.paymentOverlay}>
-          <div className={styles.paymentContainer}>
-            <button className={styles.closeButton} onClick={closePaymentModal}>
-              ✖
-            </button>
-            <h2 className={styles.paymentTitle}>Enter Payment Details</h2>
-
-            <form onSubmit={handlePayment} className={styles.paymentForm}>
-              <label className={styles.label}>Cardholder Name</label>
-              <input
-                type="text"
-                placeholder="John Doe"
-                className={styles.inputField}
-                required
-              />
-
-              <label className={styles.label}>Card Details</label>
-              <div className={styles.cardInputContainer}>
-                <CardElement
-                  options={{ hidePostalCode: true }}
-                  className={styles.cardElement}
-                />
-              </div>
-
-              <label className={styles.label}>Email</label>
-              <input
-                type="email"
-                placeholder="john.doe@example.com"
-                className={styles.inputField}
-                required
-              />
-
-              <button
-                type="submit"
-                onClick={handlePayment}
-                className={styles.modalPayButton}
-              >
-                Pay Now
-              </button>
-            </form>
-          </div>
-        </div>
+      {showPaymentModal && clientSecret && (
+        <Elements stripe={stripePromise} options={{ clientSecret }}>
+          <PaymentModal
+            event={event}
+            userId={userId}
+            guests={selectedGuests}
+            setShowPaymentModal={setShowPaymentModal}
+          />
+        </Elements>
       )}
     </>
   );

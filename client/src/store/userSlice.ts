@@ -12,7 +12,6 @@ const userLoginSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action) => {
-      // Ensure the payload is consistent and only has one source for fav_events.
       console.log("action.payload :>> ", action.payload);
       state.user = action.payload;
       state.login = true;
@@ -42,9 +41,9 @@ const userLoginSlice = createSlice({
     },
     addEventSchedule: (state,action) => {
         state.user.user_events = [...state.user.user_events,{
-          event_id:action.payload,
+          event_id:action.payload.event_id,
           status:"scheduled",
-          event_date:"nhi h"
+          event_date:action.payload.event_date,
         }]
     }
   },

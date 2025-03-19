@@ -18,9 +18,6 @@ import ScheduleModal from "../components/ScheduleModal/SheduleModal";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { AddReviewModal } from "../components/userReviewModal/userReviewModal";
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
-import PaymentComponent from "./PaymentComponent";
 
 export const EventPage: React.FC = () => {
   const [modal, setmodal] = useState(false);
@@ -28,17 +25,21 @@ export const EventPage: React.FC = () => {
   const userData = useSelector((state) => state.user.user.user);
   const upcomingEventArray = DivideArrays(UpcomingEvents, 5);
   const { eventId } = useParams();
-  const matchedEvent = userData.user_events.filter(
+
+
+
+  const checkScheduledEvent = userData.user_events.filter(
     (event) => event.event_id === Number(eventId)
-  );
+  ).length !== 0 ? true:false;
+
+
+
   const eventarr = events.filter((card) => card.id === Number(eventId));
   const event = eventarr[0];
-  console.log("event :>> ", event, eventId);
-  //This is for setting the event on event page
 
-  const stripePromise = loadStripe(
-    "pk_test_51R3sntPLBQDd5RinRUTU4qn6tjrVfatgpeREConNNZXb3qqZVEiYymE1OZCJJZuqyFD7SiwOzFvZm4guPCArqdwz00GsdACd0h"
-  );
+  console.log('checkScheduledEvent,eventarr,event :>> ', checkScheduledEvent,eventarr,event);
+  // console.log("event :>> ", event, eventId);
+  //This is for setting the event on event page
 
   const [translate, settranslate] = useState(0);
 
@@ -66,7 +67,7 @@ export const EventPage: React.FC = () => {
 
       <Navbar />
 
-      {matchedEvent.length !== 0 && (
+      {/* {!checkScheduledEvent && (
         <section className="container">
           <div className={style2.userReview}>
             <div className={style2.reviewContent}>
@@ -87,7 +88,7 @@ export const EventPage: React.FC = () => {
             </button>
           </div>
         </section>
-      )}
+      )} */}
 
       <section className="container">
         <div className={style2.section}>
@@ -113,7 +114,7 @@ export const EventPage: React.FC = () => {
         </div>
       </section>
 
-      <EventImages image={event.images} />
+      <EventImages image={event.images} status={checkScheduledEvent? "Scheduled" :"Upcoming"} />
 
       <section className="container">
         <section className="container">
@@ -186,11 +187,14 @@ export const EventPage: React.FC = () => {
                 </div>
               </div>
             </div>
-            {matchedEvent.length === 0 && (
-              <Elements stripe={stripePromise}>
-                <ScheduleModal event={event} isOpen={true} userId={userData.user.userid} />
-              </Elements>
-            )}
+            {/* {checkScheduledEvent && ( */}
+              <ScheduleModal
+                event={event}
+                isOpen={true}
+                userId={userData.user.userid}
+                checkScheduledEvent = {checkScheduledEvent}
+              />
+            {/* )} */}
           </div>
         </section>
       </section>

@@ -10,13 +10,13 @@ cloudinary.v2.config({
 export const userAccount = async (req, res) => {
   if (req.body.sub) {
     try {
-      console.log("req.body.googleid :>> ", req.body.googleid);
+      // console.log("req.body.googleid :>> ", req.body.googleid);
       const { sub, picture, given_name, family_name, email } = req.body;
       const userCheck = await pool.query(
         "SELECT * FROM users WHERE googleid = $1",
         [sub]
       );
-      console.log("userCheck.rows :>> ", userCheck.rows);
+      // console.log("userCheck.rows :>> ", userCheck.rows);
 
       if (userCheck.rows.length === 0) {
         const uploadResponse = await cloudinary.v2.uploader.upload(picture, {
@@ -42,7 +42,8 @@ export const userAccount = async (req, res) => {
       JSON_BUILD_OBJECT(
       'event_id', event_id, 
       'status', status, 
-      'event_date', event_date
+      'event_date', event_date,
+      'guests',guests
        )
        ) AS events
       FROM user_events

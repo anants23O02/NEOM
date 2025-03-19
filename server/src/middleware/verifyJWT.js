@@ -8,7 +8,7 @@ export const verifyJWTMiddleware = (req, res,next) => {
     return res.status(401).json({ error: "No token provided" });
   }
   
-  console.log('token :>> ', token, process.env.JWT_SECRET);
+  // console.log('token :>> ', token, process.env.JWT_SECRET);
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const userData = decoded.user;

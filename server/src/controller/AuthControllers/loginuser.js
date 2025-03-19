@@ -9,7 +9,7 @@ export const verifyaccount = async (req,res) => {
     const user = await pool.query(query,values);
     const match = await bcrypt.compare(req.body.password, user.rows[0].password);
 
-    console.log('user :>> ', user.rows[0]);
+    // console.log('user :>> ', user.rows[0]);
     if (!match) {
         if (!match) return res.status(401).json({ error: "Invalid credentials" });
     }
