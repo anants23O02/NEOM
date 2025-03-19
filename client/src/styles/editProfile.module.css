@@ -22,33 +22,53 @@
   flex-direction: column;
 }
 .profilePicture {
+  position: relative;
   width: 8rem;
   height: 8rem;
   border: 1px solid black;
   border-radius: 0.6rem;
 }
-.profilePicture img {
+
+.profilePicture img:nth-of-type(1) {
+  position: absolute;
+  top: 0;
+  left: 60;
   border-radius: 0.6rem;
   width: 100%;
   height: 100%;
 }
-.editProfilePic{
-  position:relative;
-  width: 8rem;
-  height: 8rem;
+
+.editProfilePic {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   border-radius: 0.6rem;
-  background: rgba(0, 0, 0, 0.5); 
-  z-index: 1; 
-  pointer-events: none; 
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2; 
+  pointer-events: none;
 }
 
-.form {
+.pencil {
+  position: absolute;
+  top: 3rem;
+  left: 3rem;
+  width: 2rem;
+  height: 2rem;
+  z-index: 3;
 }
+
+
+
+
 .formValue {
   margin-bottom: 1rem;
 }
 .formValue input {
-  padding: 0.3rem;
+  font-family: "BrownLight";
+  font-size: 1rem;
+  padding: 0.3rem 0.6rem;
   width: 20rem;
   height: 2rem;
   border-radius: 0.4rem;
