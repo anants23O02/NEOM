@@ -50,15 +50,18 @@
   pointer-events: none;
 }
 
-.pencil {
+
+.editIcon img {
   position: absolute;
-  top: 3rem;
-  left: 3rem;
-  width: 2rem;
-  height: 2rem;
+  top: 2rem !important;
+  right: 2rem !important;
   z-index: 3;
 }
 
+.pencil{
+  width: 4rem !important;
+  height: 4rem !important;
+}
 
 
 

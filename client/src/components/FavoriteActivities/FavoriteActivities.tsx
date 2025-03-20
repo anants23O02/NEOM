@@ -2,7 +2,7 @@ import { useState } from "react";
 import { activities, likebutton, activitiesStrings } from "../../utils/ActivityImages";
 import styles from "../../styles/editProfile.module.css";
 
-export const FavoriteActivities: React.FC = ({user}) => {
+export const FavoriteActivities: React.FC = ({user,setactivities}) => {
   const [selectedValues, setSelectedValues] = useState<boolean[]>(Array(activities.length).fill(false));
   const [inputValue, setInputValue] = useState<string>("");
 
@@ -12,6 +12,7 @@ export const FavoriteActivities: React.FC = ({user}) => {
       newValues[i] = !prev[i];
       const newSelectedStrings = activitiesStrings.filter((_, index) => newValues[index]);
       setInputValue(newSelectedStrings.join(", "));
+      setactivities(newSelectedStrings.join(", "));
       return newValues;
     });
   };
@@ -29,6 +30,7 @@ export const FavoriteActivities: React.FC = ({user}) => {
       userEnteredActivities.includes(activity.toLowerCase())
     );
     setSelectedValues(newSelectedValues);
+    
   };
 
   const handleBlur = () => {

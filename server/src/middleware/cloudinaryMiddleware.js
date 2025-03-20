@@ -8,7 +8,10 @@ export const uploadImage = (req, res, next) => {
     console.log('here :>> ', req.body);
     if (err) return res.status(400).json({ error: "File upload failed" });
 
-    if (!req.file) return res.status(400).json({ error: "No image uploaded" });
+    if (!req.file){
+      console.log('failed here :>> ');
+      return res.status(400).json({ error: "No image uploaded" });
+    } 
 
     try {
       const base64Image = `data:${
