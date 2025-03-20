@@ -45,9 +45,23 @@ const userLoginSlice = createSlice({
           status:"scheduled",
           event_date:action.payload.event_date,
         }]
+    },
+    editUserData: (state, action) => {
+      state.user.user = {
+        ...state.user.user, // Spread existing user data
+        activities: action.payload.activities,
+        birthday: action.payload.date,
+        email: action.payload.email,
+        firstname: action.payload.firstname,
+        lastname: action.payload.lastname,
+        phoneno: action.payload.phone,
+        profilepic: action.payload.profile,
+      };
     }
+    
+
   },
 });
 
-export const { login, logout, addFavoriteEvent,removeFavoriteEvent,addEventSchedule } = userLoginSlice.actions;
+export const { login, logout, addFavoriteEvent,removeFavoriteEvent,addEventSchedule,editUserData } = userLoginSlice.actions;
 export default userLoginSlice.reducer;

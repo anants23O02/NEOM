@@ -2,22 +2,62 @@ import { useState } from "react";
 import { activities, likebutton, activitiesStrings } from "../../utils/ActivityImages";
 import styles from "../../styles/editProfile.module.css";
 
-export const FavoriteActivities: React.FC = ({user,setactivities}) => {
-  const [selectedValues, setSelectedValues] = useState<boolean[]>(Array(activities.length).fill(false));
-  const [inputValue, setInputValue] = useState<string>("");
+interface FavoriteActivitiesProps {
+  user: any;
+  setactivities: (activities: string) => void;
+  editing: boolean;
+}
+
+export const FavoriteActivities: React.FC<FavoriteActivitiesProps> = ({
+  user,
+  setactivities,
+  editing,
+}) => {
+  const initialActivities = user.user.user.activities;
+  let initialActivitiesArr: string[] = [];
+  let initialActivitiesString: string = "";
+
+  if (Array.isArray(initialActivities)) {
+    initialActivitiesArr = initialActivities.map((s) =>
+      typeof s === "string" ? s.trim().toLowerCase() : ""
+    );
+    initialActivitiesString = initialActivitiesArr.join(", ");
+  } else if (typeof initialActivities === "string") {
+    initialActivitiesArr = initialActivities
+      .split(",")
+      .map((s) => s.trim().toLowerCase())
+      .filter((s) => s.length > 0);
+    initialActivitiesString = initialActivities;
+  } else {
+    initialActivitiesArr = [];
+    initialActivitiesString = "";
+  }
+
+  const initialSelectedValues = activitiesStrings.map((activity) =>
+    initialActivitiesArr.includes(activity.toLowerCase())
+  );
+
+  const [selectedValues, setSelectedValues] = useState<boolean[]>(initialSelectedValues);
+  const [inputValue, setInputValue] = useState<string>(initialActivitiesString);
 
   const setIcon = (i: number) => {
+    if (!editing) return;
+
     setSelectedValues((prev) => {
       const newValues = [...prev];
       newValues[i] = !prev[i];
+
       const newSelectedStrings = activitiesStrings.filter((_, index) => newValues[index]);
-      setInputValue(newSelectedStrings.join(", "));
-      setactivities(newSelectedStrings.join(", "));
+      const newString = newSelectedStrings.join(", ");
+      setInputValue(newString);
+      setactivities(newString);
       return newValues;
     });
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!editing) return;
+
     const userInput = e.target.value;
     setInputValue(userInput);
 
@@ -30,12 +70,12 @@ export const FavoriteActivities: React.FC = ({user,setactivities}) => {
       userEnteredActivities.includes(activity.toLowerCase())
     );
     setSelectedValues(newSelectedValues);
-    
   };
 
   const handleBlur = () => {
     const newSelectedStrings = activitiesStrings.filter((_, i) => selectedValues[i]);
-    setInputValue(newSelectedStrings.join(", "));
+    const newString = newSelectedStrings.join(", ");
+    setInputValue(newString);
   };
 
   return (
@@ -72,6 +112,7 @@ export const FavoriteActivities: React.FC = ({user,setactivities}) => {
           onChange={handleInputChange}
           onBlur={handleBlur}
           placeholder="Enter your favorite activities"
+          disabled={!editing}
         />
       </div>
     </div>

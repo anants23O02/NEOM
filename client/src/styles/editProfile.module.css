@@ -1,9 +1,9 @@
 .profileEditing {
-  margin: 1rem 0;
+  /* margin: 1rem 0; */
   width: 50vw;
-  margin: 3rem;
+  /* margin: 3rem; */
   padding: 3rem;
-  margin: 0 auto;
+  margin: 2rem auto;
   background-color: white;
 }
 
@@ -65,10 +65,29 @@
 
 
 
-.formValue {
+.formValue,.phoneInputContainer,.phoneValue {
   margin-bottom: 1rem;
 }
-.formValue input {
+
+.phoneValue input{
+  border: none !important;
+  height: 96%;
+}
+
+.phoneinput {
+  font-family: "BrownLight";
+  font-size: 1rem;
+  padding: 0.3rem 0.6rem;
+  padding-left: 0 !important;
+  width: 20rem;
+  height: 2rem;
+  border-radius: 0.4rem;
+  border: 1px solid rgba(105, 105, 105, 0.444);
+}
+/* .input{
+  border: none;
+} */
+.formValue input  {
   font-family: "BrownLight";
   font-size: 1rem;
   padding: 0.3rem 0.6rem;
