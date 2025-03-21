@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { FavoriteActivities } from "../components/FavoriteActivities/FavoriteActivities";
 import { Navbar } from "../components/Navbar/Navbar";
 import { Footer } from "../components/Footer/Footer";
@@ -7,15 +7,16 @@ import styles from "../styles/editProfile.module.css";
 import edit from "../assets/img/edit.png";
 import { ConvertDate } from "../utils/DateValue";
 import { editUserData } from "../store/userSlice";
-import { useDispatch } from "react-redux";
 import PhoneInput from "react-phone-input-2";
+import CircularProgress from '@mui/material/CircularProgress';
 
 export const EditProfile: React.FC = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
   const userid = user.user.user.userid;
 
-  function splitFullName(fullName) {
+  // Utility function to split full name into first and last names.
+  function splitFullName(fullName: string) {
     if (!fullName || typeof fullName !== "string") {
       return { firstname: "", lastname: "" };
     }
@@ -23,9 +24,9 @@ export const EditProfile: React.FC = () => {
     return { firstname: parts[0], lastname: parts[1] || "" };
   }
 
-  function setFormDate(date) {
+  function setFormDate(date: string | Date) {
     const birthday = ConvertDate(new Date(date));
-    const monthMapping = {
+    const monthMapping: { [key: string]: string } = {
       Jan: "01",
       Feb: "02",
       Mar: "03",
@@ -44,8 +45,9 @@ export const EditProfile: React.FC = () => {
     ).padStart(2, "0")}`;
   }
 
-  // State Management
+  // State management
   const [editing, setEditing] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [name, setName] = useState(
     user.user.user.firstname + " " + user.user.user.lastname
   );
@@ -56,26 +58,30 @@ export const EditProfile: React.FC = () => {
   );
   const [images, setImages] = useState<File | null>(null);
   const [url, setUrl] = useState(user.user.user.profilepic);
-  const [activities, setActivities] = useState();
+  const [activities, setActivities] = useState(user.user.user.activities);
   const [date, setDate] = useState(user.user.user.birthday);
 
   // Handlers
-  const handleNameChange = (e) => setName(e.target.value);
-  const handleEmailChange = (e) => setEmail(e.target.value);
-  const handlePhoneChange = (e) => setPhone(e.target.value);
-  const handleDateChange = (e) => {
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setName(e.target.value);
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setEmail(e.target.value);
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setPhone(e.target.value);
+  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDate(e.target.value);
     setBirthday(setFormDate(e.target.value));
   };
 
-  const handleProfilePic = (e) => {
-    if (e.target.files.length > 0) {
+  const handleProfilePic = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
       setImages(e.target.files[0]);
       setUrl(URL.createObjectURL(e.target.files[0]));
     }
   };
 
   const handleSave = async () => {
+    setLoading(true);
     const { firstname, lastname } = splitFullName(name);
     const sendingData = new FormData();
 
@@ -88,8 +94,6 @@ export const EditProfile: React.FC = () => {
     sendingData.append("images", images ? images : "");
     sendingData.append("userid", userid);
 
-    console.log("Sending FormData:");
-
     try {
       const res = await fetch("/api/edit-profile", {
         method: "PATCH",
@@ -97,8 +101,9 @@ export const EditProfile: React.FC = () => {
       });
       const result = await res.json();
       if (!res.ok) throw new Error(result.error);
-      const profile = result.message == "" ? user.user.user.profilepic:result.message;
-      
+      const profile = result.message
+        ? result.message
+        : user.user.user.profilepic;
       dispatch(
         editUserData({
           firstname,
@@ -112,8 +117,10 @@ export const EditProfile: React.FC = () => {
       );
       setEditing(false);
       console.log("Profile updated successfully:", result);
-    } catch (error) {
+    } catch (error: any) {
       console.error("API Request Failed:", error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -131,6 +138,16 @@ export const EditProfile: React.FC = () => {
       <Navbar />
       <section className="container">
         <div className={styles.profileEditing}>
+          {/* Loader Overlay */}
+          {loading && (
+            <div className={styles.loaderOverlay}>
+              <div className={styles.loaderContent}>
+                <CircularProgress style={{ color: "#fff" }} />
+                <div className={styles.loaderText}>Saving....</div>
+              </div>
+            </div>
+          )}
+
           <div className="sectionHeading">
             Edit {`${user.user.user.firstname}`}'s profile
           </div>
@@ -189,7 +206,7 @@ export const EditProfile: React.FC = () => {
                       required: true,
                       autoFocus: true,
                     }}
-                    containerClass= {styles.phoneinput}
+                    containerClass={styles.phoneinput}
                     inputClass={styles.valueInput}
                     disabled={!editing}
                   />
@@ -216,12 +233,17 @@ export const EditProfile: React.FC = () => {
               <div className={styles.buttons}>
                 {editing ? (
                   <>
-                    <button className={styles.saveButton} onClick={handleSave}>
+                    <button
+                      className={styles.saveButton}
+                      onClick={handleSave}
+                      disabled={loading}
+                    >
                       Save
                     </button>
                     <button
                       className={styles.cancelButton}
                       onClick={handleCancel}
+                      disabled={loading}
                     >
                       Cancel
                     </button>

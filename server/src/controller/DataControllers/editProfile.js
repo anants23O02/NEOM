@@ -34,7 +34,7 @@ export const editProfile = async (req, res) => {
       userid,
     ];
     const results = await pool.query(query, values);
-    console.log("results.rows[0] :>> ", results.rows[0]);
+    console.log("results.rows[0] :>> ", results.rows);
     res.status(200).json({ message: picture });
   } catch (error) {
     console.error("Error updating profile:", error);

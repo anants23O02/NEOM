@@ -12,7 +12,6 @@ export const uploadImage = (options = { required: true }) => {
         if (options.required) {
           return res.status(400).json({ error: "No image uploaded" });
         } else {
-  
           return next();
         }
       }
