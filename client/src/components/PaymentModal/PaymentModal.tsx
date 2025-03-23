@@ -1,8 +1,8 @@
 import { useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import {useDispatch} from "react-redux";
-import {addEventSchedule} from "../../store/userSlice";
+import { useDispatch } from "react-redux";
+import { addEventSchedule } from "../../store/userSlice";
 import {
   useStripe,
   useElements,
@@ -16,12 +16,14 @@ export const PaymentModal: React.FC = ({
   userId,
   guests,
   setShowPaymentModal,
+  minDate,
+  maxDate,
 }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const stripe = useStripe();
   const elements = useElements();
   const [phone, setPhone] = useState("");
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(minDate);
   const [loading, setLoading] = useState(false);
 
   const closePaymentModal = () => {
@@ -66,7 +68,7 @@ export const PaymentModal: React.FC = ({
               cost: event.cost,
             }),
           });
-          dispatch(addEventSchedule({event_id:event.id,event_date:date}))
+          dispatch(addEventSchedule({ event_id: event.id, event_date: date }));
           closePaymentModal();
         } catch (error) {
           console.log("error :>> ", error);
@@ -75,7 +77,7 @@ export const PaymentModal: React.FC = ({
     } catch (error) {
       console.error("Error processing payment:", error);
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
 
@@ -131,7 +133,20 @@ export const PaymentModal: React.FC = ({
               <input
                 type="date"
                 className={styles.inputField}
-                onChange={(e) => setDate(e.target.value)}
+                min={minDate}
+                max={maxDate}
+                value={date}
+                onChange={(e) => {
+                  const selectedDate = e.target.value;
+                  if (selectedDate < minDate || selectedDate > maxDate) {
+                    alert(
+                      `Please Select a Date between ${minDate} - ${maxDate}`
+                    );
+                    e.target.value = "";
+                  } else {
+                    setDate(selectedDate);
+                  }
+                }}
                 required
               />
             </div>

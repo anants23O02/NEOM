@@ -6,20 +6,44 @@ import {useState,useEffect} from "react"
 import style2 from "../styles/upcoming.module.css";
 import { DivideArrays } from "../utils/DivideArrays";
 import { Footer } from "../components/Footer/Footer";
+import { useParams } from "react-router-dom";
+import { RescheduleFormModal } from "../components/RescheduleFormModal/RescheduleFormModal";
+import { ConvertDate } from "../utils/DateValue";
 
 export const RescheduledEvent: React.FC = () => {
+
+
+
+  const notificationData = useSelector((state) => state.notifications);
+  if(notificationData.data.length === 0){
+    window.location.href = "/dashboard";
+  }
+
+  console.log(notificationData.data)
+  const {eventid} = useParams();
   const data = useSelector((state) => state.user.user.user);
   const events = useSelector((state) => state.events.events.events);
+  const event = events.find((event) => event.id === Number(eventid))
+  const notification = notificationData.data.find((event) => event.event_id === Number(eventid))
+  const rescDate = ConvertDate(new Date(notification.rescheduled_date))
+  console.log(data)
   const [drive, setDrive] = useState(null);
   const [travel, setTravel] = useState(null);
   const [filteredEvents, setFilteredEvents] = useState([]);
   const [upcomingEventArray, setUpcomingEventArray] = useState([]);
+  const [form,setform] = useState(false);
+
+
   const handleDrive = (i) => setDrive(i);
   const handleTravel = (i) => setTravel(i);
   const handleNolimit = () => {
     setTravel(null);
     setDrive(null);
   };
+  const handleReschedule = () => {
+    setform(true);
+  }
+
   useEffect(() => {
     setFilteredEvents(events);
   }, [events]);
@@ -31,13 +55,15 @@ export const RescheduledEvent: React.FC = () => {
     <>
       <Navbar />
 
+      <RescheduleFormModal userData={data} notification={notification} event={event} isOpen={form} onClose={setform}/>
+
       <section className="container">
         <div className={styles.header}>
-          <div className="sectionHeading">Hey Charlie,</div>
+          <div className="sectionHeading">{`Hey ${data.user.firstname},`}</div>
           <div className="sectionContentLarge">
-            We have a few similar event for you against your today's rescheduled
-            event of "Round of Golf" and one of them is just starting in an hour
-            and 5 minutes drive away.
+            {`We have a few similar event for you against your today's rescheduled
+            event of "${event.title}" and one of them is just starting in an hour
+            and 5 minutes drive away.`}
           </div>
         </div>
       </section>
@@ -45,20 +71,20 @@ export const RescheduledEvent: React.FC = () => {
       <section className="container">
         <div className={styles.rescheduledEvent}>
           <div className={styles.eventImage}>
-            <img src={events[0].images} alt="Event" />
+            <img src={event.images} alt="Event" />
           </div>
           <div className={styles.eventContent}>
             <div
               className={styles.overlayContent}
               style={{ fontSize: "2.4rem", fontFamily: "IvyMode" }}
             >
-              {events[0].title}
+              {event.title}
             </div>
-            <div className={styles.overlayContent}>{events[0].city}</div>
+            <div className={styles.overlayContent}>{event.city}</div>
             <div className={styles.overlayContent}>
-              Jan 01, 2023 <br /> 7:00 AM | 11:00 AM | 3:00 PM{" "}
+              {`${rescDate[1]} ${rescDate[2]}, ${rescDate[0]}`} <br /> 7:00 AM | 11:00 AM | 3:00 PM{" "}
             </div>
-            <button className={styles.rescheduleButton}>Reschedule</button>
+            <button onClick={handleReschedule} className={styles.rescheduleButton}>Reschedule</button>
           </div>
         </div>
       </section>

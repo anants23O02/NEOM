@@ -64,7 +64,10 @@
 
 .buttonContainer {
   display: flex;
-  gap: 1rem;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+  /* gap: 1rem; */
 }
 
 .rescheduleButton, .cancelButton {
@@ -84,5 +87,13 @@
 .cancelButton {
   background: transparent;
   color: white;
+  text-decoration: underline;
+  text-underline-offset: 10px;
 }
 
+.arrowButton{
+  background: transparent;
+  color: white;
+  border: none;
+  padding: none;
+}

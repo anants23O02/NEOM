@@ -57,11 +57,19 @@ const userLoginSlice = createSlice({
         phoneno: action.payload.phone,
         profilepic: action.payload.profile,
       };
+    },
+    rescheduleEvent: (state,action) => {
+      state.user.user_events.map((event) => {
+        if(event.event_id === action.payload.eventid){
+          event.event_date = rescDate;
+        }
+      })
     }
     
+
 
   },
 });
 
-export const { login, logout, addFavoriteEvent,removeFavoriteEvent,addEventSchedule,editUserData } = userLoginSlice.actions;
+export const { login, logout, addFavoriteEvent,removeFavoriteEvent,addEventSchedule,editUserData,rescheduleEvent } = userLoginSlice.actions;
 export default userLoginSlice.reducer;

@@ -7,7 +7,7 @@ import { RecommendCard } from "../components/RecommendCards/RecommendCard";
 import { AttendedCard } from "../components/AttendedCard/AttendedCard";
 import { Footer } from "../components/Footer/Footer";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { TranslatingArrows } from "../utils/TranslatiingArrows";
 import { userCharlie } from "../assets/Dummydata/userData";
 import globalStyles from "../styles/dashboard.module.css";
@@ -15,6 +15,11 @@ import MapComponent from "../components/MapComponent/MapComponent";
 import { useSelector } from "react-redux";
 
 export const Dashboard: React.FC = () => {
+  const notification = useSelector((state) => state.notifications);
+  useEffect(() => {
+console.log(notification)
+  },[notification])
+
 
   const data = useSelector((state) => state.user.user.user);
   if (!data.fav_events){

@@ -1,4 +1,4 @@
-.fontBrown,.modalTimeRange,.modalDates,.modalGuests,.seats,.cost,.paymentTitle,.label,.inputField,.modalPayButton{
+.fontBrown,.modalTimeRange,.modalDates,.modalGuests,.seats,.cost,.paymentTitle,.label,.inputField,.modalPayButton,.eventDate{
   font-family: 'BrownLight';
 }
 
@@ -346,3 +346,8 @@ select{
   }
 }
 
+.eventDate{
+  padding: 1rem 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+}

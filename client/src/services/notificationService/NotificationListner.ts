@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { setNotification } from "../../store/notificationSlice";
+
 
 const useWebSocket = (userId) => {
   const [notifications, setNotifications] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     // if (!userId) return;
@@ -15,6 +19,7 @@ const useWebSocket = (userId) => {
       try {
         const data = JSON.parse(event.data);
         console.log("New Notification:", data);
+        dispatch(setNotification(data));
         setNotifications((prev) => [...prev, data]);
       } catch (error) {
         console.error("Error parsing WebSocket message:", error);

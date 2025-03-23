@@ -67,28 +67,6 @@ export const EventPage: React.FC = () => {
 
       <Navbar />
 
-      {/* {!checkScheduledEvent && (
-        <section className="container">
-          <div className={style2.userReview}>
-            <div className={style2.reviewContent}>
-              <div className="sectionHeading">Hey Charlie,</div>
-              <div className="sectionContentLarge">
-                We are sure that you have enjoyed this event a lot. Would you
-                like to share your feedback with us. <br /> It helps us to
-                improve and serve you better.
-              </div>
-            </div>
-            <button
-              onClick={() => {
-                setmodal(true);
-                console.log("modal :>> ", modal);
-              }}
-            >
-              Add a Review
-            </button>
-          </div>
-        </section>
-      )} */}
 
       <section className="container">
         <div className={style2.section}>
@@ -187,14 +165,14 @@ export const EventPage: React.FC = () => {
                 </div>
               </div>
             </div>
-            {/* {checkScheduledEvent && ( */}
+            
               <ScheduleModal
                 event={event}
                 isOpen={true}
                 userId={userData.user.userid}
                 checkScheduledEvent = {checkScheduledEvent}
               />
-            {/* )} */}
+            
           </div>
         </section>
       </section>

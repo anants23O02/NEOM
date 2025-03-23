@@ -35,8 +35,13 @@ const MyModal: React.FC<MyModalProps> = ({
   const guests =
     userData.user_events.find((e) => e.event_id === event.id)?.guests || 0;
 
+  const event_date = ConvertDate(userData.user_events.find((e) => e.event_id === event.id)?.event_date);
+  
+
   const startDate = ConvertDate(event.start_date);
   const endDate = ConvertDate(event.end_date);
+  const minDate = event.start_date;
+  const maxDate = event.end_date;
 
   const fetchClientSecret = async () => {
     setLoading(true); // Show loader
@@ -117,7 +122,7 @@ const MyModal: React.FC<MyModalProps> = ({
             </div>
           )}
 
-          {!checkScheduledEvent && (
+          {!checkScheduledEvent ? (
             <>
               <div className={styles.eventInformation}>
                 <div className={styles.seats}>
@@ -144,6 +149,11 @@ const MyModal: React.FC<MyModalProps> = ({
                 )}
               </button>
             </>
+          ) : (
+            <div className={styles.eventDate}>
+              {`This event is scheduled for you on the ${event_date[2]}/${event_date[1]}/${event_date[0]}`}
+
+            </div>
           )}
         </div>
         <p className={styles.modalHelp}>Need help?</p>
@@ -156,6 +166,8 @@ const MyModal: React.FC<MyModalProps> = ({
             userId={userId}
             guests={selectedGuests}
             setShowPaymentModal={setShowPaymentModal}
+            minDate={minDate}
+            maxDate={maxDate}
           />
         </Elements>
       )}

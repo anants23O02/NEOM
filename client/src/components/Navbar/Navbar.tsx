@@ -9,56 +9,69 @@ import ProfileModal from "../ProfileModal/ProfileModal";
 import { NotificationComponent } from "../NotificationModal/NotificationModal";
 
 export const Navbar: React.FC = () => {
-  const user = useSelector((state) => state.user.user);  
+  const user = useSelector((state) => state.user.user);
   const data = user.user?.user || "logout";
+  const [notif, setNotif] = useState();
+
+
+  const showNotifications = () => {
+    setNotif(!notif);
+  };
   return (
-    <nav className="container navbar">
-      <div className={styles.NavbarItems}>
-        <Link to="/dashboard">
-          <img className={styles.NavbarLogo} src={logo} alt="neom" />
-        </Link>
-        <div className={styles.NavItems}>
-          <ul className={styles.NavbarOptions}>
-            <li
-              className={
-                location.pathname === "/dashboard" ? styles.activeD : ""
-              }
-            >
-              <Link to="/dashboard">Dashboard</Link>
-            </li>
-            <li
-              className={
-                location.pathname === "/favorites" ? styles.activeD : ""
-              }
-            >
-              <Link to="/favorites">My Favorites</Link>
-            </li>
-            <li
-              className={
-                location.pathname === "/upcoming" ? styles.activeD : ""
-              }
-            >
-              <Link to="/upcoming">Upcoming Events</Link>
-            </li>
-          </ul>
-          <ul className={styles.NavbarProfile}>
-            <li style={{ position: "relative", cursor: "pointer" }}>
-              <FaBell style={{ color: "grey" }} />
-              {(  
-                <NotificationComponent
-                  userId = {27}
-                />
-              )}
-            </li>
-            <li>
-              <ProfileModal user={data} />
-            </li>
-            <li>
-              <RiGlobalLine />
-            </li>
-          </ul>
+    <>
+      
+
+      <nav className="container navbar">
+        <div className={styles.NavbarItems}>
+          <Link to="/dashboard">
+            <img className={styles.NavbarLogo} src={logo} alt="neom" />
+          </Link>
+          <div className={styles.NavItems}>
+            <ul className={styles.NavbarOptions}>
+              <li
+                className={
+                  location.pathname === "/dashboard" ? styles.activeD : ""
+                }
+              >
+                <Link to="/dashboard">Dashboard</Link>
+              </li>
+              <li
+                className={
+                  location.pathname === "/favorites" ? styles.activeD : ""
+                }
+              >
+                <Link to="/favorites">My Favorites</Link>
+              </li>
+              <li
+                className={
+                  location.pathname === "/upcoming" ? styles.activeD : ""
+                }
+              >
+                <Link to="/upcoming">Upcoming Events</Link>
+              </li>
+            </ul>
+            <ul className={styles.NavbarProfile}>
+              <li style={{ position: "relative", cursor: "pointer" }}>
+                <FaBell style={{ color: "grey" }} onClick={showNotifications} />
+                {
+                  <NotificationComponent
+                    userId={27}
+                    setNotif={setNotif}
+                    notify={notif}
+                    
+                  />
+                }
+              </li>
+              <li>
+                <ProfileModal user={data} />
+              </li>
+              <li>
+                <RiGlobalLine />
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 };

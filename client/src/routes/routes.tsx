@@ -74,7 +74,7 @@ export const router = createBrowserRouter([
     element: <Websocket/>,
   }, 
   {
-    path: "/rescheduled-event",
+    path: "/rescheduled-event/:eventid",
     element: <RescheduledEvent/>,
   },{
     path: "/alternate-event",
