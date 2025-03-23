@@ -9,6 +9,8 @@ import { Footer } from "../components/Footer/Footer";
 import { useParams } from "react-router-dom";
 import { RescheduleFormModal } from "../components/RescheduleFormModal/RescheduleFormModal";
 import { ConvertDate } from "../utils/DateValue";
+import CountdownTimer from "../components/CountDownTimer/alternateEvent";
+
 
 export const RescheduledEvent: React.FC = () => {
 
@@ -80,6 +82,7 @@ export const RescheduledEvent: React.FC = () => {
             >
               {event.title}
             </div>
+            
             <div className={styles.overlayContent}>{event.city}</div>
             <div className={styles.overlayContent}>
               {`${rescDate[1]} ${rescDate[2]}, ${rescDate[0]}`} <br /> 7:00 AM | 11:00 AM | 3:00 PM{" "}
