@@ -17,11 +17,10 @@ import { useSelector } from "react-redux";
 import ScheduleModal from "../components/ScheduleModal/SheduleModal";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { AddReviewModal } from "../components/userReviewModal/userReviewModal";
+import { ReviewModal } from "../components/ReviewModal/ReviewModal";
 import { useLocation } from "react-router-dom";
 
 export const EventPage: React.FC = () => {
-  const [modal, setmodal] = useState(false);
   const events = useSelector((state) => state.events.events.events);
   const userData = useSelector((state) => state.user.user.user);
   const upcomingEventArray = DivideArrays(UpcomingEvents, 5);
@@ -61,10 +60,10 @@ export const EventPage: React.FC = () => {
   //This is for setting the event on event page
 
   const [translate, settranslate] = useState(0);
-
+  const [Open, setOpen] = useState(false);
   const askReview = () => {
-    
-  }
+    setOpen(true);
+  };
 
   function rightTranslate() {
     if (translate > 2 * -34) {
@@ -87,8 +86,12 @@ export const EventPage: React.FC = () => {
   return (
     <>
       <Navbar />
-
       <section className="container">
+        <ReviewModal
+          isOpen={Open}
+          onClose={setOpen}
+          username={userData.user.firstname}
+        />
         <div className={style2.section}>
           {checkAttendedEvent && (
             <div className={style2.askReviewContainer}>
@@ -103,9 +106,7 @@ export const EventPage: React.FC = () => {
                 </div>
               </div>
               <div className={style2.askReviewButton}>
-                <button onClick={askReview} >
-                  Add a review
-                </button>
+                <button onClick={askReview}>Add a review</button>
               </div>
             </div>
           )}
