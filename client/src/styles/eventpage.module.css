@@ -197,3 +197,39 @@ p {
 .contentOperatorReview {
   padding: 1rem 0;
 }
+
+
+.askReviewContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  padding: 1rem 1.3rem;
+  margin: 1rem 0;
+}
+
+.askReviewTitle{
+  font-family: 'IvyMode';
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem 0;
+}
+.askReviewDesc{
+  font-family: 'IvyMode';
+  font-size: 1rem;
+  letter-spacing: 0.8px;
+}
+.askReviewButton{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.askReviewButton button{
+  font-family: 'BrownLight';
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  background: black;
+  color: white;
+  border-radius: 0.5rem;
+  
+}

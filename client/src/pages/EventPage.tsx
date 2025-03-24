@@ -16,10 +16,9 @@ import { Footer } from "../components/Footer/Footer";
 import { useSelector } from "react-redux";
 import ScheduleModal from "../components/ScheduleModal/SheduleModal";
 import { useParams } from "react-router-dom";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { AddReviewModal } from "../components/userReviewModal/userReviewModal";
 import { useLocation } from "react-router-dom";
-
 
 export const EventPage: React.FC = () => {
   const [modal, setmodal] = useState(false);
@@ -29,24 +28,43 @@ export const EventPage: React.FC = () => {
   const { eventId } = useParams();
   const { pathname } = useLocation();
 
-
-  const checkScheduledEvent = userData.user_events.filter(
-    (event) => event.event_id === Number(eventId)
-  ).length !== 0 ? true:false;
-
+  console.log("userData :>> ", userData);
+  const checkScheduledEvent =
+    userData.user_events.filter(
+      (event) =>
+        event.event_id === Number(eventId) && event.status === "scheduled"
+    ).length !== 0
+      ? true
+      : false;
+  const checkAttendedEvent =
+    userData.user_events.filter(
+      (event) =>
+        event.event_id === Number(eventId) && event.status === "attended"
+    ).length !== 0
+      ? true
+      : false;
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [pathname])
-  
+  }, [pathname]);
+
   const eventarr = events.filter((card) => card.id === Number(eventId));
   const event = eventarr[0];
 
-  console.log('checkScheduledEvent,eventarr,event :>> ', checkScheduledEvent,eventarr,event);
+  console.log(
+    "checkScheduledEvent,eventarr,event :>> ",
+    checkScheduledEvent,
+    eventarr,
+    event
+  );
   // console.log("event :>> ", event, eventId);
   //This is for setting the event on event page
 
   const [translate, settranslate] = useState(0);
+
+  const askReview = () => {
+    
+  }
 
   function rightTranslate() {
     if (translate > 2 * -34) {
@@ -68,13 +86,29 @@ export const EventPage: React.FC = () => {
 
   return (
     <>
-      {modal && <AddReviewModal isOpen={modal} onClose={setmodal} />}
-
       <Navbar />
-
 
       <section className="container">
         <div className={style2.section}>
+          {checkAttendedEvent && (
+            <div className={style2.askReviewContainer}>
+              <div className={style2.askReviewContent}>
+                <div className={style2.askReviewTitle}>
+                  {`Hey ${userData.user.firstname},`}
+                </div>
+                <div className={style2.askReviewDesc}>
+                  We are sure that you have enjoyed this event a lot. Would you
+                  like to share your feedback with us. <br /> It helps us to
+                  imporve and serve you better.
+                </div>
+              </div>
+              <div className={style2.askReviewButton}>
+                <button onClick={askReview} >
+                  Add a review
+                </button>
+              </div>
+            </div>
+          )}
           <div className="sectionHeading">{event.title} </div>
           <div className={style2.headingCntent}>
             <div className={style2.headingstars}>
@@ -97,7 +131,16 @@ export const EventPage: React.FC = () => {
         </div>
       </section>
 
-      <EventImages image={event.images} status={checkScheduledEvent? "Scheduled" :"Upcoming"} />
+      <EventImages
+        image={event.images}
+        status={
+          checkScheduledEvent
+            ? "Scheduled"
+            : checkAttendedEvent
+            ? "Attended"
+            : "Upcoming"
+        }
+      />
 
       <section className="container">
         <section className="container">
@@ -170,14 +213,14 @@ export const EventPage: React.FC = () => {
                 </div>
               </div>
             </div>
-            
-              <ScheduleModal
-                event={event}
-                isOpen={true}
-                userId={userData.user.userid}
-                checkScheduledEvent = {checkScheduledEvent}
-              />
-            
+
+            <ScheduleModal
+              event={event}
+              isOpen={true}
+              userId={userData.user.userid}
+              checkScheduledEvent={checkScheduledEvent}
+              checkAttendedEvent={checkAttendedEvent}
+            />
           </div>
         </section>
       </section>

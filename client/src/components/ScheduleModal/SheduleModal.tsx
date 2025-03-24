@@ -25,18 +25,20 @@ const MyModal: React.FC<MyModalProps> = ({
   event,
   userId,
   checkScheduledEvent,
+  checkAttendedEvent,
 }) => {
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [selectedGuests, setSelectedGuests] = useState(1);
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const userData = useSelector((state) => state.user.user.user);
-
+  console.log("checkScheduledEvent here in modal :>> ", checkScheduledEvent);
   const guests =
     userData.user_events.find((e) => e.event_id === event.id)?.guests || 0;
 
-  const event_date = ConvertDate(userData.user_events.find((e) => e.event_id === event.id)?.event_date);
-  
+  const event_date = ConvertDate(
+    userData.user_events.find((e) => e.event_id === event.id)?.event_date
+  );
 
   const startDate = ConvertDate(event.start_date);
   const endDate = ConvertDate(event.end_date);
@@ -102,7 +104,7 @@ const MyModal: React.FC<MyModalProps> = ({
             </div>
           </div>
 
-          {checkScheduledEvent ? (
+          {checkScheduledEvent || checkAttendedEvent ? (
             <div className={styles.modalGuests}>
               <label htmlFor="guests">Guests</label>
               <input id="guests" value={guests ?? ""} readOnly />
@@ -122,7 +124,7 @@ const MyModal: React.FC<MyModalProps> = ({
             </div>
           )}
 
-          {!checkScheduledEvent ? (
+          {!checkScheduledEvent && !checkAttendedEvent ? (
             <>
               <div className={styles.eventInformation}>
                 <div className={styles.seats}>
@@ -149,12 +151,15 @@ const MyModal: React.FC<MyModalProps> = ({
                 )}
               </button>
             </>
-          ) : (
+          ) : (!checkAttendedEvent ? (
             <div className={styles.eventDate}>
               {`This event is scheduled for you on the ${event_date[2]}/${event_date[1]}/${event_date[0]}`}
-
             </div>
-          )}
+          ) : (
+            <div className={styles.eventDate}>
+              {`You attended this event on the ${event_date[2]}/${event_date[1]}/${event_date[0]}`}
+            </div>
+          ))}
         </div>
         <p className={styles.modalHelp}>Need help?</p>
       </div>

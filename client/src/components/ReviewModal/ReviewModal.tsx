@@ -42,7 +42,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
             </div>
           </div>
         ) : (
-          <Speedometer value={-3} />
+          <Speedometer value={-2} width={450} height={300} down={130} emojix={200} emojir={35} />
         )}
 
         <textarea

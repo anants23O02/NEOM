@@ -1,7 +1,7 @@
 import React from "react";
 import { smileyReviews } from "../../utils/SmileySvg";
 
-export const Speedometer: React.FC<{ value: number }> = ({ value }) => {
+export const Speedometer: React.FC<{ value: number }> = ({ value,width= 500,height = 400,down = 0,emojix = 50,emojir = 40 }) => {
   const numSegments = 30;
   const outerRadius = 180;
   const thickness = 30;
@@ -18,10 +18,10 @@ export const Speedometer: React.FC<{ value: number }> = ({ value }) => {
     "#ffb14a", // segments 20-24
     "#ff3e5b", // segments 25-29
   ];
-  const svgWidth = 500;
-  const svgHeight = 400;
+  const svgWidth = width;
+  const svgHeight = height;
   const cx = svgWidth / 2;
-  const cy = outerRadius ;
+  const cy = outerRadius - down ;
   const polarToCartesian = (
     centerX: number,
     centerY: number,
@@ -90,7 +90,7 @@ export const Speedometer: React.FC<{ value: number }> = ({ value }) => {
       {smileyReviews.map((src, index) => {
         const reversedIndex = numEmojis - 1 - index;
         const emojiAngle = emojiStartAngle - reversedIndex * emojiAngleIncrement;
-        const emojiPos = polarToCartesian(cx, cy + 50, outerRadius + 40, emojiAngle);
+        const emojiPos = polarToCartesian(cx, cy + emojix, outerRadius + emojir, emojiAngle);
         return (
           <image
             key={index}
