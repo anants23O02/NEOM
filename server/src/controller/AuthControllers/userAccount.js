@@ -49,12 +49,21 @@ export const userAccount = async (req, res) => {
       FROM user_events
       WHERE user_id = $1;`;
       const user_events = await pool.query(eventsQuery, [userID]);
+      const reviewsQuery = `SELECT * FROM user_reviews WHERE userid = $1;`
+      const reviewValues = [userID];
+      const userReviews = await pool.query(reviewsQuery,reviewValues);
+      console.log('userReviews :>> ', userReviews);
+
+
 
       return res.status(200).json({
         user: userCheck.rows[0],
         fav_events: fav_events.rows[0].event_ids,
         user_events: user_events.rows[0].events,
+        user_reviews:[userReviews.rows[0]],
       });
+
+      
     } catch (error) {
       return res.status(500).json({ error: error.message });
     }

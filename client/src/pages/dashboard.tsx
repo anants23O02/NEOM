@@ -188,10 +188,13 @@ console.log(notification)
                   const matchedCard = events.find(
                     (card) => card.id === event.event_id
                   );
+                  const user_review = data.user_reviews.find((eve) => eve.event_id === event.event_id)
                   return matchedCard ? (
                     <AttendedCard
                       value={matchedCard}
-                      rating={event.rating}
+                      rating={user_review ? user_review.rating:0}
+                      guests = {event.guests}
+                      date = {event.event_date}
                       key={i}
                     />
                   ) : null;

@@ -16,8 +16,10 @@ import { Footer } from "../components/Footer/Footer";
 import { useSelector } from "react-redux";
 import ScheduleModal from "../components/ScheduleModal/SheduleModal";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { AddReviewModal } from "../components/userReviewModal/userReviewModal";
+import { useLocation } from "react-router-dom";
+
 
 export const EventPage: React.FC = () => {
   const [modal, setmodal] = useState(false);
@@ -25,7 +27,7 @@ export const EventPage: React.FC = () => {
   const userData = useSelector((state) => state.user.user.user);
   const upcomingEventArray = DivideArrays(UpcomingEvents, 5);
   const { eventId } = useParams();
-
+  const { pathname } = useLocation();
 
 
   const checkScheduledEvent = userData.user_events.filter(
@@ -33,7 +35,10 @@ export const EventPage: React.FC = () => {
   ).length !== 0 ? true:false;
 
 
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname])
+  
   const eventarr = events.filter((card) => card.id === Number(eventId));
   const event = eventarr[0];
 
