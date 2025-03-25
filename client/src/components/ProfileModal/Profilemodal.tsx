@@ -18,7 +18,7 @@ const ProfileModal = ({ user }) => {
     const rect = event.target.getBoundingClientRect();
     setPosition({
       top: rect.bottom + window.scrollY + 10,
-      left: rect.left + window.scrollX - 120,
+      left: rect.left + window.scrollX - 100,
     });
     setIsOpen((prev) => !prev);
   };

@@ -24,7 +24,7 @@ export const Feedback: React.FC = () => {
     <>
       <Navbar />
       <div className={Styles.feedbackHeader}>
-        <div className={Styles.feedbackHeaderLeft}>
+          <div className={Styles.feedbackHeaderLeft}>
           <div className={Styles.headerLeftImage}>
             <img src={smileyReviews[5]} alt="" />
           </div>

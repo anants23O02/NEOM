@@ -5,9 +5,10 @@ import { RecommendCards } from "../assets/Dummydata/serverData";
 import { BigImageCard } from "../components/BigImageCard/BigImageCard";
 import { RecommendCard } from "../components/RecommendCards/RecommendCard";
 import { AttendedCard } from "../components/AttendedCard/AttendedCard";
+import {AskReview} from "../components/AskReview/AskReview";
 import { Footer } from "../components/Footer/Footer";
 import { motion } from "framer-motion";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { TranslatingArrows } from "../utils/TranslatiingArrows";
 import { userCharlie } from "../assets/Dummydata/userData";
 import globalStyles from "../styles/dashboard.module.css";
@@ -16,46 +17,21 @@ import { useSelector } from "react-redux";
 
 export const Dashboard: React.FC = () => {
   const notification = useSelector((state) => state.notifications);
-  useEffect(() => {
-console.log(notification)
-  },[notification])
-
-
   const data = useSelector((state) => state.user.user.user);
-  if (!data.fav_events){
-    data.fav_events = []
+  if (!data.fav_events) {
+    data.fav_events = [];
   }
-  if(!data.user_events){
-    data.user_events =[]
+  if (!data.user_events) {
+    data.user_events = [];
   }
   const events = useSelector((state) => state.events.events.events);
-  console.log("data :>> ", data);
-  console.log("events :>> ", events);
-
   let user = data.user.firstname;
-
   const [translate, settranslate] = useState(0);
-  const [translateBig, settranslateBig] = useState(0);
-  function rightTranslateBig() {
-    if (translateBig > -36) {
-      const newtranslate = translateBig - 36;
-      settranslateBig(newtranslate);
-    } else {
-      return;
-    }
-  }
-
-  function leftTranslateBig() {
-    if (translateBig < 0) {
-      const newtranslate = translateBig + 36;
-      settranslateBig(newtranslate);
-    } else {
-      return;
-    }
-  }
-
+  
   function rightTranslate() {
-    const value = data.user_events.filter((event) => event.status === "scheduled").length - 1.5;
+    const value =
+      data.user_events.filter((event) => event.status === "scheduled").length -
+      1.5;
     if (translate > value * -34) {
       const newtranslate = translate - 34;
       settranslate(newtranslate);
@@ -72,6 +48,13 @@ console.log(notification)
       return;
     }
   }
+
+  useEffect(() => {
+    console.log(notification);
+  }, [notification]);
+
+  console.log("data :>> ", data);
+  console.log("events :>> ", events);
 
   return (
     <>
@@ -100,10 +83,12 @@ console.log(notification)
               >
                 {data.user_events.map((id, i) => {
                   if (id.status !== "scheduled") {
-                    return
+                    return;
                   }
 
-                  const matchedCard = events.find((card) => card.id === id.event_id);
+                  const matchedCard = events.find(
+                    (card) => card.id === id.event_id
+                  );
                   return matchedCard ? (
                     <HorizontalCard value={matchedCard} key={i} />
                   ) : null;
@@ -120,33 +105,13 @@ console.log(notification)
 
       <section className="container">
         <div className="section ">
-          <div className="sectionHeading">
-            {`${user}, hope we understand you better`}
-          </div>
-
-          <div className="sectionDescription">
-            <div className={globalStyles.ratingcard}>
-              <motion.div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  width: " max-content",
-                  gap: "15px",
-                }}
-                animate={{ x: ` ${translateBig}vw` }}
-                transition={{ duration: 0.5 }}
-              >
-                {userCharlie.AskReview.map((value, i) => {
-                  return <BigImageCard value={value} key={i} />;
-                })}
-              </motion.div>
+          <>
+            <div className="sectionHeading">
+              {`${user}, hope we understand you better`}
             </div>
-            <TranslatingArrows
-              leftTranslate={leftTranslateBig}
-              rightTranslate={rightTranslateBig}
-            />
-          </div>
+            <AskReview/>
+            <div className="sectionDescription"></div>
+          </>
         </div>
       </section>
 
@@ -158,7 +123,7 @@ console.log(notification)
 
           <div className="sectionDescription">
             <div className="fitCards">
-              {events.slice(4 ).map((card, i) => {
+              {events.slice(4).map((card, i) => {
                 return (
                   <RecommendCard
                     value={card}
@@ -188,13 +153,15 @@ console.log(notification)
                   const matchedCard = events.find(
                     (card) => card.id === event.event_id
                   );
-                  const user_review = data.user_reviews.find((eve) => eve.event_id === event.event_id)
+                  const user_review = data.user_reviews.find(
+                    (eve) => eve.event_id === event.event_id
+                  );
                   return matchedCard ? (
                     <AttendedCard
                       value={matchedCard}
-                      rating={user_review ? user_review.rating:0}
-                      guests = {event.guests}
-                      date = {event.event_date}
+                      rating={user_review ? user_review.rating : 0}
+                      guests={event.guests}
+                      date={event.event_date}
                       key={i}
                     />
                   ) : null;

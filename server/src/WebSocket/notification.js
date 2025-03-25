@@ -3,7 +3,7 @@ import pool from "../config/db.js";
 
 const WS_PORT = 3000; 
 const clients = new Map();
-const wss = new WebSocketServer({ port: WS_PORT }); // ✅ Fix Constructor Error
+const wss = new WebSocketServer({ port: WS_PORT }); 
 
 wss.on('connection', (ws, req) => {
   const userId = new URL(req.url, `http://${req.headers.host}`).searchParams.get('userId');
@@ -22,7 +22,6 @@ wss.on('connection', (ws, req) => {
   });
 });
 
-// PostgreSQL LISTEN
 const pgclient = await pool.connect();
 await pgclient.query("LISTEN new_notification"); 
 

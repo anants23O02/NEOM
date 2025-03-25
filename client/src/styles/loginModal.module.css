@@ -1,26 +1,31 @@
-.LoginButton{
+.LoginButton {
 }
 
-.LoginModal{
-    padding: 0.5rem 1rem;
-    border-radius: 1rem;
-    width: 8rem;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    background-color: white;
-    display: flex;
-    flex-direction: row;
+.LoginModal {
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  width: 6rem;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  display: flex;
+  flex-direction: row;
 }
-.Login{
-    background: transparent;
-    border: none;
-    font-family: 'Brown';
+.Login {
+  background: transparent;
+  border: none;
+  font-family: "Brown";
 }
-.modalOptions{
-    letter-spacing: 0.8px;
-    font-family: 'Brown';
-    /* padding-bottom: 0.25rem; */
+.modalOptions {
+  letter-spacing: 0.8px;
+  font-family: "Brown";
+  /* padding-bottom: 0.25rem; */
 }
 
-.modalOption{
-    padding-bottom: 0.2rem;
+.modalOption {
+    cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: space-between;
+  padding-bottom: 0.2rem;
 }

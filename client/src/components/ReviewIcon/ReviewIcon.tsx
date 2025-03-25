@@ -6,7 +6,7 @@ const [anger, appreciation, boredom, disappointed, joy, overwhelmed] = [...smile
 
 
 export const ReviewIcon: React.FC<{value:number}> = ({value}) => {
-  const [color, setColor] = useState<number>(value);
+  const [color, setColor] = useState<number>(6-value);
   return (
     <div className={styles.feeling}>
       <img

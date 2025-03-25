@@ -7,20 +7,18 @@ import { RiGlobalLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import ProfileModal from "../ProfileModal/ProfileModal";
 import { NotificationComponent } from "../NotificationModal/NotificationModal";
+;
+import {LanguageModal} from "../LanguageModal/LanguageModal";
+
 
 export const Navbar: React.FC = () => {
+  const [number, setNumber] = useState();
   const user = useSelector((state) => state.user.user);
   const data = user.user?.user || "logout";
-  const [notif, setNotif] = useState();
-
-
-  const showNotifications = () => {
-    setNotif(!notif);
-  };
+  const [notif, setNotif] = useState(false);
+  console.log('notif :>> ', notif);
   return (
     <>
-      
-
       <nav className="container navbar">
         <div className={styles.NavbarItems}>
           <Link to="/dashboard">
@@ -51,22 +49,20 @@ export const Navbar: React.FC = () => {
               </li>
             </ul>
             <ul className={styles.NavbarProfile}>
-              <li style={{ position: "relative", cursor: "pointer" }}>
-                <FaBell style={{ color: "grey" }} onClick={showNotifications} />
                 {
                   <NotificationComponent
                     userId={27}
                     setNotif={setNotif}
-                    notify={notif}
-                    
+                    notif={notif}
+                    setNumber={setNumber}
+                    number={number}
                   />
                 }
-              </li>
               <li>
                 <ProfileModal user={data} />
               </li>
               <li>
-                <RiGlobalLine />
+                <LanguageModal />
               </li>
             </ul>
           </div>

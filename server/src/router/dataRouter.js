@@ -7,7 +7,8 @@ import {editProfile} from "../controller/DataControllers/editProfile.js";
 import {uploadImage} from "../middleware/cloudinaryMiddleware.js";
 import { sendUserData } from "../controller/DataControllers/userData.js";
 import { rescheduleEvent } from "../controller/DataControllers/rescheduleEventDB.js";
-
+import {askQuestions} from "../controller/DataControllers/askQuestions.js";
+import {myapi} from "../controller/DataControllers/myapi.js";
 const Router = express.Router();
 
 Router.get("/events",sendEvents);
@@ -17,6 +18,9 @@ Router.delete("/remove-favorite",removeEventFavorite);
 Router.patch("/edit-profile",uploadImage({ required: false }),editProfile);
 Router.get("/user-data",sendUserData);
 Router.patch("/reschedule-event",rescheduleEvent);
+Router.get("/ask-questions",askQuestions)
+// Router.get("/myapi",myapi)
+
 // Router.get("/dome", async(req,res) =>{
 //     let cost = 120;
 //     for(let i = 21;i<=28;i++){

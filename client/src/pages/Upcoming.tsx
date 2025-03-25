@@ -7,6 +7,8 @@ import { Footer } from "../components/Footer/Footer";
 import { CiCalendar, CiLocationOn } from "react-icons/ci";
 import { useSelector } from "react-redux";
 import { DivideArrays } from "../utils/DivideArrays";
+import { calcLocation } from "../utils/DistanceCalc";
+
 
 export const Upcoming: React.FC = () => {
   const [drive, setDrive] = useState(null);
@@ -14,8 +16,8 @@ export const Upcoming: React.FC = () => {
   const [filteredEvents, setFilteredEvents] = useState([]);
   const [selectedFilters, setSelectedFilters] = useState();
   const [upcomingEventArray, setUpcomingEventArray] = useState([]);
-
   const data = useSelector((state) => state.user.user.user);
+  const {location}  = data.user 
   const events = useSelector((state) => state.events.events.events);
 
   useEffect(() => {
@@ -36,7 +38,9 @@ export const Upcoming: React.FC = () => {
   };
 
   const handleDrive = (i) => setDrive(i);
-  const handleTravel = (i) => setTravel(i);
+  const handleTravel = (i) => {
+    console.log('calcLocation :>> ', calcLocation(location,events));
+    setTravel(i)};
   const handleNolimit = () => {
     setTravel(null);
     setDrive(null)

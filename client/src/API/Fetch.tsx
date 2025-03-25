@@ -27,17 +27,17 @@ export const Fetch: React.FC = () => {
       <div
         style={{
           width:"100%",
-          height:"100%",
+          height:"100vh",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          // height: "100vh",
+          margin:"auto",
           textAlign:"center",
         }}
       >
-        Fetching Events....
+        <CircularProgress/>
       </div>
-      ;
+      
     </>
   );
 };
