@@ -20,9 +20,8 @@ export function haversineDistance(coord1, coord2) {
 
 
 export const calcLocation = (location,events) => {
-//   const events = useSelector((state) => state.events.events.events);
   const distance = events.map((event) => {
     return [haversineDistance(location,event.location),event.id]
   })  
-  console.log('distance :>> ', distance);
+  return distance;
 }

@@ -131,7 +131,7 @@ export const SendNotification: React.FC = () => {
             value={formData.option2}
             onChange={(e) => setevent(e)}
             className={styles.select}
-            required
+              required
             disabled={input}
           >
             {scheduledEvents.map((event) => {
