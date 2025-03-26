@@ -16,16 +16,18 @@ import { Footer } from "../components/Footer/Footer";
 import { useSelector } from "react-redux";
 import ScheduleModal from "../components/ScheduleModal/SheduleModal";
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import { ReviewModal } from "../components/ReviewModal/ReviewModal";
 import { useLocation } from "react-router-dom";
+import { getReview } from "../utils/SmileySvg";
+import ScrollTop from "../components/ScrollTop/ScrollTop";
 
 export const EventPage: React.FC = () => {
   const events = useSelector((state) => state.events.events.events);
   const userData = useSelector((state) => state.user.user.user);
   const upcomingEventArray = DivideArrays(UpcomingEvents, 5);
   const { eventId } = useParams();
-  const { pathname } = useLocation();
+  // const { pathname } = useLocation();
 
   console.log("userData :>> ", userData);
   const checkScheduledEvent =
@@ -43,12 +45,30 @@ export const EventPage: React.FC = () => {
       ? true
       : false;
 
+      const { pathname } = useLocation();
+
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // Wait for a short delay
+    setTimeout(() => {
+      // Use requestAnimationFrame twice to ensure rendering is done
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          window.scrollTo(0, 0);
+        });
+      });
+    }, 200); // Adjust delay as needed (200ms or more)
   }, [pathname]);
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const eventarr = events.filter((card) => card.id === Number(eventId));
   const event = eventarr[0];
+
+  const reviewed = userData.user_reviews.filter(
+    (reviews) => reviews.event_id === event.id
+  );
 
   console.log(
     "checkScheduledEvent,eventarr,event :>> ",
@@ -66,7 +86,7 @@ export const EventPage: React.FC = () => {
   };
 
   function rightTranslate() {
-    if (translate > 2 * -34) {
+    if (translate > -34) {
       const newtranslate = translate - 34;
       settranslate(newtranslate);
     } else {
@@ -85,15 +105,17 @@ export const EventPage: React.FC = () => {
 
   return (
     <>
+        {/* <ScrollTop/> */}
       <Navbar />
       <section className="container">
         <ReviewModal
           isOpen={Open}
           onClose={setOpen}
           username={userData.user.firstname}
+          event_id ={event.id} user_id={userData.userid} 
         />
         <div className={style2.section}>
-          {checkAttendedEvent && (
+          {checkAttendedEvent && reviewed.length === 0 && (
             <div className={style2.askReviewContainer}>
               <div className={style2.askReviewContent}>
                 <div className={style2.askReviewTitle}>
@@ -155,9 +177,10 @@ export const EventPage: React.FC = () => {
                       <BiCategory />
                     </div>
                     <div className={style2.DescriptionDetailText}>
-                      <h3>Golf</h3>
+                      <h3>{event.category} </h3>
                       <p>
-                        This is one of the many events under the Golf category
+                        This is one of the many events under the{" "}
+                        {event.category} category
                       </p>
                     </div>
                   </div>
@@ -175,13 +198,13 @@ export const EventPage: React.FC = () => {
                   </div>
                   <div className={style2.DescriptionDetail}>
                     <div className={style2.DescriptionDetailIcon}>
-                      <img src={logo} alt="" />
+                      <img src={getReview(event.stars).image} alt="" />
                     </div>
                     <div className={style2.DescriptionDetailText}>
-                      <h3>Invigoration & uplifting experience</h3>
+                      <h3>{getReview(event.stars).description[0]}</h3>
                       <p>
-                        This event has a rating of 5.0 which makes it
-                        overwhelmed.
+                        This event has a rating of {event.stars} which makes it
+                        {getReview(event.stars).description[1].split("-")[1]}.
                       </p>
                     </div>
                   </div>
@@ -248,13 +271,15 @@ export const EventPage: React.FC = () => {
           <TranslatingArrows
             leftTranslate={leftTranslate}
             rightTranslate={rightTranslate}
+            translate={translate}
+            max={-34}
           />
         </div>
       </section>
 
       <section className="container">
         <div className="sectionHeading">
-          Some more recommendations for you, Charlie!
+          Some more recommendations for you, {userData.user.firstname}!
         </div>
 
         <div className="fitCards">

@@ -2,15 +2,20 @@ import React, { useState, useRef,useEffect } from "react";
 import { RiGlobalLine } from "react-icons/ri";
 import styles from "../../styles/loginModal.module.css";
 import { AiOutlineCheck } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { changeLanguage } from "../../store/userSlice";
+import { altState } from "../../store/RadioButton";
+
 
 export const LanguageModal: React.FC = () => {
   const [position, setPosition] = useState({ top: 0, left: 0 });
   const [isOpen, setIsOpen] = useState(false);
-  const [language, setlanguage] = useState(1);
+  const lang = useSelector((state) => state.user.user.language);
+  const [language, setlanguage] = useState(lang);
   const buttonRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef(null);
   const isOpenRef = useRef(isOpen);
-
+  const dispatch = useDispatch()
   const handleClick = () => {
     if (buttonRef.current) {
       const rect = buttonRef.current.getBoundingClientRect();
@@ -22,16 +27,19 @@ export const LanguageModal: React.FC = () => {
     }
   };
   const handleLang = (val) => {
+    dispatch(changeLanguage(val))
+    dispatch(altState({click:`option${val}`}))
     setlanguage(val);
   };
   useEffect(() => {
     isOpenRef.current = isOpen;
-  }, [isOpen]);
+    // console.log(lang,"lang")
+  }, [isOpen,lang]);
 
   useEffect(() => {
     const handleScroll = () => {
       if (isOpenRef.current) {
-        console.log("Scroll detected! Closing modal...");
+        // console.log("Scroll detected! Closing modal...");
         setIsOpen(false);
       }
     };
@@ -79,7 +87,7 @@ export const LanguageModal: React.FC = () => {
               <div style={{width:"4rem"}} onClick={() => handleLang(1)}>
               English
               </div>
-              {language === 1 && (
+              {lang === 1 && (
                 <div>
                   <AiOutlineCheck />
                 </div>
@@ -89,7 +97,7 @@ export const LanguageModal: React.FC = () => {
               <div style={{width:"4rem"}} onClick={() => handleLang(2)}>
               Arabic
               </div>
-              {language === 2 && (
+              {lang === 2 && (
                 <div>
                   <AiOutlineCheck />
                 </div>
@@ -99,7 +107,7 @@ export const LanguageModal: React.FC = () => {
               <div style={{width:"4rem"}} onClick={() => handleLang(3)}>
               French
               </div>
-              {language === 3 && (
+              {lang === 3 && (
                 <div>
                   <AiOutlineCheck />
                 </div>

@@ -38,7 +38,7 @@ export const Feedback: React.FC = () => {
           </div>
         </div>
         <div className={Styles.feedbackHeaderRight}>
-          <Speedometer value={-3} />
+          <Speedometer value={-1*Math.ceil(data.user_reviews.reduce((acc, obj) => acc + obj.rating, 0) / data.user_reviews.length)} />
         </div>
       </div>
 
@@ -57,10 +57,12 @@ export const Feedback: React.FC = () => {
             return ( 
               <FeedbackElement
                 card={event}
-                index={review ? review.rating:0}
+                index={review ? Math.floor(review.rating):0}
                 date={date.event_date}
                 review = {review ? review.description:""}
                 userName = {data.user.firstname}
+                userid = {data.user.userid}
+                event_id = {event.id}
               />
             );
           })}

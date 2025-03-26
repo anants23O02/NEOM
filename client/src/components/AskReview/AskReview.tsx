@@ -3,13 +3,13 @@ import { motion } from "framer-motion";
 import globalStyles from "../../styles/dashboard.module.css";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import {BigImageCard} from "../BigImageCard/BigImageCard"
-
+import { BigImageCard } from "../BigImageCard/BigImageCard";
 
 export const AskReview: React.FC = () => {
   const [Questions, setQuestions] = useState([]); // Ensure state is initialized
   const data = useSelector((state) => state.user.user.user);
   const [translateBig, settranslateBig] = useState(0);
+  const [no,setno] = useState(false);
   function rightTranslateBig() {
     if (translateBig > -36) {
       const newtranslate = translateBig - 36;
@@ -57,27 +57,38 @@ export const AskReview: React.FC = () => {
 
   return (
     <>
-      <div className={globalStyles.ratingcard}>
-        <motion.div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            width: " max-content",
-            gap: "15px",
-          }}
-          animate={{ x: ` ${translateBig}vw` }}
-          transition={{ duration: 0.5 }}
-        >
-          {Questions.map((value, i) => {
-            return <BigImageCard value={value} key={i} />;
-          })}
-        </motion.div>
-      </div>
-      <TranslatingArrows
-        leftTranslate={leftTranslateBig}
-        rightTranslate={rightTranslateBig}
-      />
+      {!no && (
+        <>
+          {" "}
+          <div className="sectionHeading">
+            {`${data.user.firstname}, hope we understand you better`}
+          </div>
+          <div className={globalStyles.ratingcard}>
+            <motion.div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                width: " max-content",
+                gap: "15px",
+              }}
+              animate={{ x: ` ${translateBig}vw` }}
+              transition={{ duration: 0.5 }}
+            >
+              {Questions.map((value, i) => {
+                return <BigImageCard value={value} key={i} setno={setno} />;
+              })}
+            </motion.div>
+          </div>
+          {Questions.length >= 3 && (
+            <TranslatingArrows
+              leftTranslate={leftTranslateBig}
+              rightTranslate={rightTranslateBig}
+              // translate = {translateBig}
+            />
+          )}
+        </>
+      )}
     </>
   );
 };

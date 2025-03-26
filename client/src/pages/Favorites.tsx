@@ -12,15 +12,12 @@ import { BigRecommendationCard } from "../components/BigRecommendationCard/BigRe
 import { userCharlie } from "../assets/Dummydata/userData";
 import { DivideArrays } from "../utils/DivideArrays";
 import { useSelector } from "react-redux";
-import {useEffect} from "react"
+import { useEffect } from "react";
+import { divIcon } from "leaflet";
 
 export const Favorites: React.FC = () => {
   const userData = useSelector((state) => state.user.user.user);
   const events = useSelector((state) => state.events.events.events);
-
-
-
-  
   const [translateBig, settranslateBig] = useState(0);
   function rightTranslateBig() {
     if (translateBig > 2 * -60) {
@@ -44,31 +41,45 @@ export const Favorites: React.FC = () => {
     <>
       <Navbar />
       <section className="container">
-        <div className="section">
-          <div className="sectionHeading">Good morning Charlie!</div>
+        {userData.fav_events.length !== 0 ? (
+          <>
+            <div className="section">
+              <div className="sectionHeading">Good morning {userData.user.firstname}!</div>
+              <div className="sectionContentLarge">
+                {`You have shortlisted ${userData.fav_events.length} events to join later`}
+              </div>
+            </div>
+            {DivideArrays(userData.fav_events, 5).map((array, i) => {
+              return (
+                <div className="fitCards">
+                  {array.map((id, i) => {
+                    const matchedCard = events.find((card) => card.id === id);
+                    return matchedCard ? (
+                      <RecommendCard
+                        value={matchedCard}
+                        key={i}
+                        type={"remove"}
+                      />
+                    ) : null;
+                  })}
+                </div>
+              );
+            })}
+          </>
+        ) : (
+          <div className="section">
+              <div className="sectionHeading">Good morning {userData.user.firstname}!</div>
 
           <div className="sectionContentLarge">
-            You have shortlisted 8 events to join later
+            {`You can start adding events to favorites by clicking on the hearts...`}
           </div>
-        </div>
-        {DivideArrays(userData.fav_events, 5).map((array, i) => {
-          return(
-            <div className="fitCards">
-            {array.map((id, i) => {
-              const matchedCard = events.find((card) => card.id === id);
-              return matchedCard ? (
-                <RecommendCard value={matchedCard} key={i} type={"remove"} />
-              ) : null;
-            })}
-          </div>);
-        })}
+          </div>
+        )}  
       </section>
       <section className="container">
-
         <div className="section ">
-
           <div className="sectionHeading">
-            Charlie, hope we understand you better
+            {userData.user.firstname}, hope we understand you better
           </div>
           <div className={styles.ratingcard}>
             <motion.div
@@ -90,15 +101,15 @@ export const Favorites: React.FC = () => {
           <TranslatingArrows
             leftTranslate={leftTranslateBig}
             rightTranslate={rightTranslateBig}
+            translate = {translateBig}
+            max={-70}
           />
         </div>
       </section>
 
       <section className="container">
-
         <div className="section">
           <div className="sectionHeading">
-
             Top 5 activities on the island today
           </div>
         </div>
@@ -107,7 +118,7 @@ export const Favorites: React.FC = () => {
             return (
               <RecommendCard
                 value={card}
-                data={{pos:i+1}}
+                data={{ pos: i + 1 }}
                 key={i}
                 type={"top5"}
               />

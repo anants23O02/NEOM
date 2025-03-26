@@ -23,7 +23,7 @@ const StarRatingExample = () => {
   );
 };
 
-export const StarRatingRow: React.FC<{ label: string }> = ({ label }) => {
+export const StarRatingRow: React.FC<{ label: string }> = ({ label,value,setValue }) => {
   const [rating, setRating] = useState(0);
   
   return (
@@ -34,7 +34,10 @@ export const StarRatingRow: React.FC<{ label: string }> = ({ label }) => {
           initialRating={rating}
           emptySymbol={<MdStarBorder size={24} color="#ccc" />}
           fullSymbol={<MdStar size={24} color="gold" />}
-          onChange={(rate) => setRating(rate)}
+          onChange={(rate) => {
+            setValue(value + rate)
+           
+            setRating(rate)}}
         />
       </div>
     </div>

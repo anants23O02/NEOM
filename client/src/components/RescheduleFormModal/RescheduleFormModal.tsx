@@ -3,6 +3,7 @@ import styles from "../../styles/RescheduleFormModal.module.css";
 import { rescheduleThisEvent } from "../../services/eventServices/EventAPI";
 import { clearNotification } from "../../store/notificationSlice";
 import { useDispatch } from "react-redux";
+import { rescheduleEvent } from "../../store/userSlice";
 
 interface ModalProps {
   isOpen: boolean;
@@ -19,9 +20,9 @@ export const RescheduleFormModal: React.FC<ModalProps> = ({
   const dispatchEvent = useDispatch()
   const handleReserve = async () => {
     await rescheduleThisEvent(event.id,notification.rescheduled_date,dispatchEvent)
-    // dispatchEvent(clearNotification(event.id))
+    dispatchEvent(rescheduleEvent({ eventid:event.id, rescDate:notification.rescheduled_date })); 
     onClose(false);
-    window.location.href = "/setUser";
+    window.location.href = `/alternate-event/${event.id}`;
   }
   if (!isOpen) return null;
   console.log(event, notification);

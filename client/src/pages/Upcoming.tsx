@@ -11,7 +11,6 @@ import { calcLocation } from "../utils/DistanceCalc";
 import { divIcon } from "leaflet";
 
 export const Upcoming: React.FC = () => {
-  const [drive, setDrive] = useState(null);
   const [travel, setTravel] = useState(null);
   const [filteredEvents, setFilteredEvents] = useState([]);
   const [selectedFilters, setSelectedFilters] = useState();
@@ -21,12 +20,17 @@ export const Upcoming: React.FC = () => {
   const events = useSelector((state) => state.events.events.events);
   const [userLocation, setUserlocation] = useState();
   const [error, setError] = useState(false);
+  const [cut, setCut] = useState(5);
   const locationOptions = [
     [28.04875, 34.72042],
     [28.0445, 34.70836],
     [28.05006, 34.71408],
     [28.05272, 34.71925],
   ];
+  const handleLoadMore = () => {
+    setCut(events.length);
+    setSelectedFilters(0)
+  };
   const handleLocation = (e) => {
     const loc = e.target.value;
     setError(false);
@@ -35,8 +39,8 @@ export const Upcoming: React.FC = () => {
   };
 
   useEffect(() => {
-    setFilteredEvents(events);
-  }, [events]);
+    setFilteredEvents(events.slice(events.length - cut));
+  }, [events, cut]);
 
   useEffect(() => {
     setUpcomingEventArray(DivideArrays(filteredEvents, 5));
@@ -49,6 +53,7 @@ export const Upcoming: React.FC = () => {
         : events.filter((event) => event.category === filters[i]);
     setFilteredEvents(filtered);
     setSelectedFilters(i);
+    // setCut(events.length);
   };
 
   const handleTravel = (i) => {
@@ -67,12 +72,11 @@ export const Upcoming: React.FC = () => {
           .filter((v) => v[0] > 0.4 && v[0] < 1)
           .map((v) => v[1]);
       } else if (i === 1 || i === 6) {
-        filtered = distance
-          .filter((v) => v[0] > 1)
-          .map((v) => v[1]);
+        filtered = distance.filter((v) => v[0] > 1).map((v) => v[1]);
       }
-      const filtereve = events.filter((eve) => filtered.includes(eve.id))
+      const filtereve = events.filter((eve) => filtered.includes(eve.id));
       setFilteredEvents(filtereve);
+      setCut(events.length);
     } else {
       setError(true);
     }
@@ -80,6 +84,8 @@ export const Upcoming: React.FC = () => {
 
   console.log("calcLocation :>> ", calcLocation(location, events));
   const handleNolimit = () => {
+    setFilteredEvents(events);
+    setCut(events.length);
     setTravel(null);
   };
 
@@ -112,10 +118,11 @@ export const Upcoming: React.FC = () => {
             <div className={style2.Ques}>
               <div className={style2.QuesValue}>What suits your schedules?</div>
               <div className={style2.inputValues}>
-                <div className={style2.Input}>
-                  <CiCalendar style={{ color: "red" }} />
-                  <div className={style2.DatePick}>Pick a date</div>
+                <div className={style2.dateinput}>
+                  {/* <CiCalendar style={{ color: "red" }} /> */}
+                  <input type="date" className={style2.DatePick} />
                 </div>
+
                 <div style={{ display: "flex", flexDirection: "column" }}>
                   {error && (
                     <div
@@ -159,6 +166,8 @@ export const Upcoming: React.FC = () => {
                 </div>
               </div>
             </div>
+
+            
             <div className={style2.Ques}>
               <div className={style2.QuesValue}>
                 How far are you willing to travel?
@@ -247,6 +256,9 @@ export const Upcoming: React.FC = () => {
                 </div>
               </div>
             </div>
+
+
+
           </div>
           <div className={style2.selectionRow}>
             <div className={style2.Ques}>
@@ -284,11 +296,15 @@ export const Upcoming: React.FC = () => {
           </div>
         ))}
       </section>
-      <section className="container">
-        <div className="sectionHeadingCenter">
-          <button className={style2.loadButton}>Load More</button>
-        </div>
-      </section>
+      {cut !== events.length && (
+        <section className="container">
+          <div className="sectionHeadingCenter">
+            <button onClick={handleLoadMore} className={style2.loadButton}>
+              Load More
+            </button>
+          </div>
+        </section>
+      )}
       <Footer />
     </>
   );

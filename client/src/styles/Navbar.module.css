@@ -62,8 +62,9 @@
   font-size: 0.8rem;
   line-height: 1.458rem;
   padding-inline-start: 3rem !important;
-  gap: 1rem;
+  gap: 0.5rem;
   justify-content: center;
+  /* gap: 1rem; */
   align-items: center;
   margin: 0 !important;
 }

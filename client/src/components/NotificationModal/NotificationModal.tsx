@@ -10,6 +10,7 @@ import { clearNotification } from "../../store/notificationSlice";
 import { RescheduleModal } from "../RescheduleModal/RescheduleModal";
 import { Badge } from "@mui/material";
 import NotificationsIcon from "@mui/icons-material/Notifications"
+import { CancelModal } from "../CancelModal/CancelModal";
 export const NotificationComponent = ({
   userId,
   notif,
@@ -31,8 +32,8 @@ export const NotificationComponent = ({
   const buttonRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef(null);
   const isOpenRef = useRef(notif);
-
-
+  const [position,setPosition] = useState();
+  const [cancel,setcancel] = useState(false)
   console.log("this", notificationData.data);
   const findEventDetails = (eventId) => {
     return events.find((event) => eventId === event.id);
@@ -41,7 +42,15 @@ export const NotificationComponent = ({
     return data.user_events.find((event) => eventId === event.event_id);
   };
 
-  const showNotifications = () => {
+  const showNotifications = (e) => {
+    e.stopPropagation();
+    const rect = e.target.getBoundingClientRect();
+    setPosition(
+      {
+        top: rect.bottom + window.scrollY + 15,
+        left: rect.left + window.scrollX - 348,
+      }
+    )
     setNotif(!notif);
   };
 
@@ -70,7 +79,8 @@ export const NotificationComponent = ({
   };
 
   const handleCancel = (id) => {
-    dispatch(clearNotification(id));
+    setcancel(true)
+    // dispatch(clearNotification(id));
   };
 
   useEffect(() => {
@@ -134,7 +144,7 @@ export const NotificationComponent = ({
               color: "grey",
               fontSize: "1.2rem", // Reduces size by 10%
             }}
-            onClick={showNotifications}
+            onClick={(e) => showNotifications(e)}
           />
         </Badge>
       </li>
@@ -149,9 +159,23 @@ export const NotificationComponent = ({
             eventid={notificationData.data[index].event_id}
           />
         )}
+
+{cancel && (
+          <CancelModal
+            isOpen={cancel}
+            onClose={() => setCancel(false)}
+            title={`Hey ${data.user.firstname},`}
+            message="Are you sure you want to cancel this event?"
+            eventid={notificationData.data[index].event_id}
+          />
+        )}
+
         {visible && notificationData.data.length !== 0 && (
           <>
-            <div ref={modalRef} className={styles.modalContainer}>
+            <div ref={modalRef} className={styles.modalContainer} style={{
+              top:position.top,
+              left:position.left
+            }} >
               <div className={styles.modalContent}>
                 <button className={styles.closeButton} onClick={handleClose}>
                   <IoIosCloseCircleOutline />

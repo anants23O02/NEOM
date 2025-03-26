@@ -7,29 +7,37 @@ interface TranslatingArrowsProps{
 
 }
 
-export const TranslatingArrows: React.FC<TranslatingArrowsProps> = ({ leftTranslate, rightTranslate }) => {
+export const TranslatingArrows: React.FC<TranslatingArrowsProps> = ({ leftTranslate, rightTranslate,translate ,max}) => {
   const [active, setActive] = useState<string>('right');
   return (
     <>
       <FaArrowLeft
         style={{
-          width: "0.8rem",
+          width: "1rem",
+          height:"1rem",
           color: active === 'left' ? "rgb(50, 50, 50)" : "rgb(102, 102, 102)",
           fontWeight: "200",
           border: active === 'left' ? "1px solid rgb(50, 50, 50)" : "1px solid rgb(102, 102, 102)",
           borderRadius: "100%",
           padding: "0.5rem",
           marginTop: "1.5vw",
-          marginRight: "1.5vw",
+          marginRight: "1vw",
         }}
         onClick={() => {
+          console.log(translate,"translate")
+          if(translate < 0 ){
             setActive('left');
-          leftTranslate();
+            leftTranslate();
+          }
+          else{
+            setActive('right')
+          }
         }}
       />
       <FaArrowRight
         style={{
-          width: "0.8rem",
+          width: "1rem",
+          height:"1rem",
           color: active === 'right' ? "rgb(50, 50, 50)" : "rgb(102, 102, 102)",
           fontWeight: "200",
           border: active === 'right' ? "1px solid rgb(50, 50, 50)" : "1px solid rgb(102, 102, 102)",
@@ -38,8 +46,14 @@ export const TranslatingArrows: React.FC<TranslatingArrowsProps> = ({ leftTransl
           marginTop: "1.5vw",
         }}
         onClick={() => {
-          rightTranslate();
-          setActive('right');
+          console.log(translate)
+          if(translate > max){ 
+            rightTranslate();
+            setActive('right');
+          }
+          else{
+            setActive('left')  
+          }
         }}
       />
     </>

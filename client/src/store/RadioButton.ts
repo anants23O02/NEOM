@@ -1,10 +1,13 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+// import { useSelector } from "react-redux";
 
+// const language = useSelector((state) => state.user.user.language)
 interface RadioButtonState{
     selected: string;
 }
 const initialState: RadioButtonState = {
-    selected:"option1",
+    // selected: language === 1 ? "option1":language === 2?"option2":"option3",
+    selected:"option1"
 }
 
 const RadioButtonState = createSlice({

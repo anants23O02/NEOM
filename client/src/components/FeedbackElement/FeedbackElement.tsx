@@ -12,6 +12,8 @@ export const FeedbackElement: React.FC = ({
   date,
   review,
   userName,
+  userid,
+  event_id
 }) => {
   const attendedDate = ConvertDate(new Date(date));
   const startDate = ConvertDate(new Date(card.start_date));
@@ -21,7 +23,7 @@ export const FeedbackElement: React.FC = ({
   const ReviewHeading = ["Overwhelming", "Great", "Boring", "Okay", "Bad"];
   return (
     <>
-      <ReviewModal isOpen={Open} onClose={setOpen} userName={userName} />
+      <ReviewModal isOpen={Open} onClose={setOpen} userName={userName} event_id={event_id} user_id={userid} />
       <div className={styles.feedbackCard}>
         <div className={styles.cardImage}>
           <img src={card.images} alt="" />

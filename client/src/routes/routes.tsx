@@ -78,7 +78,7 @@ export const router = createBrowserRouter([
     path: "/rescheduled-event/:eventid",
     element: <RescheduledEvent/>,
   },{
-    path: "/alternate-event",
+    path: "/alternate-event/:eveid",
     element: <AlternateEvent/>,
   },
 ]);

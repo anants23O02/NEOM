@@ -11,21 +11,15 @@
 
 .modalContainer {
   position: fixed;
-  top:4rem;
-  right: 12rem;
+  
   z-index: 1000;
-  /* clip-path: polygon(
-    0% 0%, 
-    90% 0%, 95% -10%, 100% 0%,
-    100% 100%, 
-    0% 100%
-  ); */
+
 }
 .modalContainer::after{
   content: "";
   position: absolute;
-  top: -10px; /* Adjust based on triangle size */
-  right: 20px; /* Position towards the right */
+  top: -9px; 
+  right: 20px; 
   width: 0;
   height: 0;
   border-left: 10px solid transparent;

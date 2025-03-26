@@ -18,6 +18,7 @@ import { useSelector } from "react-redux";
 export const Dashboard: React.FC = () => {
   const notification = useSelector((state) => state.notifications);
   const data = useSelector((state) => state.user.user.user);
+  const language = useSelector((state) => state.user.user.language);
   if (!data.fav_events) {
     data.fav_events = [];
   }
@@ -27,25 +28,38 @@ export const Dashboard: React.FC = () => {
   const events = useSelector((state) => state.events.events.events);
   let user = data.user.firstname;
   const [translate, settranslate] = useState(0);
-  
+  const vwToPx =Math.floor( (38 / 100) * window.innerWidth); 
+  const value = data.user_events.filter((event) => event.status === "scheduled").length -2;
   function rightTranslate() {
-    const value =
-      data.user_events.filter((event) => event.status === "scheduled").length -
-      1.5;
-    if (translate > value * -34) {
-      const newtranslate = translate - 34;
-      settranslate(newtranslate);
+  
+    if (translate > value * -1*vwToPx) { 
+      // setTranslateX(vwToPx + 15);
+        const newtranslate = translate - vwToPx - 15; 
+        if (newtranslate > 0 ){
+          settranslate(0)
+        }
+        settranslate(newtranslate);
+        console.log(newtranslate, "right");
+      
     } else {
       return;
     }
   }
 
   function leftTranslate() {
-    if (translate < 0) {
-      const newtranslate = translate + 34;
+    if (translate < 0 || translate == -1*(vwToPx + 15)) {
+      const newtranslate = translate + vwToPx + 15;
+      if (newtranslate > 0 ){
+        settranslate(0)
+      }
       settranslate(newtranslate);
-    } else {
+      console.log(newtranslate,"left")
+
+ 
+    } else if (translate === 0) {
+   
       return;
+
     }
   }
 
@@ -55,7 +69,7 @@ export const Dashboard: React.FC = () => {
 
   console.log("data :>> ", data);
   console.log("events :>> ", events);
-
+  console.log("language",language)
   return (
     <>
       <Navbar />
@@ -78,7 +92,7 @@ export const Dashboard: React.FC = () => {
                   width: " max-content",
                   gap: "15px",
                 }}
-                animate={{ x: ` ${translate}vw` }}
+                animate={{ x: `${translate}px` }}
                 transition={{ duration: 0.5 }}
               >
                 {data.user_events.map((id, i) => {
@@ -98,6 +112,8 @@ export const Dashboard: React.FC = () => {
             <TranslatingArrows
               leftTranslate={leftTranslate}
               rightTranslate={rightTranslate}
+              translate={translate}
+              max = {value * -1*vwToPx}
             />
           </div>
         </div>
@@ -106,9 +122,6 @@ export const Dashboard: React.FC = () => {
       <section className="container">
         <div className="section ">
           <>
-            <div className="sectionHeading">
-              {`${user}, hope we understand you better`}
-            </div>
             <AskReview/>
             <div className="sectionDescription"></div>
           </>

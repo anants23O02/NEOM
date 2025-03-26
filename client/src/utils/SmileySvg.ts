@@ -55,7 +55,7 @@ const reviews = {
 
 
 
-export const getReview = (rating) => {
+export const  getReview = (rating) => {
 
   const closestRating = Object.keys(reviews).reduce((prev, curr) => {
     return Math.abs(curr - rating) < Math.abs(prev - rating) ? curr : prev;

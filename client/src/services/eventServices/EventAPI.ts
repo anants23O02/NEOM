@@ -63,7 +63,6 @@ console.log('here :>> ');
   export const rescheduleThisEvent = async (eventid, rescDate, dispatch) => {
     try {
       console.log("Event is being rescheduled");
-  
       const res = await fetch("/api/reschedule-event", {
         method: "PATCH",
         headers: {
@@ -79,7 +78,6 @@ console.log('here :>> ');
       console.log(res.status, "Status of API");
   
       const data = await res.json();
-      dispatch(rescheduleEvent({ eventid, rescDate })); 
       return data;
     } catch (error) {
       console.error("Error rescheduling event:", error.message);

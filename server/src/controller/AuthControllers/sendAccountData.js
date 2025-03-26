@@ -22,10 +22,13 @@ export const giveaccount = async (req,res) => {
       const userReviews = await pool.query(reviewsQuery,reviewValues);
       console.log('userReviews :>> ', userReviews);
       console.log('user_events.rows[0].events :>> ', user_events.rows[0].events);
+      const sortedData = user_events.rows[0].events.sort(
+        (a, b) => new Date(a.event_date) - new Date(b.event_date)
+      );
       return res.status(200).json({
         user: req.body,
         fav_events: fav_events.rows[0].event_ids,
-        user_events:  user_events.rows[0].events, 
+        user_events:  sortedData, 
         user_reviews: userReviews.rows[0],
       });
     

@@ -85,10 +85,11 @@
   .textArea {
     width: 96%;
     min-height: 80px;
-    margin-top: 16px;
+    margin-top: 1rem;
     margin-bottom: 16px;
     padding: 8px;
     resize: vertical;
+    border: 1px solid black;
   }
   
   .submitButton {

@@ -5,6 +5,7 @@ import storage from "redux-persist/lib/storage";
 const initialState = {
   login: false,
   user: null,
+  language: 1,
 };
 
 const userLoginSlice = createSlice({
@@ -15,6 +16,7 @@ const userLoginSlice = createSlice({
       console.log("action.payload :>> ", action.payload);
       state.user = action.payload;
       state.login = true;
+      state.language = 1
     },
     logout: (state) => {
       state.user = null;
@@ -61,15 +63,35 @@ const userLoginSlice = createSlice({
     rescheduleEvent: (state,action) => {
       state.user.user_events.map((event) => {
         if(event.event_id === action.payload.eventid){
-          event.event_date = rescDate;
+          event.event_date = action.payload.rescDate;
         }
       })
-    }
-    
+    },
+    changeLanguage:(state,action) => {
+      state.language = action.payload
+    },
+    addusereview:(state,action) => {
+      state.user.user_reviews = [
+        ...state.user.user_reviews,
+        {
+          review_id:2,
+          event_id:action.payload.event_id,
+          user_id:action.payload.user_id,
+          rating:(Math.ceil(action.payload.rating)),
+          description:action.payload.description,
+          created_at:"2025-03-24T05:32:16.018Z"
+        }
+      ]
+    },
+    removeScheduleEvent:(state,action) => {
+      state.user.user_events = state.user.user_events.filter(
+        (event) => event.event_id !== action.payload
+      )
+    }    
 
 
   },
 });
 
-export const { login, logout, addFavoriteEvent,removeFavoriteEvent,addEventSchedule,editUserData,rescheduleEvent } = userLoginSlice.actions;
+export const { login, logout, addFavoriteEvent,removeFavoriteEvent,addEventSchedule,editUserData,rescheduleEvent,changeLanguage,addusereview,removeScheduleEvent } = userLoginSlice.actions;
 export default userLoginSlice.reducer;
