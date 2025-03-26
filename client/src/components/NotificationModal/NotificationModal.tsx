@@ -40,8 +40,8 @@ export const NotificationComponent = ({
   };
   const findEventDate = (eventId) => {
     console.log('eventId,event.event_id here in find date:>> ', eventId,event);
-    console.log( data.user_events.filter((event) => Number(eventId) === event.event_id)[0]);
-    return data.user_events[0]
+    const userData = data.user_events.filter((event) => Number(eventId) === event.event_id)[0];
+    return userData;
   };
 
   const showNotifications = (e) => {
