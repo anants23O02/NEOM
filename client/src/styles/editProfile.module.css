@@ -1,56 +1,192 @@
-.profileEditing{
-    margin: 1rem 0;
-    width: 50vw;
-    margin: 3rem;
-    padding: 3rem;
-    margin:0 auto ;
-    background-color: white;
+.profileEditing {
+  /* margin: 1rem 0; */
+  width: 50vw;
+  /* margin: 3rem; */
+  padding: 3rem;
+  margin: 2rem auto;
+  background-color: white;
 }
 
-.ProfileSection{
-    padding-top: 2rem;
-    display: flex;
-    flex-direction: row;
-    gap: 1.5rem;
+.ProfileSection {
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
 }
-.profileFormLeft{
-    display: flex;
-    flex-direction: column;
+.profileFormLeft {
+  display: flex;
+  flex-direction: column;
 }
-.profileFormRight{
-    display: flex;
-    flex-direction: column;
+.profileFormRight {
+  display: flex;
+  flex-direction: column;
 }
-.profilePicture{
-    width: 8rem;
-    height: 8rem;
+.profilePicture {
+  position: relative;
+  width: 8rem;
+  height: 8rem;
+  border: 1px solid black;
+  border-radius: 0.6rem;
 }
-.profilePicture img{
-    border-radius: 0.6rem;
-    width: 100%;
-    height: 100%;
+
+.profilePicture img:nth-of-type(1) {
+  position: absolute;
+  top: 0;
+  left: 60;
+  border-radius: 0.6rem;
+  width: 100%;
+  height: 100%;
 }
-.formImages{
-    width: 100%;
+
+.editProfilePic {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.6rem;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2; 
+  pointer-events: none;
 }
-.formImages img{
-    width: 5rem;
-    border-radius: 0.6rem;
-    padding: 0.3rem;
+
+
+.editIcon img {
+  position: absolute;
+  top: 2rem !important;
+  right: 2rem !important;
+  z-index: 3;
 }
-.form{}
-.formValue{
-    margin-bottom: 1rem;
+
+.pencil{
+  width: 4rem !important;
+  height: 4rem !important;
 }
-.formValue input{
-    padding: 2% 15%;
-    border-radius: 0.4rem;
-    border:1px solid rgba(105, 105, 105, 0.444);
+
+
+
+.formValue,.phoneInputContainer,.phoneValue {
+  margin-bottom: 1rem;
 }
-.formQuestion{
-    color: rgba(105, 105, 105, 0.924);
-    font-size: 0.6rem;
-    font-family: 'Brown';
-    padding-bottom: 0.6rem;
-    letter-spacing: 0.4px;
+
+.phoneValue input{
+  border: none !important;
+  height: 96%;
+}
+
+.phoneinput {
+  font-family: "BrownLight";
+  font-size: 1rem;
+  padding: 0.3rem 0.6rem;
+  padding-left: 0 !important;
+  width: 20rem;
+  height: 2rem;
+  border-radius: 0.4rem;
+  border: 1px solid rgba(105, 105, 105, 0.444);
+}
+/* .input{
+  border: none;
+} */
+.formValue input  {
+  font-family: "BrownLight";
+  font-size: 1rem;
+  padding: 0.3rem 0.6rem;
+  width: 20rem;
+  height: 2rem;
+  border-radius: 0.4rem;
+  border: 1px solid rgba(105, 105, 105, 0.444);
+}
+.formQuestion {
+  color: rgba(105, 105, 105, 0.924);
+  font-size: 0.6rem;
+  font-family: "Brown";
+  padding-bottom: 0.6rem;
+  letter-spacing: 0.4px;
+}
+
+.formImages {
+  width: 100%;
+}
+
+.formImages img {
+  width: 5rem; 
+  height: auto;
+  border-radius: 0.6rem;
+  /* padding: 0.3rem; */
+  margin: 0.3rem;
+  display: block;
+}
+
+.overlay {
+  position: absolute;
+  top: 0.3rem;
+  left: 0.3rem;
+  width: 5rem;
+  height: 91%;
+  border-radius: 0.6rem;
+  background: rgba(0, 0, 0, 0.5); 
+  z-index: 1; 
+  pointer-events: none; 
+}
+
+
+.saveButton{
+  width: 6rem;
+  height:3rem;
+  padding: 0.5rem;
+  background-color: rgba(255,62,91,255);
+  color: rgba(255, 255, 255, 0.85);
+  border: none;
+  font-size: 1rem;
+  font-family: 'Brown';
+  border-radius: 0.3rem;
+}
+
+.buttons{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+.cancelButton{
+  width: 6rem;
+  height:3rem;
+  padding: 0.5rem;
+  background-color: white;
+  color: rgba(91, 91, 91, 0.79);
+  border: 1px solid rgba(92, 92, 92, 0.715);
+  font-size: 1rem;
+  font-family: 'Brown';
+  border-radius: 0.3rem;
+}
+
+
+.profileEditing {
+  position: relative;
+  /* other styles */
+}
+
+.loaderOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.loaderContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loaderText {
+  margin-top: 10px;
+  color: #fff;
+  font-size: 1rem;
 }

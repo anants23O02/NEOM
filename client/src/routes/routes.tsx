@@ -1,22 +1,21 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Dashboard } from "../pages/dashboard";
-import { Favorites } from "../pages/Favorites"; // Import Favorites page
+import { Favorites } from "../pages/Favorites"; 
 import { Upcoming } from "../pages/Upcoming";
 import { EventPage } from "../pages/EventPage";
 import { Settings } from "../pages/settings";
 import { Feedback } from "../pages/Feedback";
-import { Admin } from "../pages/adminPage";
 import { EditProfile } from "../pages/EditProfile";
 import { Login } from "../pages/Login";
-import { EventForm } from "../pages/addEvent";
-import { EventTypeForm } from "../pages/addEventType";
 import { SetUser } from "../services/LoginServices/setUser";
 import { Fetch } from "../API/Fetch";
 import { SignUp } from "../services/LoginServices/SignUp";
 import { SignIn } from "../services/LoginServices/signIn";
 import {Logout} from "../pages/Logout";
-import {SendNotification} from "../services/adminServices/sendNotification";
-
+import {Websocket} from "../pages/websocket";
+import { RescheduledEvent } from "../pages/rescheduleEvent";
+import CountdownTimer from "../components/CountDownTimer/alternateEvent";
+import { AlternateEvent } from "../pages/alternateEvent";
 export const router = createBrowserRouter([
   {
     path: "/dashboard",
@@ -51,18 +50,6 @@ export const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/Admin",
-    element: <Admin />,
-  },
-  {
-    path: "/add-events",
-    element: <EventForm />,
-  },
-  {
-    path: "/add-event-type",
-    element: <EventTypeForm />,
-  },
-  {
     path: "/setUser",
     element: <SetUser />,
   },
@@ -82,9 +69,16 @@ export const router = createBrowserRouter([
   {
     path: "/logout",
     element: <Logout />,
-  },
+  },  
   {
-    path: "/admin-event-reschedule",
-    element: <SendNotification />,
+    path: "/web-socket",
+    element: <Websocket/>,
+  }, 
+  {
+    path: "/rescheduled-event/:eventid",
+    element: <RescheduledEvent/>,
+  },{
+    path: "/alternate-event/:eveid",
+    element: <AlternateEvent/>,
   },
 ]);

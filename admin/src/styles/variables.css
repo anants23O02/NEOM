@@ -1,0 +1,94 @@
+/* variables.css */
+
+/* Fonts */
+:root {
+  --font-family-brown: "Brown", sans-serif;
+  --font-family-brownlight: "BrownLight", sans-serif;
+  --font-family-ivymode: "Ivymode", sans-serif;
+  --font-weight-semibold: 600;
+}
+
+/* Colors */
+:root {
+  --background-color: #F9F7F2; 
+  --primary-text-color: rgba(34, 34, 34, 0.979);
+  --line-color:#EEEEEE;
+  
+  --primary-color: #ff385c;
+  --primary-hover-color: #ff6f9e;
+  --highlight-color: #ff385c;
+  --text-color: rgba(34, 34, 34, 0.979);
+  --secondary-text-color: rgba(95, 95, 95, 0.79);
+  --border-color: rgba(103, 102, 102, 0.798);
+  --star-color: red;
+  --button-bg-color: #ff385c;
+  --button-bg-hover-color: #ff2a42;
+  --button-bg-active-color: #e02433;
+  --button-text-color: white;
+  --footer-bg-color: #222222;
+  --footer-text-color: rgba(255, 255, 255, 0.702);
+  --card-bg-color: white;
+}
+
+/* Spacing */
+:root {
+  --space-around-static:0.8rem;
+  --spacing-container:7.5%;
+  --spacing-vertical-section:1.5rem;
+  --section-description-space:1.5rem;
+
+  --spacing-small: 0.5rem;
+  --spacing-medium: 1rem;
+  --spacing-large: 2rem;
+  --spacing-tiny: 0.2rem;
+  --spacing-medium-3: 3%;
+  --spacing-large-7: 7%;
+}
+
+/* Font Sizes */
+:root {
+  --font-size-heading:1.5rem;
+  --font-size-heading-small:1.2rem;
+  --font-size-medium: 0.8rem;
+  --font-size-small:0.6rem;
+  --font-size-normal:1rem;
+  --font-weight-small:300;
+
+
+  --font-size-small: 0.6rem;
+  --font-size-large: 1rem;
+  --font-size-xlarge: 1.2rem;
+  --font-size-extra-small: 0.65rem;
+  --font-size-xsmall: 0.7rem;
+  --font-weight-normal: normal;
+}
+
+/* Border Radius */
+:root {
+  --border-radius-small: 0.6rem;
+  --border-radius-medium: 0.6vw;
+  --border-radius-large: 0.6vw;
+}
+
+
+
+/* Icon Sizes */
+:root {
+  --icon-size-small: 11.327px;
+}
+
+/* Card Heights */
+:root{
+  --horizontal-card-height:40vh;
+  --horizonatal-card-width:38vw;
+}
+
+
+
+/* Miscellaneous */
+:root {
+  --letter-spacing-small: 0.4px;
+  --letter-spacing-medium: 0.8px;
+
+  --suggestion-img-height: 11.327px;
+}

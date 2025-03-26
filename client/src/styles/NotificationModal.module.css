@@ -1,0 +1,110 @@
+.font,.modalText{
+  font-family: 'BrownLight';
+}
+.rescheduleButton, .cancelButton {
+  font-family: 'Brown';
+}
+.ivymode,.modalTitle {
+  font-family: 'IvyMode';
+  letter-spacing: 0.5px;
+}
+
+.modalContainer {
+  position: fixed;
+  
+  z-index: 1000;
+
+}
+.modalContainer::after{
+  content: "";
+  position: absolute;
+  top: -9px; 
+  right: 20px; 
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #1e1e1eea;
+}
+
+.modalContent {
+  background: #1e1e1eea;
+  color: #fff;
+  padding: 2rem;
+  border-radius: 1rem;
+  width: 20rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  position: relative;
+}
+
+.modalTitle {
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+  color: yellow;
+  align-items:left ;
+  margin: 0 0 10px;
+  font-size: 1.3rem;
+}
+.bell{
+  width: 1.5rem;
+  height: 1.5rem;
+  transform: rotate(-45deg);
+  margin-left:0.5rem ;
+}
+
+.modalText {
+  text-align: left;
+  font-size: 1rem;
+  margin-bottom: 15px;
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+  /* gap: 1rem; */
+}
+
+.rescheduleButton, .cancelButton {
+  padding: 0.5rem 2rem;
+  border: none;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.rescheduleButton {
+  background: white;
+  color: black;
+}
+
+.cancelButton {
+  background: transparent;
+  color: white;
+  text-decoration: underline;
+  text-underline-offset: 10px;
+}
+
+.arrowButton{
+  background: transparent;
+  color: white;
+  border: none;
+  padding: none;
+}

@@ -6,13 +6,25 @@ import Styles from "../styles/feedback.module.css";
 import { FeedbackElement } from "../components/FeedbackElement/FeedbackElement";
 import { Speedometer } from "../components/speedometer/speedometer";
 import { smileyReviews } from "../utils/SmileySvg"; // anger, appreciation, etc.
+import { useSelector } from "react-redux";
 
 export const Feedback: React.FC = () => {
+  const data = useSelector((state) => state.user.user.user);
+  console.log('data :>> ', data);
+  const events = useSelector((state) => state.events.events.events);
+  console.log('events :>> ', events);
+  const attEventId = data.user_events
+    .filter((event) => event.status === "attended")
+    .map((event) => event.event_id);
+  const attendedEvents = events.filter((event) =>
+    attEventId.includes(event.id)
+  );
+
   return (
     <>
       <Navbar />
       <div className={Styles.feedbackHeader}>
-        <div className={Styles.feedbackHeaderLeft}>
+          <div className={Styles.feedbackHeaderLeft}>
           <div className={Styles.headerLeftImage}>
             <img src={smileyReviews[5]} alt="" />
           </div>
@@ -26,7 +38,7 @@ export const Feedback: React.FC = () => {
           </div>
         </div>
         <div className={Styles.feedbackHeaderRight}>
-          <Speedometer value={0.5} />
+          <Speedometer value={-1*Math.ceil(data.user_reviews.reduce((acc, obj) => acc + obj.rating, 0) / data.user_reviews.length)} />
         </div>
       </div>
 
@@ -34,21 +46,25 @@ export const Feedback: React.FC = () => {
         <div className={Styles.cardWrapper}>
           <div className="section">
             <div className="sectionHeading">
-              Hi Charlie, <br /> here are the glimpses of your feedback shared
+              Hi {`${data.user.firstname}`}, <br /> Here are the glimpses of your feedback shared
               with us
             </div>
           </div>
-          {userCharlie.attendedEvents.map((value, i) => {
-            const matchedCards = LocationCards.find(
-              (event) => event.id === value.eventId
-            );
-            console.log("matchedCards :>> ", matchedCards);
-            return matchedCards ? (
+
+          {attendedEvents.map((event) => {
+            const review = data.user_reviews.find((eve) => eve.event_id === event.id)
+            const date = data.user_events.find((eve) => eve.event_id === event.id);
+            return ( 
               <FeedbackElement
-                card={matchedCards}
-                index={value.rating > 0 ? 6 - value.rating : value.rating}
+                card={event}
+                index={review ? Math.floor(review.rating):0}
+                date={date.event_date}
+                review = {review ? review.description:""}
+                userName = {data.user.firstname}
+                userid = {data.user.userid}
+                event_id = {event.id}
               />
-            ) : null;
+            );
           })}
         </div>
       </section>

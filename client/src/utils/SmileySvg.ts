@@ -6,8 +6,8 @@ import joy from "../assets/img/joy.svg";
 import overwhelmed from "../assets/img/overwhelmed.svg";
 
 
-export  const smileyReviews = [anger, appreciation, boredom, disappointed, joy, overwhelmed]
-
+export  const smileyReviews = [overwhelmed,appreciation,joy,boredom,disappointed,anger].reverse()
+// 
 const reviews = {
   0.5: {
     image: anger,
@@ -55,7 +55,7 @@ const reviews = {
 
 
 
-export const getReview = (rating) => {
+export const  getReview = (rating) => {
 
   const closestRating = Object.keys(reviews).reduce((prev, curr) => {
     return Math.abs(curr - rating) < Math.abs(prev - rating) ? curr : prev;

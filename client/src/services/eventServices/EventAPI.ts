@@ -1,9 +1,8 @@
 import { useSelector } from "react-redux";
-
-
-
-
+import { rescheduleEvent } from "../../store/userSlice";
+import {useDispatch} from "react-redux";
 export const addToSchedule = async (eventid,userid) => {
+  console.log('eventid :>> ', eventid);
     try {
       const res = await fetch("/api/addEvent", {
         method: "POST",
@@ -12,13 +11,10 @@ export const addToSchedule = async (eventid,userid) => {
         },
         body: JSON.stringify({ eventid, userid }),
       });
-  
       if (!res.ok) {
         throw new Error("Failed to add event to schedule");
       }
-  
       return await res.json(); 
-      
     } catch (error) {
       console.error("Error adding event:", error);
       return { success: false, message: error.message };
@@ -63,3 +59,51 @@ console.log('here :>> ');
       console.log('error.message :>> ', error.message);
     }
   }
+
+  export const rescheduleThisEvent = async (eventid, rescDate, dispatch) => {
+    try {
+      console.log("Event is being rescheduled");
+      const res = await fetch("/api/reschedule-event", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ eventid, rescDate }),
+      });
+  
+      if (!res.ok) {
+        throw new Error(`Failed to reschedule event. Status: ${res.status}`);
+      }
+  
+      console.log(res.status, "Status of API");
+  
+      const data = await res.json();
+      return data;
+    } catch (error) {
+      console.error("Error rescheduling event:", error.message);
+    }
+  };
+  
+  export async function deleteEntry(id) {
+      try {
+        const response = await fetch(`/api/cancel-event?id=${id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+    
+        if (!response.ok) {
+          throw new Error(`Error deleting entry: ${response.statusText}`);
+        }
+    
+        const result = await response.json();
+        console.log("Entry deleted successfully:", result);
+        return result;
+      } catch (error) {
+        console.error("Error in deleteEntry:", error);
+        throw error;
+      }
+    }
+    
+  

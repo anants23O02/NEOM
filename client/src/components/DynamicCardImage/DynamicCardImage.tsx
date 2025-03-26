@@ -49,7 +49,9 @@ export const DynamicCardImage: React.FC<DynamicCardImageProps> = ({
   };
 
   const removeFavorite = () => {
+    const result = removeFromFavorite(eventid,userid);
     dispatch(removeFavoriteEvent(eventid));
+
   };
 
   const handleClickImage = () => {

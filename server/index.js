@@ -3,7 +3,11 @@ import authRouter from "./src/router/authRoutes.js";
 import cookieParser from "cookie-parser";
 import adminRouter from "./src/router/adminRouter.js";
 import dataRouter from "./src/router/dataRouter.js";
+import paymentRouter from "./src/router/paymentRouter.js";
 import cors from "cors";
+import {wss} from "./src/WebSocket/notification.js"
+
+
 const app = express();
 app.use(cookieParser());
 app.use(express.json())
@@ -14,13 +18,10 @@ app.use(
   })
 );
 
-app.get("/", (req, res) => {
-  res.send("Hello, World!");
-});
-
 app.use("/auth", authRouter);
 app.use("/api/admin",adminRouter);
 app.use("/api/",dataRouter);
+app.use("/payment",paymentRouter);
 
 
 const PORT = process.env.PORT || 5000;

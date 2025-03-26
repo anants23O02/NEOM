@@ -79,6 +79,6 @@ export const settingsData:settingsDataInterface[] = [
       heading:'Language',
       description: 'Culpa consectetur do magna duis ut mollit enim irure amet amet magna do eiusmod.',
       buttonType:'OptionButtonRadioButton',
-      options:['English','French','Arabic'],
+      options:['English','Arabic','French'],
   },
 ]

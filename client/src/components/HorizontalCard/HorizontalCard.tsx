@@ -4,32 +4,74 @@ import { MdStar } from "react-icons/md";
 import { CiLocationOn } from "react-icons/ci";
 import { BiCategory } from "react-icons/bi";
 import type { locationCards } from "../../assets/Dummydata/LocationCardInterface";
-import group from "../../assets/img/Group.svg";
+import cloudy from "../../assets/img/cloudy.png";
+import cloudyDay from "../../assets/img/cloudy-day.png";
+import sunny from "../../assets/img/sunny.png";
+import rainy from "../../assets/img/rainy-day.png";
 import TruncatedText from "../../utils/TruncatedText";
 import { getReview } from "../../utils/SmileySvg";
 import { ConvertDate } from "../../utils/DateValue";
 import { useNavigate } from "react-router-dom";
+import { fetchWeather } from "../../utils/fetchTemp";
+import { useEffect, useState } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
 
 interface HorizontalCardProps {
   value: locationCards;
 }
-
+const tempimage = [cloudy, cloudyDay, sunny, rainy];
 export const HorizontalCard: React.FC<HorizontalCardProps> = ({ value }) => {
+  const [temperature, setTemperature] = useState();
+  console.log(temperature, "currentTemperature ");
+  let tempimg;
+  if (temperature) {
+    if (temperature.weatherCondition == "Clear sky") {
+      tempimg = sunny;
+    } else if (temperature.weatherCondition == "Rainy") {
+      tempimg = rainy;
+    } else if (temperature.weatherCondition == "Foggy") {
+      tempimg = cloudyDay;
+    } else {
+      tempimg = cloudy;
+    }
+  }
+
+  useEffect(() => {
+    const fetching = async () => {
+      const temp = await fetchWeather(value.location[0], value.location[1]);
+      setTemperature(temp);
+      console.log(temp);
+    };
+    fetching();
+  }, []);
   const navigate = useNavigate();
   const Review = getReview(value.stars);
-  const handleClick =() => {
+  const handleClick = () => {
     navigate(`/event/${value.id}`);
-  }
+  };
   const startDateArray = ConvertDate(new Date(value.start_date));
   const endDateArray = ConvertDate(new Date(value.end_date));
   return (
-    <div className={styles.card} onClick= {handleClick}>
+    <div className={styles.card} onClick={handleClick}>
       {/* image side */}
       <div className={styles.cardPoster}>
         <img src={value.images} alt="" />
-        <div className={styles.imageData}>
-          <img src={group} alt="" />
-        </div>
+        {temperature ? (
+          <div className={styles.imageData}>
+            <img src={tempimg} alt="noimage" />
+            <div className={styles.imageDataValue}>
+              <div style={{ color: "white", fontSize: "1.5rem" }}>
+                {`${temperature.currentTemp}°C`}
+              </div>
+              <div className={styles.tempValue}>
+                <div style={{ color: "white" }}>{temperature.maxTemp}°C</div>
+                <div style={{ color: "white" }}>{temperature.minTemp}°C</div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <CircularProgress />
+        )}
       </div>
 
       {/* content side */}
@@ -48,7 +90,7 @@ export const HorizontalCard: React.FC<HorizontalCardProps> = ({ value }) => {
         </div>
 
         <div className={styles.cardDescription}>
-          {TruncatedText(value.event_desc, 20)}
+          {TruncatedText(value.event_desc, 17)}
           <span style={{ color: "red", textDecoration: "underline" }}>
             read more
           </span>

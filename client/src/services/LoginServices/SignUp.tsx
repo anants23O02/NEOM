@@ -52,7 +52,7 @@ export const SignUp: React.FC = () => {
 
   return (
     <>
-      <section className="container">
+        <section className="container">
         <div className="section">
           <div className="sectionHeadingCenter">Sign Up Form</div>
           <div className={styles.formContainer}>

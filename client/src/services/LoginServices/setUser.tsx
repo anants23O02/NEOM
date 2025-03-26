@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { login } from "../../store/userSlice";
 import { useEffect } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export const SetUser: React.FC = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,27 @@ export const SetUser: React.FC = () => {
   }, [dispatch]);
   return (
     <>
-      <div style={{ margin: "auto" }}>Logging In.....</div>
+      <div
+        style={{
+          width:"100%",
+          height:"100vh",
+          display: "flex",
+          flexDirection:"column",
+          justifyContent: "center",
+          alignItems: "center",
+          margin:"auto",
+          textAlign:"center",
+
+        }}
+      >
+        <CircularProgress/>
+
+        <div style={{
+          padding:"1rem"
+        }} >
+          Logging In...
+        </div>
+      </div>
     </>
   );
 };

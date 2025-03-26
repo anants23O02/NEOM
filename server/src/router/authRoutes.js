@@ -12,7 +12,7 @@ const Router = express.Router();
 Router.get("/google",googleRedirect);
 Router.get("/google/callback", googleCallBack);
 Router.get("/google/user",verifyJWTMiddleware,userAccount);
-Router.post("/signUp",uploadImage,registerAccount);
-Router.get("/signIn",verifyJWTMiddleware,giveaccount);
-Router.post("/login",verifyaccount);
+Router.post("/signUp",uploadImage({ required: true }),registerAccount);
+Router.get("/signIn",verifyJWTMiddleware,giveaccount);  
+Router.post("/login",verifyaccount);//login with email and password
 export default Router ;

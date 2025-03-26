@@ -7,6 +7,8 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { altState } from "../store/RadioButton";
 import { RootState } from "../store";
+import { changeLanguage } from "../store/userSlice";
+
 
 export const RadioButton: React.FC<{ options: string[] }> = ({ options }) => {
   const dispatch = useDispatch();
@@ -14,11 +16,18 @@ export const RadioButton: React.FC<{ options: string[] }> = ({ options }) => {
 
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(altState({ click: event.target.value }));
+    const str = event.target.value;
+    console.log(str,Number(str.replace(/[^\d]/g, "")))
+    dispatch(changeLanguage(Number(str.replace(/[^\d]/g, ""))))
   };
   const fontStyles = {
     fontFamily: "BrownLight",
     fontSize: "0.8rem",
   };
+  function handleClick (i) {
+    dispatch(changeLanguage(i))
+
+  }
 
   return (
     <>
@@ -35,18 +44,23 @@ export const RadioButton: React.FC<{ options: string[] }> = ({ options }) => {
               control={<Radio />}
               label={options[0]}
               sx={fontStyles}
+              onClick={() => handleClick(1)}
             />
             <FormControlLabel
               value="option2"
               control={<Radio />}
               label={options[1]}
               sx={fontStyles}
+              onClick={() => handleClick(2)}
+
             />
             <FormControlLabel
               value="option3"
               control={<Radio />}
               label={options[2]}
               sx={fontStyles}
+              onClick={() => handleClick(3)}
+
             />
           </div>
         </RadioGroup>

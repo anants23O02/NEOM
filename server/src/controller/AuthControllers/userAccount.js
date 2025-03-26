@@ -10,13 +10,13 @@ cloudinary.v2.config({
 export const userAccount = async (req, res) => {
   if (req.body.sub) {
     try {
-      console.log("req.body.googleid :>> ", req.body.googleid);
+      // console.log("req.body.googleid :>> ", req.body.googleid);
       const { sub, picture, given_name, family_name, email } = req.body;
       const userCheck = await pool.query(
         "SELECT * FROM users WHERE googleid = $1",
         [sub]
       );
-      console.log("userCheck.rows :>> ", userCheck.rows);
+      // console.log("userCheck.rows :>> ", userCheck.rows);
 
       if (userCheck.rows.length === 0) {
         const uploadResponse = await cloudinary.v2.uploader.upload(picture, {
@@ -42,18 +42,31 @@ export const userAccount = async (req, res) => {
       JSON_BUILD_OBJECT(
       'event_id', event_id, 
       'status', status, 
-      'event_date', event_date
+      'event_date', event_date,
+      'guests',guests
        )
        ) AS events
       FROM user_events
       WHERE user_id = $1;`;
       const user_events = await pool.query(eventsQuery, [userID]);
+      const reviewsQuery = `SELECT * FROM user_reviews WHERE userid = $1;`
+      const reviewValues = [userID];
+      const userReviews = await pool.query(reviewsQuery,reviewValues);
+      console.log('userReviews :>> ', userReviews);
+      const sortedData = user_events.rows[0].events.sort(
+        (a, b) => new Date(a.event_date) - new Date(b.event_date)
+      );
+      
+
 
       return res.status(200).json({
         user: userCheck.rows[0],
         fav_events: fav_events.rows[0].event_ids,
-        user_events: user_events.rows[0].events,
+        user_events: sortedData,
+        user_reviews:[userReviews.rows[0]],
       });
+
+      
     } catch (error) {
       return res.status(500).json({ error: error.message });
     }

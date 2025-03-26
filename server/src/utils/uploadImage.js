@@ -7,14 +7,14 @@ cloudinary.v2.config({
 });
 
 /**
- * Uploads an image from req.body to Cloudinary
  * @param {string} base64Image - The Base64 string of the image
  * @param {string} folder - The Cloudinary folder to store the image
  * @returns {Promise<string>} - The Cloudinary secure URL of the uploaded image
  */
+
+
 export const uploadImageFromBody = async (base64Image, folder = "uploads") => {
   if (!base64Image) throw new Error("No image provided");
-
   try {
     const uploadResponse = await cloudinary.v2.uploader.upload(base64Image, {
       folder,

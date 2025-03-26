@@ -1,66 +1,79 @@
-import { Navbar } from "../components/Navbar/Navbar";
-import { HorizontalCard } from "../components/HorizontalCard/HorizontalCard";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+
+import { motion } from "framer-motion";
+
+import globalStyles from "../styles/dashboard.module.css";
+
 import { LocationCards } from "../assets/Dummydata/LocationCards";
 import { RecommendCards } from "../assets/Dummydata/serverData";
+import { userCharlie } from "../assets/Dummydata/userData";
+
+import { Navbar } from "../components/Navbar/Navbar";
+import { HorizontalCard } from "../components/HorizontalCard/HorizontalCard";
 import { BigImageCard } from "../components/BigImageCard/BigImageCard";
 import { RecommendCard } from "../components/RecommendCards/RecommendCard";
 import { AttendedCard } from "../components/AttendedCard/AttendedCard";
+import {AskReview} from "../components/AskReview/AskReview";
 import { Footer } from "../components/Footer/Footer";
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { TranslatingArrows } from "../utils/TranslatiingArrows";
-import { userCharlie } from "../assets/Dummydata/userData";
-import globalStyles from "../styles/dashboard.module.css";
 import MapComponent from "../components/MapComponent/MapComponent";
-import { useSelector } from "react-redux";
+
+import { TranslatingArrows } from "../utils/TranslatiingArrows";
 
 export const Dashboard: React.FC = () => {
+  const notification = useSelector((state) => state.notifications);
   const data = useSelector((state) => state.user.user.user);
+  const language = useSelector((state) => state.user.user.language);
+  if (!data.fav_events) {
+    data.fav_events = [];
+  }
+  if (!data.user_events) {
+    data.user_events = [];
+  }
   const events = useSelector((state) => state.events.events.events);
-  console.log("data :>> ", data);
-  console.log("events :>> ", events);
-
   let user = data.user.firstname;
-
   const [translate, settranslate] = useState(0);
-  const [translateBig, settranslateBig] = useState(0);
-  function rightTranslateBig() {
-    if (translateBig > -36) {
-      const newtranslate = translateBig - 36;
-      settranslateBig(newtranslate);
-    } else {
-      return;
-    }
-  }
-
-  function leftTranslateBig() {
-    if (translateBig < 0) {
-      const newtranslate = translateBig + 36;
-      settranslateBig(newtranslate);
-    } else {
-      return;
-    }
-  }
-
+  const vwToPx =Math.floor( (38 / 100) * window.innerWidth); 
+  const value = data.user_events.filter((event) => event.status === "scheduled").length -2;
   function rightTranslate() {
-    const value = data.user_events.filter((event) => event.status === "scheduled").length - 1.5;
-    if (translate > value * -34) {
-      const newtranslate = translate - 34;
-      settranslate(newtranslate);
+  
+    if (translate > value * -1*vwToPx) { 
+        const newtranslate = translate - vwToPx - 15; 
+        if (newtranslate > 0 ){
+          settranslate(0)
+        }
+        settranslate(newtranslate);
+        console.log(newtranslate, "right");
+      
     } else {
       return;
     }
   }
 
   function leftTranslate() {
-    if (translate < 0) {
-      const newtranslate = translate + 34;
+    if (translate < 0 || translate == -1*(vwToPx + 15)) {
+      const newtranslate = translate + vwToPx + 15;
+      if (newtranslate > 0 ){
+        settranslate(0)
+      }
       settranslate(newtranslate);
-    } else {
+      console.log(newtranslate,"left")
+
+ 
+    } else if (translate === 0) {
+   
       return;
+
     }
   }
 
+  useEffect(() => {
+    console.log(notification);
+  }, [notification]);
+
+  console.log("data :>> ", data);
+  console.log("events :>> ", events);
+  console.log("language",language)
   return (
     <>
       <Navbar />
@@ -83,15 +96,17 @@ export const Dashboard: React.FC = () => {
                   width: " max-content",
                   gap: "15px",
                 }}
-                animate={{ x: ` ${translate}vw` }}
+                animate={{ x: `${translate}px` }}
                 transition={{ duration: 0.5 }}
               >
                 {data.user_events.map((id, i) => {
                   if (id.status !== "scheduled") {
-                    return
+                    return;
                   }
 
-                  const matchedCard = events.find((card) => card.id === id.event_id);
+                  const matchedCard = events.find(
+                    (card) => card.id === id.event_id
+                  );
                   return matchedCard ? (
                     <HorizontalCard value={matchedCard} key={i} />
                   ) : null;
@@ -101,6 +116,8 @@ export const Dashboard: React.FC = () => {
             <TranslatingArrows
               leftTranslate={leftTranslate}
               rightTranslate={rightTranslate}
+              translate={translate}
+              max = {value * -1*vwToPx}
             />
           </div>
         </div>
@@ -108,33 +125,10 @@ export const Dashboard: React.FC = () => {
 
       <section className="container">
         <div className="section ">
-          <div className="sectionHeading">
-            {`${user}, hope we understand you better`}
-          </div>
-
-          <div className="sectionDescription">
-            <div className={globalStyles.ratingcard}>
-              <motion.div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  width: " max-content",
-                  gap: "15px",
-                }}
-                animate={{ x: ` ${translateBig}vw` }}
-                transition={{ duration: 0.5 }}
-              >
-                {userCharlie.AskReview.map((value, i) => {
-                  return <BigImageCard value={value} key={i} />;
-                })}
-              </motion.div>
-            </div>
-            <TranslatingArrows
-              leftTranslate={leftTranslateBig}
-              rightTranslate={rightTranslateBig}
-            />
-          </div>
+          <>
+            <AskReview/>
+            <div className="sectionDescription"></div>
+          </>
         </div>
       </section>
 
@@ -143,10 +137,9 @@ export const Dashboard: React.FC = () => {
           <div className="sectionHeading">
             {`Today Recommendation for you, ${user}!`}
           </div>
-
           <div className="sectionDescription">
             <div className="fitCards">
-              {events.slice(4 ).map((card, i) => {
+              {events.slice(4).map((card, i) => {
                 return (
                   <RecommendCard
                     value={card}
@@ -166,7 +159,6 @@ export const Dashboard: React.FC = () => {
           <div className="sectionHeading">
             {`${user}, here is your master journey with us so far`}
           </div>
-
           <div className="sectionDescription">
             <div className="fitCards">
               {data.user_events.map((event, i) => {
@@ -176,10 +168,15 @@ export const Dashboard: React.FC = () => {
                   const matchedCard = events.find(
                     (card) => card.id === event.event_id
                   );
+                  const user_review = data.user_reviews.find(
+                    (eve) => eve.event_id === event.event_id
+                  );
                   return matchedCard ? (
                     <AttendedCard
                       value={matchedCard}
-                      rating={event.rating}
+                      rating={user_review ? user_review.rating : 0}
+                      guests={event.guests}
+                      date={event.event_date}
                       key={i}
                     />
                   ) : null;

@@ -1,21 +1,24 @@
 .modalImage {
-  width: 30%;
+  /* width: fit-content; */
+  height: 100%;
 }
 .modalImage img {
-  width: 100%;
-  height: 100%;
+  width: 8rem;
+  height: 8rem;
 }
 
 .modalContent {
+  width: 8rem;
+  width: fit-content;
   display: flex;
   flex-direction: column;
-  padding: 0.3rem 0.5rem;
+  padding: 0.3rem 0.6rem;
   justify-content: center;
+  /* margin-left: -0.4rem;   */
 }
 
-.modalContent p {
+.modalContent k {
   font-size: 1.2rem;
-  margin: 0;
   font-weight: 600;
   font-family: "Brown";
 }
@@ -24,10 +27,11 @@
   font-size: 0.8rem;
 }
 .time {
+  width: 7rem;
   font-family: "Brown";
   font-weight: 600;
-  font-size: 0.8rem;
-  letter-spacing: 0.6px;
+  font-size: 0.6rem;
+  /* letter-spacing: 0.4px; */
   padding-bottom: 8px;
 }
 .review {

@@ -4,7 +4,6 @@ import { UserReview } from "../components/UserReview/UserReview";
 import { Navbar } from "../components/Navbar/Navbar";
 import style2 from "../styles/eventpage.module.css";
 import { MdStar } from "react-icons/md";
-import image from "../assets/img/golf.jpg";
 import { BiCategory } from "react-icons/bi";
 import { userReviews } from "../assets/Dummydata/UserReviews";
 import { SlLocationPin } from "react-icons/sl";
@@ -12,37 +11,88 @@ import logo from "../assets/img/overwhelmed.svg";
 import { EventImages } from "../components/EventImages/EventImages";
 import { RecommendCard } from "../components/RecommendCards/RecommendCard";
 import { DivideArrays } from "../utils/DivideArrays";
-import { LocationCards } from "../assets/Dummydata/LocationCards";
 import { UpcomingEvents } from "../assets/Dummydata/serverData";
 import { Footer } from "../components/Footer/Footer";
 import { useSelector } from "react-redux";
 import ScheduleModal from "../components/ScheduleModal/SheduleModal";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
-import {AddReviewModal} from "../components/userReviewModal/userReviewModal";
+import { useState, useEffect, useLayoutEffect } from "react";
+import { ReviewModal } from "../components/ReviewModal/ReviewModal";
+import { useLocation } from "react-router-dom";
+import { getReview } from "../utils/SmileySvg";
+import ScrollTop from "../components/ScrollTop/ScrollTop";
 
 export const EventPage: React.FC = () => {
-  const [modal, setmodal] = useState(false)
   const events = useSelector((state) => state.events.events.events);
   const userData = useSelector((state) => state.user.user.user);
   const upcomingEventArray = DivideArrays(UpcomingEvents, 5);
   const { eventId } = useParams();
-  const matchedEvent = userData.user_events.filter(
-    (event) => event.event_id === Number(eventId)
-  );
+  // const { pathname } = useLocation();
+
+  console.log("userData :>> ", userData);
+  const checkScheduledEvent =
+    userData.user_events.filter(
+      (event) =>
+        event.event_id === Number(eventId) && event.status === "scheduled"
+    ).length !== 0
+      ? true
+      : false;
+  const checkAttendedEvent =
+    userData.user_events.filter(
+      (event) =>
+        event.event_id === Number(eventId) && event.status === "attended"
+    ).length !== 0
+      ? true
+      : false;
+
+      const { pathname } = useLocation();
+
+  useEffect(() => {
+    // Wait for a short delay
+    setTimeout(() => {
+      // Use requestAnimationFrame twice to ensure rendering is done
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          window.scrollTo(0, 0);
+        });
+      });
+    }, 200); // Adjust delay as needed (200ms or more)
+  }, [pathname]);
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const eventarr = events.filter((card) => card.id === Number(eventId));
   const event = eventarr[0];
-  console.log("event :>> ", event, eventId);
+
+  const reviewed = userData.user_reviews.filter(
+    (reviews) => reviews.event_id === event.id
+  );
+
+  console.log(
+    "checkScheduledEvent,eventarr,event :>> ",
+    checkScheduledEvent,
+    eventarr,
+    event
+  );
+  // console.log("event :>> ", event, eventId);
+  //This is for setting the event on event page
+
   const [translate, settranslate] = useState(0);
+  const [Open, setOpen] = useState(false);
+  const askReview = () => {
+    setOpen(true);
+  };
 
   function rightTranslate() {
-    if (translate > 2 * -34) {
+    if (translate > -34) {
       const newtranslate = translate - 34;
       settranslate(newtranslate);
     } else {
       return;
     }
-  } 
+  }
 
   function leftTranslate() {
     if (translate < 0) {
@@ -55,27 +105,33 @@ export const EventPage: React.FC = () => {
 
   return (
     <>
-
-    {modal&& <AddReviewModal isOpen={modal} onClose={setmodal} />}
-
+        {/* <ScrollTop/> */}
       <Navbar />
-
-      {matchedEvent.length !==0 && <section className="container">
-        <div className={style2.userReview}>
-          <div className={style2.reviewContent}>
-            <div className="sectionHeading">Hey Charlie,</div>
-            <div className="sectionContentLarge">
-              We are sure that you have enjoyed this event a lot. Would you like
-              to share your feedback with us. <br /> It helps us to improve and
-              serve you better.
-            </div>
-          </div>
-          <button onClick={() => {setmodal(true);console.log('modal :>> ', modal);}} >Add a Review</button>
-        </div>
-      </section>}
-
       <section className="container">
+        <ReviewModal
+          isOpen={Open}
+          onClose={setOpen}
+          username={userData.user.firstname}
+          event_id ={event.id} user_id={userData.userid} 
+        />
         <div className={style2.section}>
+          {checkAttendedEvent && reviewed.length === 0 && (
+            <div className={style2.askReviewContainer}>
+              <div className={style2.askReviewContent}>
+                <div className={style2.askReviewTitle}>
+                  {`Hey ${userData.user.firstname},`}
+                </div>
+                <div className={style2.askReviewDesc}>
+                  We are sure that you have enjoyed this event a lot. Would you
+                  like to share your feedback with us. <br /> It helps us to
+                  imporve and serve you better.
+                </div>
+              </div>
+              <div className={style2.askReviewButton}>
+                <button onClick={askReview}>Add a review</button>
+              </div>
+            </div>
+          )}
           <div className="sectionHeading">{event.title} </div>
           <div className={style2.headingCntent}>
             <div className={style2.headingstars}>
@@ -98,7 +154,16 @@ export const EventPage: React.FC = () => {
         </div>
       </section>
 
-      <EventImages image={event.images} />
+      <EventImages
+        image={event.images}
+        status={
+          checkScheduledEvent
+            ? "Scheduled"
+            : checkAttendedEvent
+            ? "Attended"
+            : "Upcoming"
+        }
+      />
 
       <section className="container">
         <section className="container">
@@ -112,9 +177,10 @@ export const EventPage: React.FC = () => {
                       <BiCategory />
                     </div>
                     <div className={style2.DescriptionDetailText}>
-                      <h3>Golf</h3>
+                      <h3>{event.category} </h3>
                       <p>
-                        This is one of the many events under the Golf category
+                        This is one of the many events under the{" "}
+                        {event.category} category
                       </p>
                     </div>
                   </div>
@@ -132,13 +198,13 @@ export const EventPage: React.FC = () => {
                   </div>
                   <div className={style2.DescriptionDetail}>
                     <div className={style2.DescriptionDetailIcon}>
-                      <img src={logo} alt="" />
+                      <img src={getReview(event.stars).image} alt="" />
                     </div>
                     <div className={style2.DescriptionDetailText}>
-                      <h3>Invigoration & uplifting experience</h3>
+                      <h3>{getReview(event.stars).description[0]}</h3>
                       <p>
-                        This event has a rating of 5.0 which makes it
-                        overwhelmed.
+                        This event has a rating of {event.stars} which makes it
+                        {getReview(event.stars).description[1].split("-")[1]}.
                       </p>
                     </div>
                   </div>
@@ -171,14 +237,19 @@ export const EventPage: React.FC = () => {
                 </div>
               </div>
             </div>
-            {matchedEvent.length === 0 && (
-              <ScheduleModal eventId={Number(eventId)} isOpen={true} />
-            )}
+
+            <ScheduleModal
+              event={event}
+              isOpen={true}
+              userId={userData.user.userid}
+              checkScheduledEvent={checkScheduledEvent}
+              checkAttendedEvent={checkAttendedEvent}
+            />
           </div>
         </section>
       </section>
 
-      <section className="container" style={{margin:"1.3rem 0"}}>
+      <section className="container" style={{ margin: "1.3rem 0" }}>
         <div className={style2.userReviews}>
           <motion.div
             style={{
@@ -200,13 +271,15 @@ export const EventPage: React.FC = () => {
           <TranslatingArrows
             leftTranslate={leftTranslate}
             rightTranslate={rightTranslate}
+            translate={translate}
+            max={-34}
           />
         </div>
       </section>
 
       <section className="container">
         <div className="sectionHeading">
-          Some more recommendations for you, Charlie!
+          Some more recommendations for you, {userData.user.firstname}!
         </div>
 
         <div className="fitCards">

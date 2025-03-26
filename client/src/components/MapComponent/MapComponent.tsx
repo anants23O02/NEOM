@@ -7,16 +7,18 @@ import ReactDOMServer from "react-dom/server";
 import ModalComponent from "./ModalComponent";
 import Golf from "../../assets/img/golf.png";
 import Cooking from "../../assets/img/music.png";
-import styles from '../../styles/MapModalComponent.module.css'
+import styles from "../../styles/MapModalComponent.module.css";
+import { useSelector } from "react-redux";
 
-interface Location{
-  id:number;
-  name:string;
-  image:string;
-  lat:number;
-  lng:number;
+interface Location {
+  id: number;
+  name: string;
+  image: string;
+  lat: number;
+  lng: number;
 }
-const locations:Location[] = [
+
+const locations: Location[] = [
   {
     id: 1,
     name: "Golf Tournament",
@@ -38,19 +40,23 @@ const createCustomIcon = () =>
   });
 
 const MapComponent: React.FC = () => {
-  const [selectedLocation, setSelectedLocation] = useState<Location|null>(locations[0]);
+const events = useSelector((state) => state.events.events.events);
+  const [selectedLocation, setSelectedLocation] = useState(
+    events[0]
+  );
 
   return (
     <div
       style={{
-        borderRadius: "0.8rem", 
+        borderRadius: "0.8rem",
         overflow: "hidden",
         position: "relative",
       }}
     >
+      
       <MapContainer
-        center={[28.047345, 34.712805]}
-        zoom={16}
+        center={[28.047345, 34.713611]}
+        zoom={15}
         style={{ height: "30vw", width: "100%" }}
       >
         <TileLayer
@@ -58,15 +64,15 @@ const MapComponent: React.FC = () => {
           attribution='&copy; <a href="https://www.esri.com/">Esri</a>'
         />
 
-        {locations.map((location) => (
+        {events.map((event) => (
           <Marker
-            key={location.id}
-            position={[location.lat, location.lng]}
+            key={event.id}
+            position={[event.location[0], event.location[1]]}
             icon={createCustomIcon()}
-            eventHandlers={{ click: () => setSelectedLocation(location) }}
+            eventHandlers={{ click: () => setSelectedLocation(event) }}
           >
-            <Popup closeButton={false} className={styles.popup}  >
-            <div
+            <Popup closeButton={false} className={styles.popup}>
+              <div
                 style={{
                   width: "16rem",
                   height: "6rem",
@@ -77,14 +83,14 @@ const MapComponent: React.FC = () => {
                   overflow: "hidden",
                 }}
               >
-              {selectedLocation && selectedLocation.id === location.id && (
-                <div>
-                  <ModalComponent
-                    location={selectedLocation}
-                    onClose={() => setSelectedLocation(null)}
+                {selectedLocation && selectedLocation.id === event.id && (
+                  <div>
+                    <ModalComponent
+                      event={event}
+                      onClose={() => setSelectedLocation(null)}
                     />
-                </div>
-              )}
+                  </div>
+                )}
               </div>
             </Popup>
           </Marker>
