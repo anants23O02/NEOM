@@ -1,19 +1,24 @@
-import { Navbar } from "../components/Navbar/Navbar";
-import { HorizontalCard } from "../components/HorizontalCard/HorizontalCard";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+
+import { motion } from "framer-motion";
+
+import globalStyles from "../styles/dashboard.module.css";
+
 import { LocationCards } from "../assets/Dummydata/LocationCards";
 import { RecommendCards } from "../assets/Dummydata/serverData";
+import { userCharlie } from "../assets/Dummydata/userData";
+
+import { Navbar } from "../components/Navbar/Navbar";
+import { HorizontalCard } from "../components/HorizontalCard/HorizontalCard";
 import { BigImageCard } from "../components/BigImageCard/BigImageCard";
 import { RecommendCard } from "../components/RecommendCards/RecommendCard";
 import { AttendedCard } from "../components/AttendedCard/AttendedCard";
 import {AskReview} from "../components/AskReview/AskReview";
 import { Footer } from "../components/Footer/Footer";
-import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
-import { TranslatingArrows } from "../utils/TranslatiingArrows";
-import { userCharlie } from "../assets/Dummydata/userData";
-import globalStyles from "../styles/dashboard.module.css";
 import MapComponent from "../components/MapComponent/MapComponent";
-import { useSelector } from "react-redux";
+
+import { TranslatingArrows } from "../utils/TranslatiingArrows";
 
 export const Dashboard: React.FC = () => {
   const notification = useSelector((state) => state.notifications);
@@ -33,7 +38,6 @@ export const Dashboard: React.FC = () => {
   function rightTranslate() {
   
     if (translate > value * -1*vwToPx) { 
-      // setTranslateX(vwToPx + 15);
         const newtranslate = translate - vwToPx - 15; 
         if (newtranslate > 0 ){
           settranslate(0)
@@ -133,7 +137,6 @@ export const Dashboard: React.FC = () => {
           <div className="sectionHeading">
             {`Today Recommendation for you, ${user}!`}
           </div>
-
           <div className="sectionDescription">
             <div className="fitCards">
               {events.slice(4).map((card, i) => {
@@ -156,7 +159,6 @@ export const Dashboard: React.FC = () => {
           <div className="sectionHeading">
             {`${user}, here is your master journey with us so far`}
           </div>
-
           <div className="sectionDescription">
             <div className="fitCards">
               {data.user_events.map((event, i) => {

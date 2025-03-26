@@ -39,7 +39,9 @@ export const NotificationComponent = ({
     return events.find((event) => eventId === event.id);
   };
   const findEventDate = (eventId) => {
-    return data.user_events.find((event) => eventId === event.event_id);
+    console.log('eventId,event.event_id here in find date:>> ', eventId,event);
+    console.log( data.user_events.filter((event) => Number(eventId) === event.event_id)[0]);
+    return data.user_events[0]
   };
 
   const showNotifications = (e) => {
@@ -80,6 +82,7 @@ export const NotificationComponent = ({
 
   const handleCancel = (id) => {
     setcancel(true)
+    setvisible(false)
     // dispatch(clearNotification(id));
   };
 
@@ -163,7 +166,7 @@ export const NotificationComponent = ({
 {cancel && (
           <CancelModal
             isOpen={cancel}
-            onClose={() => setCancel(false)}
+            onClose={() => setcancel(false)}
             title={`Hey ${data.user.firstname},`}
             message="Are you sure you want to cancel this event?"
             eventid={notificationData.data[index].event_id}

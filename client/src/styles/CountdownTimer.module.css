@@ -1,7 +1,7 @@
 .countdownContainer {
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 0.3rem;
   align-items: center;
   margin-top: 20px;
 }
@@ -10,8 +10,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 5rem; /* Diameter = 2 * radius */
-  height: 5rem;
+  width: 7rem; /* Diameter = 2 * radius */
+  height: 7rem;
+  /* border: 1px solid; */
 }
 
 .label {

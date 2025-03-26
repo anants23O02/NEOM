@@ -84,3 +84,26 @@ console.log('here :>> ');
     }
   };
   
+  export async function deleteEntry(id) {
+      try {
+        const response = await fetch(`/api/cancel-event?id=${id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+    
+        if (!response.ok) {
+          throw new Error(`Error deleting entry: ${response.statusText}`);
+        }
+    
+        const result = await response.json();
+        console.log("Entry deleted successfully:", result);
+        return result;
+      } catch (error) {
+        console.error("Error in deleteEntry:", error);
+        throw error;
+      }
+    }
+    
+  

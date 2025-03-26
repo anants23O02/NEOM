@@ -133,19 +133,13 @@ export const PaymentModal: React.FC = ({
               <input
                 type="date"
                 className={styles.inputField}
-                min={minDate}
-                max={maxDate}
+                
                 value={date}
                 onChange={(e) => {
                   const selectedDate = e.target.value;
-                  if (selectedDate < minDate || selectedDate > maxDate) {
-                    alert(
-                      `Please Select a Date between ${minDate} - ${maxDate}`
-                    );
-                    e.target.value = "";
-                  } else {
+              
                     setDate(selectedDate);
-                  }
+                  
                 }}
                 required
               />

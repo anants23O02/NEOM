@@ -9,6 +9,7 @@ import { sendUserData } from "../controller/DataControllers/userData.js";
 import { rescheduleEvent } from "../controller/DataControllers/rescheduleEventDB.js";
 import {askQuestions} from "../controller/DataControllers/askQuestions.js";
 import {myapi} from "../controller/DataControllers/myapi.js";
+import {cancelEvent} from "../controller/DataControllers/cancelEvent.js";
 const Router = express.Router();
 
 Router.get("/events",sendEvents);
@@ -19,6 +20,7 @@ Router.patch("/edit-profile",uploadImage({ required: false }),editProfile);
 Router.get("/user-data",sendUserData);
 Router.patch("/reschedule-event",rescheduleEvent);
 Router.get("/ask-questions",askQuestions)
+Router.delete("/cancel-event",cancelEvent);
 // Router.get("/myapi",myapi)
 
 // Router.get("/dome", async(req,res) =>{

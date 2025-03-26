@@ -49,7 +49,7 @@ export const BigImageCard: React.FC<{ value: askReview }> = ({ value ,setno}) =>
             <div className={styles.bigCardDate}>
               {user_event.event_date.split("T")[0]}{" "}
             </div>
-            <div className={styles.bigCardDesc}>{value.question}</div>
+            <div style={{height:"8vh"}} className={styles.bigCardDesc}>{value.question}</div>
             <div className={styles.bigCardFooter}>
               {!value.ask_review ? (
                 accept ? (

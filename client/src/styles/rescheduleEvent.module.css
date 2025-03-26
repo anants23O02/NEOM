@@ -42,7 +42,9 @@
     text-align: center;
     width: 10rem;
     margin: 1rem auto;
-    padding: 0.5rem ;
+    padding: 0.8rem 0.4rem;
     font-family: 'Brown';
     border-radius: 0.5rem;
+    border: none;
+    font-size: 1rem;
 }

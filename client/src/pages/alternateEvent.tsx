@@ -67,22 +67,20 @@ export const AlternateEvent: React.FC = () => {
     }
   };
 
-  const handleReschedule = () => {
-    dispatchEvent(
-      addEventSchedule({
-        event_id: event.id,
-        event_date: event.start_date,
-      })
-    );
+  const handleReschedule = async () => {
     console.log(eveid)
-    dispatch(clearNotification(Number(eveid)));
- 
-
-    window.location.href="/dashboard"
+    // dispatch(clearNotification(Number(eveid)));
+    window.location.href=`/event/${22}`
   };
-
+  
   useEffect(() => {
+    dispatch(clearNotification(Number(eveid))); 
     setUpcomingEventArray(DivideArrays(filteredEvents, 5));
+    setTimeout(() => {
+      const fun = () => {
+        console.log('object :>> ');
+      }
+    }, 2000);
   }, [filteredEvents]);
 
   return (
@@ -90,7 +88,7 @@ export const AlternateEvent: React.FC = () => {
       <Navbar />
       <section className="container">
         <div className={styles.header}>
-          <div className="sectionHeading">{`Hey ${user.firstname},`}</div>
+          <div className="sectionHeading">{`Hey ${user.user.firstname},`}</div>
           <div className="sectionContentLarge">
             {`We have a few similar events for you against your rescheduled event "${event.title}". One of them is starting soon, just an hour away and a 5-minute drive.`}
           </div>

@@ -4,6 +4,9 @@ import { rescheduleThisEvent } from "../../services/eventServices/EventAPI";
 import { clearNotification } from "../../store/notificationSlice";
 import { useDispatch } from "react-redux";
 import { rescheduleEvent } from "../../store/userSlice";
+import {useNavigate} from "react-router-dom";
+import {useState,useEffect} from "react"
+import {useSelector} from "react-redux"
 
 interface ModalProps {
   isOpen: boolean;
@@ -17,13 +20,33 @@ export const RescheduleFormModal: React.FC<ModalProps> = ({
   notification,
   userData,
 }) => {
-  const dispatchEvent = useDispatch()
+  const dispatchEvent = useDispatch();
+  const navigate = useNavigate()
+  // In your component that dispatches the action:
+  const [shouldNavigate, setShouldNavigate] = useState(false);
+  const notificationData = useSelector((state) => state.notifications);
+  
   const handleReserve = async () => {
-    await rescheduleThisEvent(event.id,notification.rescheduled_date,dispatchEvent)
-    dispatchEvent(rescheduleEvent({ eventid:event.id, rescDate:notification.rescheduled_date })); 
-    onClose(false);
-    window.location.href = `/alternate-event/${event.id}`;
+  await rescheduleThisEvent(event.id, notification.rescheduled_date, dispatchEvent);
+  dispatchEvent(
+    rescheduleEvent({
+      eventid: event.id,
+      rescDate: notification.rescheduled_date,
+    })
+  );
+  // dispatchEvent(clearNotification(Number(event.id)));
+  setShouldNavigate(true);
+  navigate(`/alternate-event/${event.id}`);
+};
+
+useEffect(() => {
+  if (shouldNavigate) {
+    console.log('going to the alternate event page :>> ', );
+    // Notification for this event is cleared, so navigate.
   }
+}, [shouldNavigate]);
+
+
   if (!isOpen) return null;
   console.log(event, notification);
   return (
@@ -66,7 +89,12 @@ export const RescheduleFormModal: React.FC<ModalProps> = ({
         </div>
 
         <div className={styles.buttonRow}>
-          <button onClick={() => handleReserve()} className={styles.confirmButton}>Reserve my seats</button>
+          <button
+            onClick={() => handleReserve()}
+            className={styles.confirmButton}
+          >
+            Reserve my seats
+          </button>
           <button
             className={styles.cancelButton}
             onClick={() => onClose(false)}

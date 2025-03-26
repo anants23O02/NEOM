@@ -5,8 +5,8 @@ import styles from "../../styles/CountdownTimer.module.css";
 
 const CountdownTimer: React.FC = (time) => {
   const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
+    days: 1,
+    hours: 14,
     minutes: 59,
     seconds: 59,
   });
@@ -42,6 +42,7 @@ const CountdownTimer: React.FC = (time) => {
         <div key={index} className={styles.circleContainer}>
           <CircularProgressbar
             value={value}
+            strokeWidth= {5}
             maxValue={label === "seconds" || label === "minutes" ? 59 : label === "hours" ? 23 : 30}
             text={`${value}`}
             styles={buildStyles({
