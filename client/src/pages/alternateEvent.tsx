@@ -13,24 +13,32 @@ import CountdownTimer from "../components/CountDownTimer/alternateEvent";
 import { calcLocation } from "../utils/DistanceCalc";
 import { addEventSchedule } from "../store/userSlice";
 import { clearNotification } from "../store/notificationSlice";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 export const AlternateEvent: React.FC = () => {
-  const {eveid} = useParams()
+  const { eveid } = useParams();
+  const notificationData = useSelector((state) => state.notifications);
+  const [Ndate, setNdate] = useState("2025-02-25T08:16:59.836Z");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const dispatchEvent = useDispatch();
-  const { eventid } = {eventid:22};
-  const notificationData = useSelector((state) => state.notifications);
+  // const { eventid } = { eventid: 22 };
   const user = useSelector((state) => state.user.user.user);
   const events = useSelector((state) => state.events.events.events);
+  const nonscheduledEvents = events.filter(
+    (event) =>
+      !user.user_events.some((userEvent) => userEvent.event_id === event.id)
+  );
+  // const event = events.find((event) => event.id === Number(eventid));
+  // if (!event) {
+  //   return <p>Event not found</p>;
+  // }
 
- 
-  const event = events.find((event) => event.id === Number(eventid));
-  if (!event) {
-    return <p>Event not found</p>;
-  }
-
-  const rescDate = ConvertDate(new Date(event.start_date));
+  const rescDate = ConvertDate(new Date(Ndate));
 
   const [travel, setTravel] = useState<number | null>(null);
   const [filteredEvents, setFilteredEvents] = useState(events);
@@ -52,14 +60,20 @@ export const AlternateEvent: React.FC = () => {
       let filtered: number[] = [];
 
       if (i === 3 || i === 4) {
-        filtered = distance.filter((v) => v[0] > 0 && v[0] < 0.4).map((v) => v[1]);
+        filtered = distance
+          .filter((v) => v[0] > 0 && v[0] < 0.4)
+          .map((v) => v[1]);
       } else if (i === 2 || i === 5) {
-        filtered = distance.filter((v) => v[0] > 0.4 && v[0] < 1).map((v) => v[1]);
+        filtered = distance
+          .filter((v) => v[0] > 0.4 && v[0] < 1)
+          .map((v) => v[1]);
       } else if (i === 1 || i === 6) {
         filtered = distance.filter((v) => v[0] > 1).map((v) => v[1]);
       }
 
-      const filteredEventsList = events.filter((eve) => filtered.includes(eve.id));
+      const filteredEventsList = events.filter((eve) =>
+        filtered.includes(eve.id)
+      );
       setFilteredEvents(filteredEventsList);
       setCut(events.length);
     } else {
@@ -68,19 +82,25 @@ export const AlternateEvent: React.FC = () => {
   };
 
   const handleReschedule = async () => {
-    console.log(eveid)
+    console.log(eveid);
     // dispatch(clearNotification(Number(eveid)));
-    window.location.href=`/event/${22}`
+    window.location.href = `/event/${22}`;
   };
-  
+
   useEffect(() => {
-    dispatch(clearNotification(Number(eveid))); 
+    const notification = notificationData.data.filter(
+      (notif) => notif.event_id === Number(eveid)
+    );
+    console.log(notification);
+    if (notification) {
+      console.log(notification, "found notification");
+      setNdate(notification[0].rescheduled_date);
+    }
+    
     setUpcomingEventArray(DivideArrays(filteredEvents, 5));
-    setTimeout(() => {
-      const fun = () => {
-        console.log('object :>> ');
-      }
-    }, 2000);
+    return () => {
+      dispatch(clearNotification(Number(eveid)));
+    }
   }, [filteredEvents]);
 
   return (
@@ -94,30 +114,53 @@ export const AlternateEvent: React.FC = () => {
           </div>
         </div>
       </section>
-
       <section className="container">
-        <div className={styles.rescheduledEvent}>
-          <div className={styles.eventImage}>
-            <img src={event.images} alt="Event" />
-          </div>
-          <div className={styles.eventContent}>
-            <div className={styles.overlayContent} style={{ fontSize: "2.4rem", fontFamily: "IvyMode" }}>
-              {event.title}
-            </div>
-            <div className={styles.overlayContent}>{event.city}</div>
-            <div className={styles.overlayContent}>{`${rescDate[1]} ${rescDate[2]}, ${rescDate[0]}`}</div>
-            <div>
-              <CountdownTimer />
-            </div>
-            <button onClick={handleReschedule} className={styles.rescheduleButton}>
-              Yes, I'm in
-            </button>
-          </div>
-        </div>
+        <Swiper
+          modules={[Navigation, Pagination]}
+          navigation
+          pagination={{ clickable: true }}
+          loop
+          className={styles.swiperContainer}
+        >
+          {nonscheduledEvents.map((event, i) => {
+            return (
+              <SwiperSlide key={i}>
+                <div className={styles.rescheduledEvent}>
+                  <div className={styles.eventImage}>
+                    <img src={event.images} alt="Event" />
+                  </div>
+                  <div className={styles.eventContent}>
+                    <div
+                      className={styles.overlayContent}
+                      style={{ fontSize: "2.4rem", fontFamily: "IvyMode" }}
+                    >
+                      {event.title}
+                    </div>
+                    <div className={styles.overlayContent}>{event.city}</div>
+                    <div
+                      className={styles.overlayContent}
+                    >{`${rescDate[1]} ${rescDate[2]}, ${rescDate[0]}`}</div>
+                    <div>
+                      <CountdownTimer />
+                    </div>
+                    <button
+                      onClick={handleReschedule}
+                      className={styles.rescheduleButton}
+                    >
+                      Yes, I'm in
+                    </button>
+                  </div>
+                </div>
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
       </section>
 
       <section className="container">
-        <div className="sectionHeading">Some similar recommendations for you, {user.user.firstname}.</div>
+        <div className="sectionHeading">
+          Some similar recommendations for you, {user.user.firstname}.
+        </div>
         <div className={style2.Ques}>
           <div className={style2.inputValues}>
             <div className={style2.inputValues}>
@@ -209,7 +252,12 @@ export const AlternateEvent: React.FC = () => {
         {upcomingEventArray.map((upcomingEvent, i) => (
           <div key={i} className="fitCards">
             {upcomingEvent.map((event) => (
-              <RecommendCard key={event.id} value={event} type="onlyHeart" favorites={user.fav_events} />
+              <RecommendCard
+                key={event.id}
+                value={event}
+                type="onlyHeart"
+                favorites={user.fav_events}
+              />
             ))}
           </div>
         ))}
