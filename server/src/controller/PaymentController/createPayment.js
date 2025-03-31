@@ -14,7 +14,6 @@ export const initiatePayment = async (req, res) => {
       currency: "usd",
       automatic_payment_methods: { enabled: true },
     });
-
     res.json({ clientSecret: paymentIntent.client_secret });
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -23,14 +22,11 @@ export const initiatePayment = async (req, res) => {
 
 export const handlePayment = async (req, res) => {
   try {
-    const { paymentIntentId } = req.body; // PaymentIntent ID from frontend
-
+    const { paymentIntentId } = req.body; 
     const paymentIntent = await stripe.paymentIntents.confirm(paymentIntentId);
-
     if (paymentIntent.status === "succeeded") {
       return res.json({ message: "Payment Successful!" });
     }
-
     res.json({ message: "Payment failed!" });
   } catch (error) {
     res.status(500).json({ error: error.message });

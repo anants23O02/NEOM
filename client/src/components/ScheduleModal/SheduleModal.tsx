@@ -107,7 +107,7 @@ const MyModal: React.FC<MyModalProps> = ({
           {checkScheduledEvent || checkAttendedEvent ? (
             <div className={styles.modalGuests}>
               <label htmlFor="guests">Guests</label>
-              <input id="guests" value={guests ?? ""} readOnly />
+              <input id="guests" value={selectedGuests ?? ""} readOnly />
             </div>
           ) : (
             <div className={styles.modalGuests}>

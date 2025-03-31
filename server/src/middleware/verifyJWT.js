@@ -13,6 +13,7 @@ export const verifyJWTMiddleware = (req, res,next) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const userData = decoded.user;
     req.body = userData;
+    console.log('userData :>> ', userData);
     next();
   } catch (error) {
     console.error("JWT Verification Error:", error);
