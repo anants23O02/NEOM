@@ -24,6 +24,7 @@ export const Login: React.FC = () => {
     const data = { email, password };
 
     try {
+      
       const res = await fetch("/auth/login", {
         method: "POST",  
         headers: {
@@ -89,3 +90,4 @@ export const Login: React.FC = () => {
     </section>
   );
 };
+

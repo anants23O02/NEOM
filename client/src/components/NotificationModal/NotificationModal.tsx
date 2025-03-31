@@ -135,17 +135,17 @@ export const NotificationComponent = ({
             "& .MuiBadge-badge": {
               backgroundColor: "black",
               color: "white",
-              fontSize: "0.6rem", // Makes the number inside the badge smaller
-              width: "16px", // Sets a smaller badge width
-              height: "16px", // Sets a smaller badge height
-              minWidth: "16px", // Ensures it doesn't expand
+              fontSize: "0.6rem", 
+              width: "16px", 
+              height: "16px", 
+              minWidth: "16px", 
             },
           }}
         >
           <NotificationsIcon
             style={{
               color: "grey",
-              fontSize: "1.2rem", // Reduces size by 10%
+              fontSize: "1.2rem", 
             }}
             onClick={(e) => showNotifications(e)}
           />

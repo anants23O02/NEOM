@@ -156,7 +156,7 @@ export const EventPage: React.FC = () => {
 
       <EventImages
         image={event.images}
-        status={
+      status={
           checkScheduledEvent
             ? "Scheduled"
             : checkAttendedEvent
